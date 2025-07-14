@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>確率過程論 on 勉強ノート</title>
+    <link>https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/</link>
+    <description>Recent content in 確率過程論 on 勉強ノート</description>
+    <generator>Hugo</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 06 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明</title>
+      <link>https://Yuki-Wada.github.io/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/</link>
+      <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://Yuki-Wada.github.io/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/</guid>
+      <description>&lt;h2 id=&#34;導入&#34;&gt;導入&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e5%b0%8e%e5%85%a5&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;本記事では、確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。特に Karatzas and Shreve の教科書 [1] に登場する練習問題を題材に、伊藤の公式をどのように応用すればよいかを詳細に解説します。&lt;/p&gt;&#xA;&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;概要-abstract-or-point&#34;&gt;概要 (abstract or point)&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e6%a6%82%e8%a6%81-abstract-or-point&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;h4 id=&#34;この記事で伝えたいこと&#34;&gt;この記事で伝えたいこと&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%a7%e4%bc%9d%e3%81%88%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;h4 id=&#34;記事の対象者&#34;&gt;記事の対象者&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e8%a8%98%e4%ba%8b%e3%81%ae%e5%af%be%e8%b1%a1%e8%80%85&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;伊藤の公式を実際の証明にどのように応用するかを具体的に学びたい方&lt;/li&gt;&#xA;&lt;li&gt;Exercise 3.3.25 of Karatzas and Shreve の該当練習問題を自力で完結できなかった方&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;本文1--詳細-reason&#34;&gt;本文1 ― 詳細 (reason)&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e6%9c%ac%e6%96%871--%e8%a9%b3%e7%b4%b0-reason&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;h4 id=&#34;証明したい命題&#34;&gt;証明したい命題&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#%e8%a8%bc%e6%98%8e%e3%81%97%e3%81%9f%e3%81%84%e5%91%bd%e9%a1%8c&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;p&gt;\( W={Wt,Ft;0≤t&amp;lt;∞} \) を標準的な一次元ブラウン運動、\( X _ {t} \) を可測で適合的な確率過程で&#xA;\[ \begin{aligned}  E \int _ {0}^{T} |X _ {t}|^{2m} \, dt &amp;lt; \infty  \end{aligned} \]&#xA;をある実数 \( T &amp;gt; 0 \)、\( m \geq 1 \) のときに満たすとする。このとき、以下の不等式が成り立つ。&#xA;\[ \begin{aligned}  \mathbb{E} \left| \int _ {0}^{T} X _ {t} dW _ {t} \right|^{2m} \leq \left( m(2m−1) \right)^{m} \cdot T^{m−1} \cdot \mathbb{E} \int _ {0}^{T} |X _ {t}|^{2m} \, dt  \end{aligned} \]&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
