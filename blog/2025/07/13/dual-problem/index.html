@@ -17,27 +17,27 @@
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-192x192.png" sizes="192x192">
 
-<title>伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明 | 勉強ノート</title>
-<meta name="description" content="確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。">
-<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/">
+<title>双対問題 | 勉強ノート</title>
+<meta name="description" content="双対問題">
+<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/13/dual-problem/">
   <meta property="og:site_name" content="勉強ノート">
-  <meta property="og:title" content="伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明">
-  <meta property="og:description" content="確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。">
+  <meta property="og:title" content="双対問題">
+  <meta property="og:description" content="双対問題">
   <meta property="og:locale" content="ja">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-05-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-05-06T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-13T00:00:00+00:00">
 
-  <meta itemprop="name" content="伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明">
-  <meta itemprop="description" content="確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。">
-  <meta itemprop="datePublished" content="2025-05-06T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-05-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="983">
-  <meta itemprop="keywords" content="金融工学,確率過程論,メモ">
+  <meta itemprop="name" content="双対問題">
+  <meta itemprop="description" content="双対問題">
+  <meta itemprop="datePublished" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="928">
+  <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明">
-  <meta name="twitter:description" content="確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。">
+  <meta name="twitter:title" content="双対問題">
+  <meta name="twitter:description" content="双対問題">
 <link rel="preload" href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" as="style" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <link href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" rel="stylesheet" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <script
@@ -139,8 +139,8 @@
       <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-my-hugo-siteblog-li">
   <a href="/my-hugo-site/blog/" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="">ブログ</span></a>
   <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-my-hugo-siteblog20250506ito-integral-moment-inequality-li">
-  <a href="/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250506ito-integral-moment-inequality"><span class="td-sidebar-nav-active-item">伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-my-hugo-siteblog20250713dual-problem-li">
+  <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713dual-problem"><span class="td-sidebar-nav-active-item">双対問題</span></a>
 </li>
   </ul>
 </li>
@@ -157,17 +157,27 @@
             <div class="td-toc">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#導入">導入</a></li>
-    <li><a href="#概要-abstract-or-point">概要 (abstract or point)</a>
+    <li><a href="#概要">概要</a>
       <ul>
         <li></li>
       </ul>
     </li>
-    <li><a href="#本文1--詳細-reason">本文1 ― 詳細 (reason)</a>
+    <li><a href="#双対問題">双対問題</a>
       <ul>
-        <li></li>
+        <li><a href="#definition-双対問題">Definition (双対問題)</a></li>
+        <li><a href="#propositon-双対問題の凸性">Propositon (双対問題の凸性)</a></li>
+        <li><a href="#弱双対定理">弱双対定理</a></li>
+        <li><a href="#強双対定理">強双対定理</a></li>
       </ul>
     </li>
+    <li><a href="#強双対定理の成立条件">強双対定理の成立条件</a>
+      <ul>
+        <li></li>
+        <li><a href="#propositon-スレーター条件を緩和しても強双対定理が成り立つ">Propositon (スレーター条件を緩和しても強双対定理が成り立つ)</a></li>
+      </ul>
+    </li>
+    <li><a href="#双対問題と-kkt-条件">双対問題と KKT 条件</a></li>
+    <li><a href="#フェンシェル双対性">フェンシェル双対性</a></li>
     <li><a href="#結論">結論</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
@@ -177,9 +187,7 @@
             <div class="taxonomy taxonomy-terms-cloud taxo-categories">
       <h5 class="taxonomy-title">Categories</h5>
       <ul class="taxonomy-terms">
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E3%83%A1%E3%83%A2/" data-taxonomy-term="%E3%83%A1%E3%83%A2"><span class="taxonomy-label">メモ</span><span class="taxonomy-count">1</span></a></li>
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/" data-taxonomy-term="%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96"><span class="taxonomy-label">確率過程論</span><span class="taxonomy-count">1</span></a></li>
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6/" data-taxonomy-term="%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6"><span class="taxonomy-label">金融工学</span><span class="taxonomy-count">1</span></a></li>
+        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span><span class="taxonomy-count">1</span></a></li>
         </ul>
     </div>
   
@@ -188,89 +196,190 @@
           <main class="col-12 col-md-9 col-xl-8 ps-md-5 pe-md-4" role="main">
             
 <div class="td-content">
-	<h1>伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明</h1>
-	<div class="lead">確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。</div>
+	<h1>双対問題</h1>
+	<div class="lead">双対問題</div>
 	<div class="td-byline mb-4">
 		By <b>Yuki Wada</b> |
-		<time datetime="2025-05-06" class="text-body-secondary">2025/05/06</time>
+		<time datetime="2025-07-13" class="text-body-secondary">2025/07/13</time>
 	</div>
 	<header class="article-meta">
 		<div class="taxonomy taxonomy-terms-article taxo-categories">
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6/" data-taxonomy-term="%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6"><span class="taxonomy-label">金融工学</span></a></li>
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/" data-taxonomy-term="%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96"><span class="taxonomy-label">確率過程論</span></a></li>
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E3%83%A1%E3%83%A2/" data-taxonomy-term="%E3%83%A1%E3%83%A2"><span class="taxonomy-label">メモ</span></a></li>
+    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
     </ul>
 </div>
 
   </header>
-	<h2 id="導入">導入<a class="td-heading-self-link" href="#%e5%b0%8e%e5%85%a5" aria-label="Heading self-link"></a></h2>
-<hr>
-<p>本記事では、確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。特に Karatzas and Shreve の教科書 [1] に登場する練習問題を題材に、伊藤の公式をどのように応用すればよいかを詳細に解説します。</p>
-<p><br><br></p>
-<h2 id="概要-abstract-or-point">概要 (abstract or point)<a class="td-heading-self-link" href="#%e6%a6%82%e8%a6%81-abstract-or-point" aria-label="Heading self-link"></a></h2>
-<hr>
+	<h2 id="概要">概要<a class="td-heading-self-link" href="#%e6%a6%82%e8%a6%81" aria-label="Heading self-link"></a></h2>
 <h4 id="この記事で伝えたいこと">この記事で伝えたいこと<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%a7%e4%bc%9d%e3%81%88%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h4>
-<h4 id="記事の対象者">記事の対象者<a class="td-heading-self-link" href="#%e8%a8%98%e4%ba%8b%e3%81%ae%e5%af%be%e8%b1%a1%e8%80%85" aria-label="Heading self-link"></a></h4>
+<p>今まで双対問題について勉強してきたのですが、そのたびに忘れてしまったので、
+メモとして記載しております。<br>
+双対問題がどのように導出されているのか、何が本質的に重要なのか、どのような条件の下で成り立つのかといった点は、一箇所に整理されている資料は意外と少ないように思います。
+そこでこの記事では、これらのポイントについて概略的に整理し、理解の助けとなるようにまとめてみたいと思います。</p>
+<h4 id="この記事の対象者">この記事の対象者<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%ae%e5%af%be%e8%b1%a1%e8%80%85" aria-label="Heading self-link"></a></h4>
 <ul>
-<li>伊藤の公式を実際の証明にどのように応用するかを具体的に学びたい方</li>
-<li>Exercise 3.3.25 of Karatzas and Shreve の該当練習問題を自力で完結できなかった方</li>
+<li>双対問題の定義をしっかり</li>
+<li>双対問題の重要性をしっかり理解したい方</li>
+<li>強双対定理が成り立つための条件をしっかりと理解したい方</li>
+</ul>
+<h4 id="参考記事">参考記事<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e8%a8%98%e4%ba%8b" aria-label="Heading self-link"></a></h4>
+<ul>
+<li>凸関数の定義・性質は<a href="../convex-function/#section2">この記事</a>も参考にしてください。</li>
+<li>不等式制約付き最適化問題については<a href="../inequality-constrained-optimization/">この記事</a>も参考にしてください。</li>
 </ul>
 <p><br><br></p>
-<h2 id="本文1--詳細-reason">本文1 ― 詳細 (reason)<a class="td-heading-self-link" href="#%e6%9c%ac%e6%96%871--%e8%a9%b3%e7%b4%b0-reason" aria-label="Heading self-link"></a></h2>
-<hr>
-<h4 id="証明したい命題">証明したい命題<a class="td-heading-self-link" href="#%e8%a8%bc%e6%98%8e%e3%81%97%e3%81%9f%e3%81%84%e5%91%bd%e9%a1%8c" aria-label="Heading self-link"></a></h4>
-<p>\( W={Wt,Ft;0≤t&lt;∞} \) を標準的な一次元ブラウン運動、\( X _ {t} \) を可測で適合的な確率過程で
-\[ \begin{aligned}  E \int _ {0}^{T} |X _ {t}|^{2m} \, dt &lt; \infty  \end{aligned} \]
-をある実数 \( T &gt; 0 \)、\( m \geq 1 \) のときに満たすとする。このとき、以下の不等式が成り立つ。
-\[ \begin{aligned}  \mathbb{E} \left| \int _ {0}^{T} X _ {t} dW _ {t} \right|^{2m} \leq \left( m(2m−1) \right)^{m} \cdot T^{m−1} \cdot \mathbb{E} \int _ {0}^{T} |X _ {t}|^{2m} \, dt  \end{aligned} \]</p>
-<h4 id="課題の背景">課題の背景<a class="td-heading-self-link" href="#%e8%aa%b2%e9%a1%8c%e3%81%ae%e8%83%8c%e6%99%af" aria-label="Heading self-link"></a></h4>
-<p>上記の問題はマルチンゲールのモーメント不等式</p>
-<p>マルチンゲールのモーメント不等式（martingale moment inequality）は、確率論においてマルチンゲールの最大値や変動の大きさを制御するための強力な道具です。特に、マルチンゲールが「どれくらい大きくなりうるか」をモーメント（平均値のべき乗）で評価します。</p>
-<p>マルチンゲールとは、未来の期待値が現在の値に等しいという性質をもつ確率過程。</p>
-<p>Karatzas and Shreve の問題に</p>
-<h4 id="課題を解決する技術手法の概要">課題を解決する技術・手法の概要<a class="td-heading-self-link" href="#%e8%aa%b2%e9%a1%8c%e3%82%92%e8%a7%a3%e6%b1%ba%e3%81%99%e3%82%8b%e6%8a%80%e8%a1%93%e6%89%8b%e6%b3%95%e3%81%ae%e6%a6%82%e8%a6%81" aria-label="Heading self-link"></a></h4>
-<p>今回は</p>
-<h4 id="技術手法の効果課題がどう解決されるか">技術・手法の効果、課題がどう解決されるか<a class="td-heading-self-link" href="#%e6%8a%80%e8%a1%93%e6%89%8b%e6%b3%95%e3%81%ae%e5%8a%b9%e6%9e%9c%e8%aa%b2%e9%a1%8c%e3%81%8c%e3%81%a9%e3%81%86%e8%a7%a3%e6%b1%ba%e3%81%95%e3%82%8c%e3%82%8b%e3%81%8b" aria-label="Heading self-link"></a></h4>
-<h5 id="伊藤の公式を適用">伊藤の公式を適用<a class="td-heading-self-link" href="#%e4%bc%8a%e8%97%a4%e3%81%ae%e5%85%ac%e5%bc%8f%e3%82%92%e9%81%a9%e7%94%a8" aria-label="Heading self-link"></a></h5>
-<p>元ネタである [1] の Exercise 3.3.25 のヒントには「マルチンゲール \( { M _ {t} = ∫t0XsdWs,Ft;0≤t≤T} {Mt=∫0tXsdWs,Ft;0≤t≤T } \) と \( f(x) = |x|^{2m} \) に対して、伊藤の公式を適用すればよい」とあります。</p>
-<p>ですが、そのまま \( f(x) = |x|^{2m} \,\, (x \in \mathbb{R}) \) に対して伊藤の公式を適用するのは \( f&rsquo;&rsquo; \) が連続でないという懸念点があるので、[1] の Proposition 3.3.26 の証明を援用してみます。</p>
-<p>\( Y _ {t} = \delta + M _ {t}^{2} \,\, (\delta &gt; 0) \) に対して、\( g(x) = x^{m} \,\, (x &gt; 0) \) は値を代入でき、さらに \( g&rsquo;, g&rsquo;&rsquo; \) も連続です。よって、問題なく伊藤の公式が適用できます。\( \delta &gt; 0 \) の場合に対して最終的に \( \delta \rightarrow +0 \) とすることによって、\( | M _ {t} | ^{2m} \) の結果を得ることができそうです。</p>
-<p>実際に計算してみます。伊藤の公式を使うことで、
-\[ \begin{aligned}  Y _ {t} = \delta + M _ {t}^{2} = \delta + 2 \int _ {0}^{t} M _ {t} \, d M _ {t} + \langle M \rangle _ {t} = \delta + 2 \int _ {0}^{t} M _ {t} \, d M _ {t} + \int _ {0}^{t} X _ {t}^{2} \, dt  \end{aligned} \]
-であり、\( Y _ {t} \) のマルチンゲール部分 \( 2 \int _ {0}^{t} M _ {t} \, d M _ {t} \) の二次変分は \( 4 M _ {t}^{2} \, d\langle M\rangle _ {t} = 4 M _ {t}^{2} X _ {t}^{2} \, dt \) とかけます。よって、さらに伊藤の公式を適用することで、
-\[ \begin{aligned} Y _ {T}^{m} = g(Y _ {T}) &amp; = g(Y _ {0}) + \int _ {0}^{T} g&rsquo;(Y _ {t}) \, dY _ {t} + \frac{1}{2} \int _ {0}^{T} g&rsquo;&rsquo;(Y _ {t}) \, d\langle Y \rangle _ {t} \\ &amp; = \delta^{m} + m \cdot \int _ {0}^{T} Y _ {t}^{m - 1} \, dY _ {t} + \frac{m (m - 1)}{2} \int _ {0}^{T} (Y _ {t})^{m - 2} \cdot 4 M _ {t}^{2} X _ {t}^{2} \, dt \\ &amp; = \delta^{m} + 2m \cdot \int _ {0}^{T} Y _ {t}^{m - 1} M _ {t} \, dM _ {t} + m \cdot \int _ {0}^{T} Y _ {t}^{m - 1} X _ {t}^{2} \, dt + 2m \cdot (m - 1) \cdot \mathbb{E} \left( \int _ {0}^{T} Y _ {t}^{m - 2} M _ {t}^{2} X _ {t}^{2} \, dt \right) \\ \end{aligned} \]
-とかけます。両辺の期待値を取ると、\( \int _ {0}^{T} Y _ {t}^{m - 1} M _ {t} \, dM _ {t} \) がマルチンゲールですので、
-\[ \begin{aligned} \mathbb{E}(Y _ {T}^{m}) = m \cdot \mathbb{E} \left( \int _ {0}^{T} Y _ {t}^{m - 1} X _ {t}^{2} \, dt \right) + 2m \cdot (m - 1) \cdot \mathbb{E} \left( \int _ {0}^{T} Y _ {t}^{m - 2} M _ {t}^{2} X _ {t}^{2} \, dt \right) \\ \end{aligned} \]
-となり、さらに \( \delta \rightarrow +0 \) とすることでルベーグの優収束定理より、
-\[ \begin{aligned} \mathbb{E}( |M _ {T}|^{2m} ) &amp; = m \cdot (2m - 1) \cdot \mathbb{E} \left( \int _ {0}^{T} |M _ {t}|^{2m - 2} X _ {t}^{2} \, dt \right) \\ \end{aligned} \]
-という等式が成立することがいえます。</p>
-<h5 id="積分項を整理">積分項を整理<a class="td-heading-self-link" href="#%e7%a9%8d%e5%88%86%e9%a0%85%e3%82%92%e6%95%b4%e7%90%86" aria-label="Heading self-link"></a></h5>
-<p>ここまで伊藤の公式を使って式変形をしてきました。\( \mathbb{E} \left( \int _ {0}^{T} M _ {t}^{2m - 2} X _ {t}^{2} \, dt \right) \) という項が出てきていますが、これを \( \mathbb{E} \int _ {0}^{T} |X _ {t}|^{2m} \, dt\) とどう結びつけるかが次の問題になります。</p>
-<p>\( m = 1 \) なら問題ないので、ここから \( m &gt; 1 \) とします。</p>
-<p>まず、\( p= \frac{m} {m−1}, \,\, q = m \) に対して、\( \frac{1}{p} + \frac{1}{q} = 1 \) を満たすことからヘルダーの不等式を適用することで、</p>
-<p>\[ \begin{aligned} \mathbb{E} \left( \int _ {0}^{T} | M _ {t} |^{2m - 2} X _ {t}^{2} \, dt \right) \leq \left( \mathbb{E} \left( \int _ {0}^{T} | M _ {t} |^{2m} \, dt \right) \right)^{\frac{m - 1}{m}} \cdot \left( \mathbb{E} \left( \int _ {0}^{T} |X _ {t}|^{2m} \, dt \right) \right) ^{\frac{1}{m}} \end{aligned} \]
-という不等式が成立し、\( M _ {t} \) に関する積分と \( X _ {t} \) に関する積分の積に分離できます。</p>
-<p>次に、\( M _ {t} \) がマルチンゲールで \( h(x) = |x|^{2m} \) が凸関数であるため、\( |M _ {t}|^{2m} \)　が劣マルチンゲールであることから、\( |M _ {t}|^{2m} \leq \mathbb{E} \left( |M _ {T}|^{2m} | \mathcal{F} _ {t} \right) \) であることがわかります。両辺の期待値を取って、
-\[ \begin{aligned}  \mathbb{E} |M _ {t}|^{2m} \leq \mathbb{E} \left( |M _ {T}|^{2m} \right)  \end{aligned} \]
-という不等式が成立することがわかります。よって、フビニの定理を適用することで、
-\[ \begin{aligned}  \mathbb{E} \left( \int _ {0}^{T} | M _ {t} |^{2m} \, dt \right) = \int _ {0}^{T} \mathbb{E} \left( | M _ {t} |^{2m} \right) \, dt \leq \int _ {0}^{T} \mathbb{E} \left( | M _ {T} |^{2m} \right) \, dt = T \cdot \mathbb{E} \left( | M _ {T} |^{2m} \right)  \end{aligned} \]
-という不等式が成立し、\( t \) に関する積分を追い出した項で上から抑えることができます。</p>
-<p>上記二つの不等式を使って元の式を整理すると、
-\[ \begin{aligned} \mathbb{E}( |M _ {T}|^{2m} ) = &amp; m \cdot (2m - 1) \cdot \mathbb{E} \left( \int _ {0}^{T} | M _ {t} |^{2m - 2} |X _ {t}|^{2} \, dt \right) \\ \leq &amp; m \cdot (2m - 1) \cdot \left( \mathbb{E} \left( \int _ {0}^{T} | M _ {t} |^{2m} \, dt \right) \right)^{\frac{m - 1}{m}} \cdot \left( \mathbb{E} \left( \int _ {0}^{T} |X _ {t}|^{2m} \, dt \right) \right) ^{\frac{1}{m}} \\ \leq &amp; m \cdot (2m - 1) \cdot \left( T \cdot \mathbb{E} \left( | M _ {T} |^{2m} \right) \right)^{\frac{m - 1}{m}} \cdot \left( \mathbb{E} \left( \int _ {0}^{T} |X _ {t}|^{2m} \, dt \right) \right) ^{\frac{1}{m}} \end{aligned} \]
-とかけますので、\( \mathbb{E}( |M _ {T}|^{2m} )^{ \frac{m-1}{m} } \) で両辺を割った後、\( m \) 乗すれば、
-\[ \begin{aligned} \mathbb{E}( |M _ {T}|^{2m} ) \leq &amp; \left( m \cdot (2m - 1) \right)^{m} \cdot T ^{m - 1} \cdot \mathbb{E} \left( \int _ {0}^{T} |X _ {t}|^{2m} \, dt \right) \end{aligned} \]
-となり、所望の不等式が成立することを示せました。</p>
-<h4 id="留意点デメリット">留意点、デメリット<a class="td-heading-self-link" href="#%e7%95%99%e6%84%8f%e7%82%b9%e3%83%87%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88" aria-label="Heading self-link"></a></h4>
+<h2 id="双対問題">双対問題<a class="td-heading-self-link" href="#%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c" aria-label="Heading self-link"></a></h2>
+<h3 id="definition-双対問題">Definition (双対問題)<a class="td-heading-self-link" href="#definition-%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。
+ラグランジュ緩和関数
+\[ \begin{aligned}    L(x, \lambda, \mu) = f(x) + \sum _ {i=1}^{m} \lambda _ i g _ i(x) + \sum _ {j=1}^{p} \mu _ j h _ j(x) &gt;  \end{aligned} \]
+に対して、
+\[ \begin{aligned}    g(\mu, \lambda) := \inf _ {x} L(x, \lambda, \mu) &gt;  \end{aligned} \]
+とおきます。
+このとき、以下の最適化問題を元の問題の双対問題と定義します:
+\[ \begin{aligned}    \text{supremum} \,\, g(\mu, \lambda) . &gt;  \end{aligned} \]
+また、元の問題を主問題といいます。</p>
+</blockquote>
+<h3 id="propositon-双対問題の凸性">Propositon (双対問題の凸性)<a class="td-heading-self-link" href="#propositon-%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%81%ae%e5%87%b8%e6%80%a7" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>\(g(\mu, \lambda)\) は凸関数です。</p>
+</blockquote>
+<h3 id="弱双対定理">弱双対定理<a class="td-heading-self-link" href="#%e5%bc%b1%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h3>
+<p>双対問題の定義の仕方から、
+主問題の最適値が双対関数の最適値で下から抑えられることがわかります。</p>
+<p><strong>Propositon (弱双対定理)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。
+実行可能解の集合を \(F\) とします。
+このとき、以下の不等式が成り立ちます。
+\[ \begin{aligned}  \inf _ {x \in F} f(x) \geq \sup _ {\mu, \lambda} g(\mu, \lambda)  \end{aligned} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>\[ \begin{aligned}  \min _ {x} f(x) \geq \min _ {x} \max _ {\mu, \lambda} L(x, \lambda, \mu) \geq \max _ {\mu, \lambda} \min _ {x} L(x, \lambda, \mu) \geq \max _ {\mu, \lambda} g(\mu, \lambda)  \end{aligned} \]
+となるため。</p>
+</div></details>
+</blockquote>
+<h3 id="強双対定理">強双対定理<a class="td-heading-self-link" href="#%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h3>
+<p>弱双対定理によって、主問題の最適値と双対問題の最適値の差（双対ギャップ）は常に 0 以上になることがわかります。
+特に、主問題と双対問題の最適値が一致する（すなわち dual gap = 0）場合には、双対問題を解くことで主問題の最適値を求めることができます。
+この場合は、双対問題を解くことの意義が明確になります。</p>
+<p>この dual gap が 0 になるためには、ある条件が満たされている必要があります。
+こうした条件のもとで 双対ギャップが 0 になることを保証する定理を、一般に強双対定理（strong duality theorem） と呼びます。
+中でも代表的な十分条件として知られているのが、次節で説明するスレーター条件です。
+ここでは、強双対定理の主張を簡単にまとめておきます。</p>
+<p><strong>Statement (強双対定理)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。
+実行可能解の集合を \(F\) とします。
+以下の等式が成り立つとき、この最適化問題は強双対定理が成り立つといいます。
+\[ \begin{aligned}    \inf _ {x \in F} f(x) = \sup _ {\mu, \lambda} g(\mu, \lambda)    \end{aligned} \]</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="強双対定理の成立条件">強双対定理の成立条件<a class="td-heading-self-link" href="#%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86%e3%81%ae%e6%88%90%e7%ab%8b%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h2>
+<h4 id="スレーター条件">スレーター条件<a class="td-heading-self-link" href="#%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h4>
+<p><strong>Definition (スレーター条件)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。
+このとき、この問題が凸最適化問題で、\(h _ {j}\) がアフィン関数であり、さらに、以下の条件
+\[ \begin{aligned}  g _ i(x _ 0) &lt; 0 \quad (\forall \, i), \quad h _ j(x _ 0) = 0 \quad (\forall \, j)  \end{aligned} \]
+を満たす \(x _ {0}\) が存在するとき、この最適化問題はスレーター条件を満たすと定義します。</p>
+</blockquote>
+<p>実際に最適化問題がスレーター条件を満たすならば、強双対定理が成り立つことを示すことができます。このことを Proposition の形でまとめておきます。</p>
+<p><strong>Propositon (スレーター条件が満たされるならば強双対定理が成り立つ)</strong></p>
+<blockquote>
+<p>不等式制約付きの<strong>凸最適化問題</strong> \(\left( f, {g _ {i}}, {h _ {j}} \right)\) がスレーター条件を満たすならば、強双対定理が成り立ちます。</p>
+<details><summary>(Proof)</summary><div>
+<p>(1) 文献にある通り、最初は \(\tilde{x}\) が内点であり、行列 \(A\) の階数がfull であるケースを考えます。
+次の集合を考えます。
+\[ \begin{aligned}  \mathcal{A} = \{ (u, v, t) | ∃x ∈ D, fi(x) ≤ ui, i = 1, . . . , m, hi(x) = vi, i = 1, . . . , p, f0(x) ≤ t\}, \\   \mathcal{B} = {(0, 0, s) ∈ Rm × Rp × R | s &lt; p⋆}  \end{aligned} \]
+まず、この問題が凸最適化問題であるため \(\mathcal{A}\) は凸集合です。
+次に \(\mathcal{A} \cap \mathcal{B} = \empty\) であることがわかります。
+よって、凸集合の分離定理から、以下の条件を満たす \(\lambda, \mu, \nu \in \mathbb{R}^{n}\) が存在します:
+\[ \begin{aligned}  \langle \lambda, u \rangle + \langle \nu, b \rangle + \mu \cdot t \geq \alpha \quad    \left( (u, v, t)\in \mathcal{A} \right), \\   \langle \lambda, u \rangle + \langle \mu, b \rangle + \nu \cdot t \leq \alpha \quad   \left( (u, v, t)\in \mathcal{B} \right).  \end{aligned} \]</p>
+<p>\(\mu &gt; 0\) を示しましょう。一旦 \(\mu = 0\) が正しいと仮定します。
+\[ \begin{aligned}  \sum _ {i=} \lambda _ {i} g _ {i}(x)  + ν^{T} (Ax − b) \geq 0.  \end{aligned} \]
+\(A \tilde{x} − b = 0\) なので、\( \sum _ {i=1} \lambda _ {i} g _ {i}(\tilde{x}) \geq 0\) とならなければなりません。
+一方で、\(g _ {i}(\tilde{x}) &lt; 0\) となることから \(\lambda _ {i} \geq 0\) と合わせて、\(\lambda _ {i} g _ {i}(\tilde{x}) \leq 0\) も成り立つ必要があります。
+よって、各不等号は等号で成立する必要があり、\(g _ {i}(\tilde{x}) \neq 0\) より \(\lambda _ {i} = 0\) が示せます.</p>
+<p>\(\lambda _ {i} = 0\) から \(ν^{T} (A x − b) \geq 0\) とならなければなりません。
+一方で \(ν^{T} (A \tilde{x} − b) = 0\) であるから、\(ν^{T} A (x - \tilde{x}) \geq 0\) が成り立つ必要があります。
+これは \(\tilde{x}\) が内点であること、 \(A\) のランクがfullであることと矛盾します。</p>
+<p>(2) 行列 \(A\) の階数が行数と一致しないケースを考えます。<br>
+実行可能解 \(\tilde{x}\) が存在することから、一次従属になる行を取り除いてしまっても制約条件が変わらないことがわかります。
+よって、一次従属になる行を取り除いてしまえば (1) に帰着可能です。</p>
+<p>(3) \(\tilde{x}\) が \(\mathbb{R}^{N}\) 自身の内点ではないケースを考えます。<br>
+この場合、ある部分アフィン空間 \(A\) が存在して、\(\tilde{x}\) は \(A\) において内点となっています。
+よって、アフィン空間 \(A\) 上に制限すれば、(2) に帰着可能です。</p>
+<p>以上より、示すことができました。</p>
+</div></details>
+</blockquote>
+<h4 id="緩和されたスレーター条件">緩和されたスレーター条件<a class="td-heading-self-link" href="#%e7%b7%a9%e5%92%8c%e3%81%95%e3%82%8c%e3%81%9f%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h4>
+<p>強双対定理が成り立つことは双対問題を解くモチベーションを出す上で重要でした。十分条件の一つがスレーター条件であることからスレーター条件の重要性が理解できます。
+一方で、スレーター条件は条件として少し厳しすぎるようにも見えます。
+例えば、線形計画法の問題を考える場合に、不等式制約に対して不等号が成り立っているもの</p>
+<p><strong>Definition (緩和されたスレーター条件)</strong></p>
+<blockquote>
+<p>不等式制約付き<strong>凸最適化問題</strong> \(\left( f, {g _ {i}} \cup {g&rsquo; _ {i&rsquo;}}, {h _ {j}} \right)\) を考えます。
+このとき、この問題が凸最適問題で、\(g&rsquo; _ {i&rsquo;}, h _ {j}\) がアフィン関数であり、さらに、以下の条件
+\[ \begin{aligned}  g _ i(x _ 0) &lt; 0 \quad (\forall \, i), \quad g&rsquo; _ {i&rsquo;} (x _ 0) \leq 0 \quad (\forall \, i&rsquo;), \quad h _ j(x _ 0) = 0 \quad (\forall \, j)  \end{aligned} \]
+を満たす \(x _ {0}\) が存在するとき、この最適化問題は緩和されたスレーター条件を満たすと定義します。</p>
+</blockquote>
+<h3 id="propositon-スレーター条件を緩和しても強双対定理が成り立つ">Propositon (スレーター条件を緩和しても強双対定理が成り立つ)<a class="td-heading-self-link" href="#propositon-%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6%e3%82%92%e7%b7%a9%e5%92%8c%e3%81%97%e3%81%a6%e3%82%82%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86%e3%81%8c%e6%88%90%e3%82%8a%e7%ab%8b%e3%81%a4" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>不等式制約付き<strong>凸最適化問題</strong> \(\left( f, {g _ {i}}, {h _ {j}} \right)\) が緩和されたスレーター条件を満たすならば、強双対定理が成り立ちます。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(I&rsquo;\) を \({1, \dots, i&rsquo; }\) の任意の部分集合とします。
+\[ \begin{aligned} F(I) \end{aligned} \]<br>
+このとき、実行可能解は \(\cup F(I)\)と一致します。
+各 \(F(I)\)においてはスレーター条件が成立していることを示せます。
+よって成立が言えました。</p>
+</div></details>
+</blockquote>
+<p><br><br></p>
+<h2 id="双対問題と-kkt-条件">双対問題と KKT 条件<a class="td-heading-self-link" href="#%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%81%a8-kkt-%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h2>
+<p><strong>Propositon (主・双対問題に最適解が存在するならば KKT 条件が成り立つ)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。このとき、主問題の最適解 \( x^{\ast\ast}\)、双対問題の最適解 \((\mu^{\ast}, \lambda^{\ast})\) が存在し、かつ、強双対定理が成立するならば、\((x, \mu^{\ast}, \lambda^{\ast})\) において KKT 条件が成り立ちます。</p>
+<details><summary>(Proof)</summary><div>
+<p>(1) Primal feasibility（実行可能性）と feasibility（双対実行可能性）は前提条件から成り立つことがわかります。<br>
+(2) Complementary slackness（相補性条件）が成り立つことを示します。
+最適化問題の実行可能解の集合を \(F\) とします。
+ラグランジュ緩和関数 に対して、
+\[ \begin{align}   1   \end{align} \]
+と式変形できる。ここで、強双対定理が成り立つことから、\(f(x^{\ast}) = g(\mu^{\ast}, \lambda^{\ast})\) となるため、上記の不等号は全て等号になることがわかります。
+よって、
+\[ \begin{aligned}  &gt;   \sum _ {i=1}^{m} \lambda _ {i}^{a} g _ {i}(x^{a}) + \sum _ {j=1}^{p} \mu _ {j}^{a} h _ {j}(x^{\ast}) = 0 &gt;  \end{aligned} \]
+となることがわかります。
+\[ \begin{aligned}   &gt;   L(x^{\ast}, \mu^{\ast}, \lambda^{\ast}) = \inf _ {x} L(x, \mu^{\ast}, \lambda^{\ast}) &gt;  \end{aligned} \]
+であることから、\(L(x, \mu^{<em>}, \lambda^{</em>})\) を \(x\) の関数としてみたときに \(x = x^{*}\) で極小となることがわかるため、Stationarity（停留条件）が成り立つこともわかる。</p>
+</div></details>
+</blockquote>
+<p><strong>Propositon (KKT 条件が成り立つならば主・双対問題に最適解が存在する)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, {g _ {i}}, {h _ {j}} \right)\) を考えます。さらに、この問題が凸最適化問題であるとします。
+このとき、\((x, \mu^{\ast}, \lambda^{\ast})\) において KKT 条件を満たすならば、強双対定理が成り立ちます。</p>
+<details><summary>(Proof)</summary><div>
+<p>Complementary slackness（相補性条件）が成り立つことから、
+\[ \begin{aligned}    f(x^{\ast}) = f(x^{\ast}) + \sum _ {i=1}^{m} \lambda _ i^{\ast} g _ i(x^{\ast}) + \sum _ {j=1}^{p} \mu _ j^{\ast} h _ j(x^{\ast}) &gt;  \end{aligned} \]
+が成り立ちます。<br>
+次に、この不等式制約付き最適化問題が凸最適化問題であることから、ラグランジュ緩和関数 \(L(x, \mu^{\ast}, \lambda^{\ast})\) は \(x\) の関数とみたときに凸関数であることがわかります。一般に、凸関数が \(x=x^{\ast}\) で停留条件を満たすならば \(x=x^{\ast}\) で最小値をとるため、
+\[ \begin{aligned}   &gt;   L(x^\ast, \mu^\ast, \lambda^\ast) = \min _ {x} L(x, \mu^{\ast}, \lambda^{\ast}) &gt;  \end{aligned} \]
+が成り立ちます。
+よって、
+\[ \begin{aligned}  &gt;   \begin{align} &gt;   &amp; f(x^{\ast}) \nonumber \\ &gt;   = &amp; f(x^{\ast}) + \sum _ {i=1}^{m} \lambda _ i^{\ast} g _ i(x^{\ast}) + \sum _ {j=1}^{p} \mu _ j^{\ast} h _ j(x^{\ast}) \nonumber \\ &gt;   = &amp; L(x^{\ast}, \mu^{\ast}, \lambda^{\ast}) \nonumber \\ &gt;   = &amp; \min _ {x} L(x, \mu^{\ast}, \lambda^{\ast}) \nonumber \\ &gt;   = &amp; g(\mu^{\ast}, \lambda^{\ast}) \nonumber \\  &gt;   \end{align} &gt;  \end{aligned} \]
+と式変形できます。このことから、強双対定理が成り立つことがわかります。\( \Box \)</p>
+</div></details>
+</blockquote>
+<p><br><br></p>
+<h2 id="フェンシェル双対性">フェンシェル双対性<a class="td-heading-self-link" href="#%e3%83%95%e3%82%a7%e3%83%b3%e3%82%b7%e3%82%a7%e3%83%ab%e5%8f%8c%e5%af%be%e6%80%a7" aria-label="Heading self-link"></a></h2>
 <p><br><br></p>
 <h2 id="結論">結論<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96" aria-label="Heading self-link"></a></h2>
-<hr>
-<p>伊藤の公式とヘルダーの不等式、マルチンゲールの性質を組み合わせることで、[1] の Exercise 3.3.25 に登場するモーメント不等式を導出することができました。本手法は、他の確率微分方程式や不等式評価にも応用可能であり、伊藤解析の基礎を深める良い練習になります。</p>
 <p><br><br></p>
 <h2 id="参考文献">参考文献<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="Heading self-link"></a></h2>
-<hr>
-<p>[1] Ioannis Karatzas, Steven E. Shreve, <em>Brownian Motion and Stochastic Calculus</em>, 2nd ed.</p>
+<ul>
+<li><a id="kanamaori"></a>金森敬文（2015）『統計的学習理論』共立出版（機械学習プロフェッショナルシリーズ）</li>
+</ul>
 
 	<ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
   <li>

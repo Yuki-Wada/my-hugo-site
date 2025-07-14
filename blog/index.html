@@ -130,8 +130,8 @@
       <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-my-hugo-siteblog-li">
   <a href="/my-hugo-site/blog/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="td-sidebar-nav-active-item">ブログ</span></a>
   <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250506ito-integral-moment-inequality-li">
-  <a href="/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250506ito-integral-moment-inequality"><span class="">伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713dual-problem-li">
+  <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713dual-problem"><span class="">双対問題</span></a>
 </li>
   </ul>
 </li>
@@ -149,9 +149,7 @@
             <div class="taxonomy taxonomy-terms-cloud taxo-categories">
       <h5 class="taxonomy-title">Categories</h5>
       <ul class="taxonomy-terms">
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E3%83%A1%E3%83%A2/" data-taxonomy-term="%E3%83%A1%E3%83%A2"><span class="taxonomy-label">メモ</span><span class="taxonomy-count">1</span></a></li>
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/" data-taxonomy-term="%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96"><span class="taxonomy-label">確率過程論</span><span class="taxonomy-count">1</span></a></li>
-        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6/" data-taxonomy-term="%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6"><span class="taxonomy-label">金融工学</span><span class="taxonomy-count">1</span></a></li>
+        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span><span class="taxonomy-count">1</span></a></li>
         </ul>
     </div>
   
@@ -164,15 +162,13 @@
     <ul class="td-blog-posts-list">
       <li class="td-blog-posts-list__item">
         <div class="td-blog-posts-list__body">
-          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/">伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明</a></h5>
-          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/05/06 in ブログ</small></p>
+          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/07/13/dual-problem/">双対問題</a></h5>
+          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/07/13 in ブログ</small></p>
           <header class="article-meta">
             <div class="taxonomy taxonomy-terms-article taxo-categories">
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6/" data-taxonomy-term="%E9%87%91%E8%9E%8D%E5%B7%A5%E5%AD%A6"><span class="taxonomy-label">金融工学</span></a></li>
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96/" data-taxonomy-term="%E7%A2%BA%E7%8E%87%E9%81%8E%E7%A8%8B%E8%AB%96"><span class="taxonomy-label">確率過程論</span></a></li>
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E3%83%A1%E3%83%A2/" data-taxonomy-term="%E3%83%A1%E3%83%A2"><span class="taxonomy-label">メモ</span></a></li>
+    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
     </ul>
 </div>
 
@@ -182,9 +178,10 @@
 
 
 
-<p class="pt-0 mt-0">導入 本記事では、確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。特に Karatzas and Shreve の教科書 [1] に登場する練習問題を題材に、伊藤の公式をどのように応用すればよいかを詳細に解説します。
-概要 (abstract or point) この記事で伝えたいこと 記事の対象者 伊藤の公式を実際の証明にどのように応用するかを具体的に学びたい方 Exercise 3.3.25 of Karatzas and …</p>
-          <p class="pt-0"><a href="/my-hugo-site/blog/2025/05/06/ito-integral-moment-inequality/" aria-label="続きを読む - 伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明">続きを読む</a></p>
+<p class="pt-0 mt-0">概要 この記事で伝えたいこと 今まで双対問題について勉強してきたのですが、そのたびに忘れてしまったので、 メモとして記載しております。
+双対問題がどのように導出されているのか、何が本質的に重要なのか、どのような条件の下で成り立つのかといった点は、一箇所に整理されている資料は意外と少ないように思います。 そこでこの記事では、これらのポイントについて概略的に整理し、理解の助けとなるようにまとめてみたいと思います。
+この記事の対象者 双対問題の定義をしっかり 双対問題の重要性をしっかり理解したい方 強 …</p>
+          <p class="pt-0"><a href="/my-hugo-site/blog/2025/07/13/dual-problem/" aria-label="続きを読む - 双対問題">続きを読む</a></p>
         </div>
       </li>
       </ul>
