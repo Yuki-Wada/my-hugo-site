@@ -36,7 +36,7 @@
     "convert": "python original/util_script.py"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
     "hugo-extended": "0.140.2",
     "postcss-cli": "^11.0.0",
