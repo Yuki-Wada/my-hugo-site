@@ -7,7 +7,7 @@ categories:
 - メモ
 date: '2025-05-06'
 description: 確率解析における基本的かつ重要な不等式の一つであるマルチンゲールのモーメント不等式に関する具体的な証明を取り上げます。
-draft: false
+draft: true
 math: true
 slug: ito-integral-moment-inequality
 title: 伊藤の公式を用いた、マルチンゲールのモーメント不等式の証明

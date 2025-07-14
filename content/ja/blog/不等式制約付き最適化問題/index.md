@@ -1,6 +1,6 @@
 ---
 aliases:
-- /inequality-constrained-optimization/
+- inequality-constrained-optimization
 author: Yuki Wada
 categories:
 - 最適化
@@ -15,7 +15,7 @@ weight: 999
 
 
 ## 不等式制約付き最適化問題
-
+{{ .Site.BaseURL }}
 **Definition（不等式制約付き最適化問題）**
 > (1) 以下の問題を不等式制約付き最適化問題 \\(\left( f\, \{g _ {i}\}\, \{h _ {j}\} \right)\\) と定義します。
 > \\[   \\begin{align}   \\text{infimum} \\\,\\\, & f(x)\\\\   \\text{subject to} \\\,\\\,   & g _ {i}(x) \\leq 0 \\\,\\\, (\\forall \\\, i) \\\\   & h _ {j}(x) = 0 \\\,\\\, (\\forall \\\, j) \\\\   \\end{align}   \\]
