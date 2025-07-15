@@ -1,5 +1,5 @@
 baseURL: https://yuki-wada.github.io/my-hugo-site/
-title: Goldydocs
+title: 頭のなかの技術帖
 
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
 
@@ -48,7 +48,7 @@ languages:
   ja:
     languageName: Japanese
     contentDir: content/ja
-    title: '勉強ノート'
+    title: '頭のなかの技術帖'
     params:
       description: 
       time_format_default: 2006/01/02
@@ -56,7 +56,7 @@ languages:
   # en:
   #   languageName: English
   #   contentDir: content/en
-  #   title: Goldydocs
+  #   title: 'My Quiet Engineering Notes'
   #   params:
   #     description: 
   # cSpell:disable

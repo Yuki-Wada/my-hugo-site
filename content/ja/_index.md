@@ -1,12 +1,13 @@
 ---
-title: ページ紹介
-linkTitle: ページ紹介
+title: サイト紹介
+linkTitle: サイト紹介
 cascade:
   type: about
-menu:
-  main:
-    weight: 1
 ---
+
+<!-- {{< blocks/cover title="ようこそ！" image_anchor="top" height="full" >}}
+
+{{< /blocks/cover >}} -->
 
 {{% blocks/cover title="About Goldydocs" image_anchor="bottom" height="auto" %}}
 
@@ -26,8 +27,7 @@ different sections of the documentation and site for more ideas.
 
 {{% blocks/section %}}
 
-# This is another section
-{.text-center}
+# This is another section2
 
 {{% /blocks/section %}}
 
