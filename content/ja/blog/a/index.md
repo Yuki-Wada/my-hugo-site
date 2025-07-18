@@ -92,14 +92,14 @@ weight: 999
 ## Appendix: 確率過程の可測性（measurable process）
 
 確率空間 \\((\Omega\, \mathcal{F}\, \mathbb{P})\\) と時刻集合 \\(T \subset \mathbb{R} _ +\\)（離散 or 連続）上の確率過程
-\\[ \\begin{aligned}  X = \\{X _ t : \\Omega \\to \\mathbb{R} \\} _ {t \\in T}  \\end{aligned} \\]
+\\[ \\begin{gather*}  X = \\\{X _ t \: \\Omega \\to \\mathbb{R} \\\} _ {t \\in T}  \\end{gather*} \\]
 があるとします。
 
 #### 定義：可測過程（measurable process）
 
-確率過程 \\(X: \Omega \times T \to \mathbb{R}\\) が可測であるとは、
+確率過程 \\(X\: \Omega \times T \to \mathbb{R}\\) が可測であるとは、
  積集合 \\(\Omega \times T\\) 上の写像として、以下が成立することをいいます：
-\\[ \\begin{aligned}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{aligned} \\]
+\\[ \\begin{gather*}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{gather*} \\]
 ここで：
 
 - \\(\mathcal{F}\\) は確率空間上の σ-代数（\\(\omega\\) に関する情報）
@@ -116,9 +116,9 @@ weight: 999
 
 #### 定義：可測過程（measurable process）
 
-確率過程 \\(X: \Omega \times T \to \mathbb{R}\\) が可測であるとは、
+確率過程 \\(X\: \Omega \times T \to \mathbb{R}\\) が可測であるとは、
  積集合 \\(\Omega \times T\\) 上の写像として、以下が成立することをいいます：
-\\[ \\begin{aligned}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{aligned} \\]
+\\[ \\begin{gather*}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{gather*} \\]
 ここで：
 
 - \\(\mathcal{F}\\) は確率空間上の σ-代数（\\(\omega\\) に関する情報）
@@ -131,18 +131,18 @@ weight: 999
 
 #### 定義：適合過程（measurable process）
 
-確率過程 \\(X: \Omega \times T \to \mathbb{R}\\) が適合過程であるとは、
+確率過程 \\(X\: \Omega \times T \to \mathbb{R}\\) が適合過程であるとは、
  積集合 \\(\Omega \times T\\) 上の写像として、以下が成立することをいいます：
-\\[ \\begin{aligned}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} _ {t} \\text{-可測}  \\end{aligned} \\]
+\\[ \\begin{gather*}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} _ {t} \\text{-可測}  \\end{gather*} \\]
 ここで：
 
 
 
 #### 定義: progressively measurable process（適合過程）
 
-確率過程 \\(X: \Omega \times T \to \mathbb{R}\\) が progressively measurable であるとは、
+確率過程 \\(X\: \Omega \times T \to \mathbb{R}\\) が progressively measurable であるとは、
  積集合 \\(\Omega \times T\\) 上の写像として、以下が成立することをいいます：
-\\[ \\begin{aligned}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{aligned} \\]
+\\[ \\begin{gather*}  (\\omega\, t) \\mapsto X _ t(\\omega) \\quad \\text{が } \\mathcal{F} \\otimes \\mathcal{B}(T)\\text{-可測}  \\end{gather*} \\]
 ここで：
 
 - \\(\mathcal{F}\\) は確率空間上の σ-代数（\\(\omega\\) に関する情報）
@@ -155,8 +155,8 @@ weight: 999
 
 ### **確率過程における RLCC（càdlàg）過程の定義**
 
-確率過程 \\(\{X _ t\} _ {t \geq 0}\\) が RLCC（または càdlàg）であるとは、各サンプルパス \\(\omega \in \Omega\\) に対して、
-\\[ \\begin{aligned}  t \\mapsto X _ t(\\omega)  \\end{aligned} \\]
+確率過程 \\(\\{X _ t\\} _ {t \geq 0}\\) が RLCC（または càdlàg）であるとは、各サンプルパス \\(\omega \in \Omega\\) に対して、
+\\[ \\begin{gather*}  t \\mapsto X _ t(\\omega)  \\end{gather*} \\]
 が RLCC 関数（すなわち右連続で左極限を持つ関数）であることを意味します。
 
 ------
@@ -191,11 +191,11 @@ RLCC の性質は、停止時刻との組み合わせや Doob のマルチンゲ
 
 ----
 
-確率空間 \\((\Omega\, \mathcal{F}\, \mathbb{P})\\) と、時間添字付きのフィルトレーション（情報の流れ） \\(\{\mathcal{F} _ t\} _ {t \geq 0}\\) が与えられているとします。
+確率空間 \\((\Omega\, \mathcal{F}\, \mathbb{P})\\) と、時間添字付きのフィルトレーション（情報の流れ） \\(\\{\mathcal{F} _ t\\} _ {t \geq 0}\\) が与えられているとします。
 
 **定義：**
- 実数値確率変数 \\(\tau: \Omega \to [0\, \infty]\\) が **停止時刻**（または**停止時間**、stopping time）であるとは、任意の \\(t \geq 0\\) に対して、
-\\[ \\begin{aligned}  \\{\\omega \\in \\Omega : \\tau(\\omega) \\leq t\\} \\in \\mathcal{F} _ t  \\end{aligned} \\]
+ 実数値確率変数 \\(\tau\: \Omega \to [0\, \infty]\\) が **停止時刻**（または**停止時間**、stopping time）であるとは、任意の \\(t \geq 0\\) に対して、
+\\[ \\begin{gather*}  \\\{\\omega \\in \\Omega \: \\tau(\\omega) \\leq t\\\} \\in \\mathcal{F} _ t  \\end{gather*} \\]
 が成り立つことをいいます。
 
 ------
@@ -210,11 +210,11 @@ RLCC の性質は、停止時刻との組み合わせや Doob のマルチンゲ
 
 1. **到達時刻（初めてある集合に達する時刻）**
     ある過程 \\(X _ t\\) に対して、ある閾値 \\(a\\) を初めて超える時刻：
-   \\[ \\begin{aligned}     \\tau = \\inf \\{ t \\geq 0 : X _ t \\geq a \\}     \\end{aligned} \\]
+   \\[ \\begin{gather*}     \\tau = \\inf \\\{ t \\geq 0 \: X _ t \\geq a \\\}     \\end{gather*} \\]
    は自然な停止時刻の例です。
 
 2. **固定時刻 \\(T\\)**
-    任意の定数 \\(T\\) は停止時刻です（\\(\{\tau \leq t\} = \emptyset\\) または \\(\Omega\\) なので可測）。
+    任意の定数 \\(T\\) は停止時刻です（\\(\\{\tau \leq t\\} = \emptyset\\) または \\(\Omega\\) なので可測）。
 
 
 

@@ -64,7 +64,7 @@ a
 
 このとき、
 
-\\[ \\begin{aligned}  \\sigma(\\mathcal{P}) \\subset \\mathcal{D}  \\end{aligned} \\]
+\\[ \\begin{gather*}  \\sigma(\\mathcal{P}) \\subset \\mathcal{D}  \\end{gather*} \\]
 
 が成り立つ。ただし、\\(\sigma(\mathcal{P})\\) は \\(\mathcal{P}\\) によって生成される **σ-加法族** を表す。
 

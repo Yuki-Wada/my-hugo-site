@@ -46,10 +46,10 @@ weight: 999
 
 #### 証明したい命題
 
-\\( W={Wt\,Ft;0≤t<∞} \\) を標準的な一次元ブラウン運動、\\( X _ {t} \\) を可測で適合的な確率過程で
-\\[ \\begin{aligned}  E \\int _ {0}^{T} |X _ {t}|^{2m} \\\, dt < \\infty  \\end{aligned} \\]
+\\( W={Wt\,Ft\;0≤t<∞} \\) を標準的な一次元ブラウン運動、\\( X _ {t} \\) を可測で適合的な確率過程で
+\\[ \\begin{gather*}  E \\int _ {0}^{T} |X _ {t}|^{2m} \\\, dt < \\infty  \\end{gather*} \\]
 をある実数 \\( T > 0 \\)、\\( m \geq 1 \\) のときに満たすとする。このとき、以下の不等式が成り立つ。
-\\[ \\begin{aligned}  \\mathbb{E} \\left| \\int _ {0}^{T} X _ {t} dW _ {t} \\right|^{2m} \\leq \\left( m(2m−1) \\right)^{m} \\cdot T^{m−1} \\cdot \\mathbb{E} \\int _ {0}^{T} |X _ {t}|^{2m} \\\, dt  \\end{aligned} \\]
+\\[ \\begin{gather*}  \\mathbb{E} \\left| \\int _ {0}^{T} X _ {t} dW _ {t} \\right|^{2m} \\leq \\left( m(2m−1) \\right)^{m} \\cdot T^{m−1} \\cdot \\mathbb{E} \\int _ {0}^{T} |X _ {t}|^{2m} \\\, dt  \\end{gather*} \\]
 
 
 #### 課題の背景
@@ -74,14 +74,14 @@ Karatzas and Shreve の問題に
 
 ##### 伊藤の公式を適用
 
-元ネタである [1] の Exercise 3.3.25 のヒントには「マルチンゲール \\( \{ M _ {t} = ∫t0XsdWs\,Ft;0≤t≤T\} \{Mt=∫0tXsdWs\,Ft;0≤t≤T \} \\) と \\( f(x) = |x|^{2m} \\) に対して、伊藤の公式を適用すればよい」とあります。
+元ネタである [1] の Exercise 3.3.25 のヒントには「マルチンゲール \\( \\{ M _ {t} = ∫t0XsdWs\,Ft\;0≤t≤T\\} \\{Mt=∫0tXsdWs\,Ft\;0≤t≤T \\} \\) と \\( f(x) = |x|^{2m} \\) に対して、伊藤の公式を適用すればよい」とあります。
 
 ですが、そのまま \\( f(x) = |x|^{2m} \\,\\, (x \in \mathbb{R}) \\) に対して伊藤の公式を適用するのは \\( f'' \\) が連続でないという懸念点があるので、[1] の Proposition 3.3.26 の証明を援用してみます。
 
 \\( Y _ {t} = \delta + M _ {t}^{2} \\,\\, (\delta > 0) \\) に対して、\\( g(x) = x^{m} \\,\\, (x > 0) \\) は値を代入でき、さらに \\( g'\, g'' \\) も連続です。よって、問題なく伊藤の公式が適用できます。\\( \delta > 0 \\) の場合に対して最終的に \\( \delta \rightarrow +0 \\) とすることによって、\\( | M _ {t} | ^{2m} \\) の結果を得ることができそうです。
 
 実際に計算してみます。伊藤の公式を使うことで、
-\\[ \\begin{aligned}  Y _ {t} = \\delta + M _ {t}^{2} = \\delta + 2 \\int _ {0}^{t} M _ {t} \\\, d M _ {t} + \\langle M \\rangle _ {t} = \\delta + 2 \\int _ {0}^{t} M _ {t} \\\, d M _ {t} + \\int _ {0}^{t} X _ {t}^{2} \\\, dt  \\end{aligned} \\]
+\\[ \\begin{gather*}  Y _ {t} = \\delta + M _ {t}^{2} = \\delta + 2 \\int _ {0}^{t} M _ {t} \\\, d M _ {t} + \\langle M \\rangle _ {t} = \\delta + 2 \\int _ {0}^{t} M _ {t} \\\, d M _ {t} + \\int _ {0}^{t} X _ {t}^{2} \\\, dt  \\end{gather*} \\]
 であり、\\( Y _ {t} \\) のマルチンゲール部分 \\( 2 \int _ {0}^{t} M _ {t} \\, d M _ {t} \\) の二次変分は \\( 4 M _ {t}^{2} \\, d\langle M\rangle _ {t} = 4 M _ {t}^{2} X _ {t}^{2} \\, dt \\) とかけます。よって、さらに伊藤の公式を適用することで、
 \\[ \\begin{aligned} Y _ {T}^{m} = g(Y _ {T}) & = g(Y _ {0}) + \\int _ {0}^{T} g'(Y _ {t}) \\\, dY _ {t} + \\frac{1}{2} \\int _ {0}^{T} g''(Y _ {t}) \\\, d\\langle Y \\rangle _ {t} \\\\ & = \\delta^{m} + m \\cdot \\int _ {0}^{T} Y _ {t}^{m - 1} \\\, dY _ {t} + \\frac{m (m - 1)}{2} \\int _ {0}^{T} (Y _ {t})^{m - 2} \\cdot 4 M _ {t}^{2} X _ {t}^{2} \\\, dt \\\\ & = \\delta^{m} + 2m \\cdot \\int _ {0}^{T} Y _ {t}^{m - 1} M _ {t} \\\, dM _ {t} + m \\cdot \\int _ {0}^{T} Y _ {t}^{m - 1} X _ {t}^{2} \\\, dt + 2m \\cdot (m - 1) \\cdot \\mathbb{E} \\left( \\int _ {0}^{T} Y _ {t}^{m - 2} M _ {t}^{2} X _ {t}^{2} \\\, dt \\right) \\\\ \\end{aligned} \\]
 とかけます。両辺の期待値を取ると、\\( \int _ {0}^{T} Y _ {t}^{m - 1} M _ {t} \\, dM _ {t} \\) がマルチンゲールですので、 
@@ -104,9 +104,9 @@ Karatzas and Shreve の問題に
 という不等式が成立し、\\( M _ {t} \\) に関する積分と \\( X _ {t} \\) に関する積分の積に分離できます。
 
 次に、\\( M _ {t} \\) がマルチンゲールで \\( h(x) = |x|^{2m} \\) が凸関数であるため、\\( |M _ {t}|^{2m} \\)　が劣マルチンゲールであることから、\\( |M _ {t}|^{2m} \leq \mathbb{E} \left( |M _ {T}|^{2m} | \mathcal{F} _ {t} \right) \\) であることがわかります。両辺の期待値を取って、
-\\[ \\begin{aligned}  \\mathbb{E} |M _ {t}|^{2m} \\leq \\mathbb{E} \\left( |M _ {T}|^{2m} \\right)  \\end{aligned} \\]
+\\[ \\begin{gather*}  \\mathbb{E} |M _ {t}|^{2m} \\leq \\mathbb{E} \\left( |M _ {T}|^{2m} \\right)  \\end{gather*} \\]
 という不等式が成立することがわかります。よって、フビニの定理を適用することで、
-\\[ \\begin{aligned}  \\mathbb{E} \\left( \\int _ {0}^{T} | M _ {t} |^{2m} \\\, dt \\right) = \\int _ {0}^{T} \\mathbb{E} \\left( | M _ {t} |^{2m} \\right) \\\, dt \\leq \\int _ {0}^{T} \\mathbb{E} \\left( | M _ {T} |^{2m} \\right) \\\, dt = T \\cdot \\mathbb{E} \\left( | M _ {T} |^{2m} \\right)  \\end{aligned} \\]
+\\[ \\begin{gather*}  \\mathbb{E} \\left( \\int _ {0}^{T} | M _ {t} |^{2m} \\\, dt \\right) = \\int _ {0}^{T} \\mathbb{E} \\left( | M _ {t} |^{2m} \\right) \\\, dt \\leq \\int _ {0}^{T} \\mathbb{E} \\left( | M _ {T} |^{2m} \\right) \\\, dt = T \\cdot \\mathbb{E} \\left( | M _ {T} |^{2m} \\right)  \\end{gather*} \\]
 という不等式が成立し、\\( t \\) に関する積分を追い出した項で上から抑えることができます。
 
 上記二つの不等式を使って元の式を整理すると、
