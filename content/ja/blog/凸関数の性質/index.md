@@ -6,7 +6,7 @@ categories:
 - 最適化
 date: '2025-07-13'
 description: 凸関数の性質
-draft: true
+draft: false
 math: true
 slug: convex-function
 title: 凸関数の性質

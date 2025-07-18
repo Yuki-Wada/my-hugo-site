@@ -9,3 +9,7 @@
    - "Build and deployment" の項目を以下の通りに設定する 
       - "Source" を "Deploy from a branch" に設定する
       -"Branch" を "gh-pages"、ディレクトリを "/ (root)" に設定し、保存する
+
+#
+- テーマの更新themes
+   - ローカル開発サイトでは layouts 以下をtheme はローカルファイルを参照している

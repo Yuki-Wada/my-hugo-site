@@ -5,7 +5,7 @@ categories:
 - 最適化
 date: '2025-07-13'
 description: 不等式制約付き最適化問題
-draft: true
+draft: false
 math: true
 slug: inequality-constrained-optimization
 title: 不等式制約付き最適化問題
