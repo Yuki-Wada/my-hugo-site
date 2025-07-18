@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="alternate" type="application/rss&#43;xml" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/index.xml">
 <meta name="robots" content="index, follow">
 
 
@@ -18,19 +17,27 @@
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-192x192.png" sizes="192x192">
 
-<title>最適化 | 頭のなかの技術帖</title>
-<meta name="description" content="">
-<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/">
+<title>凸集合の性質 | 頭のなかの技術帖</title>
+<meta name="description" content="凸集合の性質">
+<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/13/convex-set/">
   <meta property="og:site_name" content="頭のなかの技術帖">
-  <meta property="og:title" content="最適化">
+  <meta property="og:title" content="凸集合の性質">
+  <meta property="og:description" content="凸集合の性質">
   <meta property="og:locale" content="ja">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-13T00:00:00+00:00">
 
-  <meta itemprop="name" content="最適化">
+  <meta itemprop="name" content="凸集合の性質">
+  <meta itemprop="description" content="凸集合の性質">
   <meta itemprop="datePublished" content="2025-07-13T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="603">
+  <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="最適化">
+  <meta name="twitter:title" content="凸集合の性質">
+  <meta name="twitter:description" content="凸集合の性質">
 <link rel="preload" href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" as="style" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <link href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" rel="stylesheet" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <script
@@ -39,7 +46,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-term">
+  <body class="td-page td-blog">
     <header>
       <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
 <div class="container-fluid flex-column flex-md-row">
@@ -47,7 +54,7 @@
   <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/my-hugo-site/blog/"><span>記事</span></a>
+        <a class="nav-link active" href="/my-hugo-site/blog/"><span>記事</span></a>
       </li>
       <li class="td-light-dark-menu nav-item dropdown">
         <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -111,30 +118,89 @@
 </div>
 </nav>
     </header>
-    <div class="container-fluid td-default td-outer">
-      <main role="main" class="td-main">
-        
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            <div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <div class="td-search">
+  <div class="td-search__icon"></div>
+  <input type="search" class="td-search__input form-control td-search-input" placeholder="サイトを検索..." aria-label="サイトを検索..." autocomplete="off">
+</div>
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="td-sidebar-nav collapse" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pe-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-my-hugo-siteblog-li">
+  <a href="/my-hugo-site/blog/" title="記事一覧" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="">記事</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713dual-problem-li">
+  <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713dual-problem"><span class="">双対問題</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713convex-function-li">
+  <a href="/my-hugo-site/blog/2025/07/13/convex-function/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-function"><span class="">凸関数の性質</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-my-hugo-siteblog20250713convex-set-li">
+  <a href="/my-hugo-site/blog/2025/07/13/convex-set/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-set"><span class="td-sidebar-nav-active-item">凸集合の性質</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713inequality-constrained-optimization-li">
+  <a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713inequality-constrained-optimization"><span class="">不等式制約付き最適化問題</span></a>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            <div class="td-page-meta ms-2 pb-1 pt-2 mb-0">
+
+</div>
+
+            <div class="td-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概要">概要</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#凸集合の定義">凸集合の定義</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#凸集合の分離定理">凸集合の分離定理</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#結論-conclusion-or-point">結論 (conclusion or point)</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ul>
+</nav>
+      </div>
+    
+            <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      <h5 class="taxonomy-title">Categories</h5>
+      <ul class="taxonomy-terms">
+        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span><span class="taxonomy-count">4</span></a></li>
+        </ul>
+    </div>
+  
+	
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5 pe-md-4" role="main">
+            
 <div class="td-content">
-  <main class="taxonomy-taxonomy-page">
-    <h1>Category: <span>最適化</span></h1>
-    <div>
-      
-    </div>
-    <div>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/dual-problem/">双対問題</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    双対問題</li>
-  </ol>
-</nav><p>双対問題</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
+	<h1>凸集合の性質</h1>
+	<div class="lead">凸集合の性質</div>
+	<div class="td-byline mb-4">
+		By <b>Yuki Wada</b> |
+		<time datetime="2025-07-13" class="text-body-secondary">2025/07/13</time>
+	</div>
+	<header class="article-meta">
+		<div class="taxonomy taxonomy-terms-article taxo-categories">
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
     <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
@@ -142,80 +208,157 @@
 </div>
 
   </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/convex-function/">凸関数の性質</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    凸関数の性質</li>
-  </ol>
-</nav><p>凸関数の性質</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	<h2 id="概要">概要<a class="td-heading-self-link" href="#%e6%a6%82%e8%a6%81" aria-label="Heading self-link"></a></h2>
+<h4 id="この記事で伝えたいこと">この記事で伝えたいこと<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%a7%e4%bc%9d%e3%81%88%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h4>
+<ul>
+<li>この記事で伝えたいこと ← ★重要★</li>
+<li>記事の対象者</li>
+</ul>
+<h4 id="記事の対象者">記事の対象者<a class="td-heading-self-link" href="#%e8%a8%98%e4%ba%8b%e3%81%ae%e5%af%be%e8%b1%a1%e8%80%85" aria-label="Heading self-link"></a></h4>
+<ul>
+<li>凸集合で使う定義をまとめて確認したい人</li>
+<li>凸集合の分離定理について知りたい人</li>
+</ul>
+<script>
+var elems = document.getElementsByTagName('details');
+function details_open(bool){
+for(elem of elems){
+elem.open = bool;
+}
+}
+</script>
+<p><button type="button" onclick="details_open(true)">開く</button>
+<button type="button" onclick="details_open(false)">閉じる</button></p>
+<p><br><br></p>
+<h2 id="凸集合の定義">凸集合の定義<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%ae%9a%e7%be%a9" aria-label="Heading self-link"></a></h2>
+<h4 id="definition-凸集合">Definition (凸集合)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>ベクトル空間 \(V\) の部分集合 \(C\) を考えます。
+任意の \(x, y \in C\) と任意の \(0 \leq \lambda \leq 1\) に対して、
+\[ \begin{gather*}  \lambda x + (1 - \lambda) y \in C  \end{gather*} \]
+が成り立つとき、\(C\) を凸集合と定義します。</p>
+</blockquote>
+<h4 id="propositon凸集合の共通部分は凸集合">Propositon（凸集合の共通部分は凸集合）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%85%b1%e9%80%9a%e9%83%a8%e5%88%86%e3%81%af%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>凸集合の集合族 \((C _ {\lambda}) _ {\lambda \in \Lambda}\) の共通部分 \(\cap C _ {\lambda}\) も凸集合です。</p>
+<details><summary>(Proof)</summary><div>
+<p>証明略。</p>
+</div></details>
+</blockquote>
+<h4 id="definition-凸包">Definition (凸包)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) を含む最小の凸集合を \(A\) の凸包と定義し、\(\text{conv}A\) と表記します。</p>
+</blockquote>
+<p>凸包の定義を見る限り、具体的にどのような元が凸包に含まれるかが明記されていません。
+ですが、集合 \(A\) の凸包が \(A\) を含む最小の凸集合であるという性質から、有限個の点 \(x _ 1, \ldots, x _ k \in A\) の凸結合（convex combination）全体の集合が凸包と一致することがわかります。</p>
+<h4 id="proposition-凸包の具体的な表現">Proposition (凸包の具体的な表現)<a class="td-heading-self-link" href="#proposition-%e5%87%b8%e5%8c%85%e3%81%ae%e5%85%b7%e4%bd%93%e7%9a%84%e3%81%aa%e8%a1%a8%e7%8f%be" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) の凸包 \(\text{conv}(A)\) は次のように書き下すことができます:
+\[ \begin{gather*}  \mathrm{conv}(A) = \left\{ \sum _ {i=1}^k \lambda _ i x _ i \;\middle|\; k \in \mathbb{N},\; x _ i \in A,\; \lambda _ i \geq 0,\; \sum _ {i=1}^k \lambda _ i = 1 \right\}  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>証明略。</p>
+</div></details>
+</blockquote>
+<p><strong>Propositon（凸集合の閉包は凸集合）</strong></p>
+<blockquote>
+<p>凸集合の閉包は凸集合です。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(C\)を凸集合、\(\overline{C}\) を \(C\) の閉包とします。任意に \(x, y \in \overline{C}\)、および \(\lambda \in [0,1]\) をとります。
+\(x \in \overline{C}\), \(y \in \overline{C}\) なので、それぞれ以下の条件を満たす \(C\) 内の点列 \(\{x _ n\} \subset C\), \(\{y _ n\} \subset C\) が存在します:
+\[ \begin{gather*}  x _ n \to x,\quad y _ n \to y \quad (n \to \infty).  \end{gather*} \]
+\(C\) が凸集合であるため、各 \(n\) に対して \( z _ n := \lambda x _ n + (1 - \lambda) y _ n\) と定義すると \(z _ {n} \in C\) です。
+\(\overline{C}\) が閉集合なので \(n \to \infty\) のときに \(z _ {n}\) の収束先が存在するならばその収束先は \(\overline{C}\) の元です。<br>
+また \(x _ {n}, y _ {n}\) の取り方から、\((n \to \infty)\) のときに \(z _ n\) は \(\lambda x + (1 - \lambda) y \quad (n \to \infty)\) に収束します。</p>
+<p>よって、\( \lambda x + (1 - \lambda) y \in \overline{C} \)であることが示せました。</p>
+</div></details>
+</blockquote>
+<p>一方で、閉集合の凸包は閉集合とは限りません（最初私は閉集合の凸包は閉集合となると思い込んでいましたが反例がありました）。</p>
+<p><strong>Propositon（閉集合の凸包は閉集合とは限らない）</strong></p>
+<blockquote>
+<p>閉集合の凸包が閉集合とならない反例が存在します。</p>
+<details><summary>(Proof)</summary><div>
+<p>\[ \begin{gather*}  A := \{ (x, y) | xy \geq 1, x &gt; 0, y &gt; 0 \} \cup {(0, 0)}  \end{gather*} \]
+とおく。このとき、以下が成り立ちます。</p>
+<ul>
+<li>\(A\) が閉集合です。（理由: \((x, y) \to xy\) が連続なので \(\{ (x, y) | xy &lt; 1, x &gt; 0, y &gt; 0 \}\) が開集合となるため。）</li>
+<li>\( \text{conv}(A) = \{ (x, y) | x &gt; 0, y &gt; 0 \} \cup {(0, 0)}\)。（理由: \(x &gt; 0, y &gt; 0, xy &lt; 1\) を満たす \(x, y\) に対して \(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} &gt; 1\) とおくと \((\lambda x)\cdot(\lambda y) = 1\) となるため。）</li>
+<li>\( \text{conv}(A)\) が閉集合ではありません。</li>
+</ul>
+<p>よって、反例が存在することを示せました。</p>
+</div></details>
+</blockquote>
+<p>閉集合の凸包が閉集合になるとは限らないため、閉集合を考える場合においては単なる凸包では捉えたい対象を十分にとらえきれない可能性があります。
+幸いにも、凸集合の共通部分が凸集合となるのと同じく、閉集合の共通部分も閉集合となることから、\(A\) を含む最小の閉凸集合が存在することがわかります。</p>
+<h4 id="definition-閉凸包">Definition (閉凸包)<a class="td-heading-self-link" href="#definition-%e9%96%89%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) を含む最小の閉凸集合を \(A\) の閉凸包と定義します。</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="凸集合の分離定理">凸集合の分離定理<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%88%86%e9%9b%a2%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h2>
+<p><strong>Propositon（凸集合の分離定理 1）</strong> <a id="separating-hyperplane-theorem-1"></a></p>
+<blockquote>
+<p>\(C \in \mathbb{R}^n\) を凸集合とします。任意の \(x _ {0} \notin Cl(C)\) を固定します。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します。
+\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p><a href="/my-hugo-site/blog/2025/07/13/convex-set/#kanamori">統計的学習理論</a>の補題 B.2 を参照。</p>
+</div></details>
+</blockquote>
+<p><strong>Corollary（凸集合の分離定理 1）</strong></p>
+<blockquote>
+<p>\(C \in \mathbb{R}^n\) を凸集合とします。任意の \(x _ {0} \notin Cl(C)\) を固定します。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します。
+\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>証明は文献を参照。</p>
+</div></details>
+</blockquote>
+<h2 id="section2">セクション2</h2>
+<h4 id="propositon凸集合の分離定理-2">Propositon（凸集合の分離定理 2）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%88%86%e9%9b%a2%e5%ae%9a%e7%90%86-2" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>\(X, Y \in \mathbb{R}^n\) を凸集合と、さらに \( X \cap Y = \empty\) を満たすとします。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します:
+\[ \begin{gather*}  \langle a, x \rangle \geq b \quad (\forall x \in X), \\   \langle a, y \rangle \leq b \quad (\forall y \in Y).  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>「凸集合の分離定理 1」と同様に</p>
+</div></details>
+</blockquote>
+<h4 id="補足説明">補足説明<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e8%aa%ac%e6%98%8e" aria-label="Heading self-link"></a></h4>
+<p>凸集合の分離定理は有限次元実ベクトル空間 \(\mathbb{R}^{N}\) の場合にだけ成立するのではなく、Banach 空間の場合であっても成立することが知られており、
+関数解析学における Hahn-Banach の分離定理がそれに該当します。</p>
+<p><strong>Theorem（Hahn-Banach の分離定理）</strong></p>
+<blockquote>
+<p>\(V\) を、K (= ℝ または ℂ) に対する位相ベクトル空間とし、\(A\) および \(B\) を、\(V\) の空でない凸な部分集合とし、A ∩ B = ∅ とする。このとき、次が成立する:</p>
+<ul>
+<li>A が開ならば、ある連続線型作用素 λ: V → K および実数 t ∈ R が存在して、Re λ(a) &lt; t ≤ Re λ(b) がすべての a ∈ A, b ∈ B に対して成立する。</li>
+<li>\(V\) が局所凸、\(A\) がコンパクトで、\(B\) が閉ならば、ある連続線型作用素 \(\lambda: V \rightarrow K\) および実数 \(s, t \in \mathbb{R}\) が存在して、\(Re \lambda(a) &lt; t &lt; s &lt; Re \lambda(b)\) がすべての \(a ∈ A\), \(b ∈ B\) に対して成立する。</li>
+</ul>
+</blockquote>
+<p>定理の主張を見てみると、凸集合の分離定理と全く同じことを述べていることがわかります。
+とはいえ、この定理を有限次元の場合に具体的に示すことで、凸集合の持つ性質がより理解しやすくなったのではないかと思います。</p>
+<p><br><br></p>
+<h2 id="結論-conclusion-or-point">結論 (conclusion or point)<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96-conclusion-or-point" aria-label="Heading self-link"></a></h2>
+<p><br><br></p>
+<h2 id="参考文献">参考文献<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="Heading self-link"></a></h2>
+<ul>
+<li>金森敬文（2015）『統計的学習理論』共立出版（機械学習プロフェッショナルシリーズ）<a id="kanamori"></a></li>
+</ul>
 
-  </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/convex-set/">凸集合の性質</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    凸集合の性質</li>
-  </ol>
-</nav><p>凸集合の性質</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	<ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
+  <li>
+    <a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/" aria-label="前へ - 不等式制約付き最適化問題" class="btn btn-primary"><span class="me-1">←</span>前へ</a>
+  </li>
+  <li>
+    <a href="/my-hugo-site/blog/2025/07/13/convex-function/" aria-label="次へ - 凸関数の性質" class="btn btn-primary">次へ<span class="ms-1">→</span></a>
+  </li>
+</ul>
 
-  </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/">不等式制約付き最適化問題</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    不等式制約付き最適化問題</li>
-  </ol>
-</nav><p>不等式制約付き最適化問題</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	</div>
 
-  </header>
-        </article>
-      
-    </div>
-    <a href="https://Yuki-Wada.github.io/my-hugo-site/categories/" class="all-taxonomy-terms">[i18n] ui all Categories</a>
-  </main>
-</div>
 
-      </main>
+          </main>
+        </div>
+      </div>
       <footer class="td-footer row d-print-none">
   <div class="container-fluid">
     <div class="row mx-md-2">
@@ -254,7 +397,17 @@
 </footer>
 
     </div>
-    <script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+      integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+        integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg=="
+        crossorigin="anonymous">
+</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+       integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" crossorigin="anonymous"
+       onload='renderMathInElement(document.body, null);'>
+</script>
+<script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
 <script defer src="/my-hugo-site/js/click-to-copy.min.73478a7d4807698aed7e355eb23f9890ca18fea3158604c8471746d046702bad.js" integrity="sha256-c0eKfUgHaYrtfjVesj&#43;YkMoY/qMVhgTIRxdG0EZwK60=" crossorigin="anonymous"></script>
 <script src='/my-hugo-site/js/tabpane-persist.js'></script>
 

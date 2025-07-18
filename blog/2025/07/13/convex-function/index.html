@@ -17,18 +17,27 @@
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-192x192.png" sizes="192x192">
 
-<title>記事一覧 | 頭のなかの技術帖</title>
-<meta name="description" content="">
-<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/">
+<title>凸関数の性質 | 頭のなかの技術帖</title>
+<meta name="description" content="凸関数の性質">
+<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/13/convex-function/">
   <meta property="og:site_name" content="頭のなかの技術帖">
-  <meta property="og:title" content="記事一覧">
+  <meta property="og:title" content="凸関数の性質">
+  <meta property="og:description" content="凸関数の性質">
   <meta property="og:locale" content="ja">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-13T00:00:00+00:00">
 
-  <meta itemprop="name" content="記事一覧">
-  <meta itemprop="dateModified" content="2025-07-15T19:12:06+09:00">
+  <meta itemprop="name" content="凸関数の性質">
+  <meta itemprop="description" content="凸関数の性質">
+  <meta itemprop="datePublished" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="966">
+  <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="記事一覧">
+  <meta name="twitter:title" content="凸関数の性質">
+  <meta name="twitter:description" content="凸関数の性質">
 <link rel="preload" href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" as="style" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <link href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" rel="stylesheet" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <script
@@ -37,7 +46,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section td-blog">
+  <body class="td-page td-blog">
     <header>
       <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
 <div class="container-fluid flex-column flex-md-row">
@@ -125,12 +134,12 @@
   <nav class="td-sidebar-nav collapse" id="td-section-nav">
     <ul class="td-sidebar-nav__section pe-md-3 ul-0">
       <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-my-hugo-siteblog-li">
-  <a href="/my-hugo-site/blog/" title="記事一覧" class="align-left ps-0 active td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="td-sidebar-nav-active-item">記事</span></a>
+  <a href="/my-hugo-site/blog/" title="記事一覧" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="">記事</span></a>
   <ul class="ul-1">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713dual-problem-li">
   <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713dual-problem"><span class="">双対問題</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713convex-function-li">
-  <a href="/my-hugo-site/blog/2025/07/13/convex-function/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-function"><span class="">凸関数の性質</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-my-hugo-siteblog20250713convex-function-li">
+  <a href="/my-hugo-site/blog/2025/07/13/convex-function/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-function"><span class="td-sidebar-nav-active-item">凸関数の性質</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713convex-set-li">
   <a href="/my-hugo-site/blog/2025/07/13/convex-set/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-set"><span class="">凸集合の性質</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713inequality-constrained-optimization-li">
@@ -148,7 +157,37 @@
 
 </div>
 
-            
+            <div class="td-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#凸集合の定義">凸集合の定義</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#凸集合の分離定理">凸集合の分離定理</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#凸関数の定義">凸関数の定義</a>
+      <ul>
+        <li><a href="#definition-凸関数">Definition (凸関数)</a></li>
+        <li><a href="#凸関数の例">凸関数の例</a></li>
+        <li><a href="#幾何的な意味">幾何的な意味</a></li>
+        <li><a href="#凸関数の連続性">凸関数の連続性</a></li>
+        <li><a href="#propositon凸関数の連続性">Propositon（凸関数の連続性）</a></li>
+        <li><a href="#凸関数の性質">凸関数の性質</a></li>
+        <li><a href="#propositon-凸関数と同値な条件">Propositon (凸関数と同値な条件)</a></li>
+        <li><a href="#propositon-一変数凸関数と同値な条件">Propositon (一変数凸関数と同値な条件)</a></li>
+        <li><a href="#propositon-凸関数ならば停留点ならば最適解">Propositon (凸関数ならば停留点ならば最適解)</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ul>
+</nav>
+      </div>
+    
             <div class="taxonomy taxonomy-terms-cloud taxo-categories">
       <h5 class="taxonomy-title">Categories</h5>
       <ul class="taxonomy-terms">
@@ -160,15 +199,15 @@
           </aside>
           <main class="col-12 col-md-9 col-xl-8 ps-md-5 pe-md-4" role="main">
             
-<div class="td-blog-posts">
-  <div class="h2">記事一覧 2025</div>
-    <ul class="td-blog-posts-list">
-      <li class="td-blog-posts-list__item">
-        <div class="td-blog-posts-list__body">
-          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/">不等式制約付き最適化問題</a></h5>
-          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/07/13 in 記事</small></p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
+<div class="td-content">
+	<h1>凸関数の性質</h1>
+	<div class="lead">凸関数の性質</div>
+	<div class="td-byline mb-4">
+		By <b>Yuki Wada</b> |
+		<time datetime="2025-07-13" class="text-body-secondary">2025/07/13</time>
+	</div>
+	<header class="article-meta">
+		<div class="taxonomy taxonomy-terms-article taxo-categories">
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
     <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
@@ -176,91 +215,199 @@
 </div>
 
   </header>
-          
+	<h2 id="凸集合の定義">凸集合の定義<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%ae%9a%e7%be%a9" aria-label="Heading self-link"></a></h2>
+<h4 id="definition-凸集合">Definition (凸集合)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>ベクトル空間 \(V\) の部分集合 \(C\) を考えます。
+任意の \(x, y \in C\) と任意の \(0 \leq \lambda \leq 1\) に対して、
+\[ \begin{gather*}  \lambda x + (1 - \lambda) y \in C  \end{gather*} \]
+が成り立つとき、\(C\) を凸集合と定義します。</p>
+</blockquote>
+<h4 id="propositon凸集合の共通部分は凸集合">Propositon（凸集合の共通部分は凸集合）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%85%b1%e9%80%9a%e9%83%a8%e5%88%86%e3%81%af%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>凸集合の集合族 \((C _ {\lambda}) _ {\lambda \in \Lambda}\) の共通部分 \(\cap C _ {\lambda}\) も凸集合です。</p>
+<details><summary>(Proof)</summary><div>
+<p>証明略。</p>
+</div></details>
+</blockquote>
+<h4 id="definition-凸包">Definition (凸包)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) を含む最小の凸集合を \(A\) の凸包と定義し、\(\text{conv}A\) と表記します。</p>
+</blockquote>
+<p>凸包の定義を見る限り、具体的にどのような元が凸包に含まれるかが明記されていません。
+ですが、集合 \(A\) の凸包が \(A\) を含む最小の凸集合であるという性質から、有限個の点 \(x _ 1, \ldots, x _ k \in A\) の凸結合（convex combination）全体の集合が凸包と一致することがわかります。</p>
+<h4 id="proposition-凸包の具体的な表現">Proposition (凸包の具体的な表現)<a class="td-heading-self-link" href="#proposition-%e5%87%b8%e5%8c%85%e3%81%ae%e5%85%b7%e4%bd%93%e7%9a%84%e3%81%aa%e8%a1%a8%e7%8f%be" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) の凸包 \(\text{conv}(A)\) は次のように書き下すことができます:
+\[ \begin{gather*}  \mathrm{conv}(A) = \left\{ \sum _ {i=1}^k \lambda _ i x _ i \;\middle|\; k \in \mathbb{N},\; x _ i \in A,\; \lambda _ i \geq 0,\; \sum _ {i=1}^k \lambda _ i = 1 \right\}  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>証明略。</p>
+</div></details>
+</blockquote>
+<p><strong>Propositon（凸集合の閉包は凸集合）</strong></p>
+<blockquote>
+<p>凸集合の閉包は凸集合です。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(C\)を凸集合、\(\overline{C}\) を \(C\) の閉包とします。任意に \(x, y \in \overline{C}\)、および \(\lambda \in [0,1]\) をとります。
+\(x \in \overline{C}\), \(y \in \overline{C}\) なので、それぞれ以下の条件を満たす \(C\) 内の点列 \(\{x _ n\} \subset C\), \(\{y _ n\} \subset C\) が存在します:
+\[ \begin{gather*}  x _ n \to x,\quad y _ n \to y \quad (n \to \infty).  \end{gather*} \]
+\(C\) が凸集合であるため、各 \(n\) に対して \( z _ n := \lambda x _ n + (1 - \lambda) y _ n\) と定義すると \(z _ {n} \in C\) です。
+\(\overline{C}\) が閉集合なので \(n \to \infty\) のときに \(z _ {n}\) の収束先が存在するならばその収束先は \(\overline{C}\) の元です。<br>
+また \(x _ {n}, y _ {n}\) の取り方から、\((n \to \infty)\) のときに \(z _ n\) は \(\lambda x + (1 - \lambda) y \quad (n \to \infty)\) に収束します。</p>
+<p>よって、\( \lambda x + (1 - \lambda) y \in \overline{C} \)であることが示せました。</p>
+</div></details>
+</blockquote>
+<p>一方で、閉集合の凸包は閉集合とは限りません（最初私は閉集合の凸包は閉集合となると思い込んでいましたが反例がありました）。</p>
+<p><strong>Propositon（閉集合の凸包は閉集合とは限らない）</strong></p>
+<blockquote>
+<p>閉集合の凸包が閉集合とならない反例が存在します。</p>
+<details><summary>(Proof)</summary><div>
+<p>\[ \begin{gather*}  A := \{ (x, y) | xy \geq 1, x &gt; 0, y &gt; 0 \} \cup {(0, 0)}  \end{gather*} \]
+とおく。このとき、以下が成り立ちます。</p>
+<ul>
+<li>\(A\) が閉集合です。（理由: \((x, y) \to xy\) が連続なので \(\{ (x, y) | xy &lt; 1, x &gt; 0, y &gt; 0 \}\) が開集合となるため。）</li>
+<li>\( \text{conv}(A) = \{ (x, y) | x &gt; 0, y &gt; 0 \} \cup {(0, 0)}\)。（理由: \(x &gt; 0, y &gt; 0, xy &lt; 1\) を満たす \(x, y\) に対して \(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} &gt; 1\) とおくと \((\lambda x)\cdot(\lambda y) = 1\) となるため。）</li>
+<li>\( \text{conv}(A)\) が閉集合ではありません。</li>
+</ul>
+<p>よって、反例が存在することを示せました。</p>
+</div></details>
+</blockquote>
+<p>閉集合の凸包が閉集合になるとは限らないため、閉集合を考える場合においては単なる凸包では捉えたい対象を十分にとらえきれない可能性があります。
+幸いにも、凸集合の共通部分が凸集合となるのと同じく、閉集合の共通部分も閉集合となることから、\(A\) を含む最小の閉凸集合が存在することがわかります。</p>
+<h4 id="definition-閉凸包">Definition (閉凸包)<a class="td-heading-self-link" href="#definition-%e9%96%89%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>集合 \(A\) を含む最小の閉凸集合を \(A\) の閉凸包と定義します。</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="凸集合の分離定理">凸集合の分離定理<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%88%86%e9%9b%a2%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h2>
+<p><strong>Propositon（凸集合の分離定理 1）</strong></p>
+<blockquote>
+<p>\(C \in \mathbb{R}^n\) を凸集合とします。任意の \(x _ {0} \notin Cl(C)\) を固定します。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します。
+\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p><a href="/my-hugo-site/blog/2025/07/13/convex-function/#reference1">統計的学習理論</a>の補題 B.2 を参照。</p>
+</div></details>
+</blockquote>
+<p><strong>Corollary（凸集合の分離定理 1）</strong></p>
+<blockquote>
+<p>\(C \in \mathbb{R}^n\) を凸集合とします。任意の \(x _ {0} \notin Cl(C)\) を固定します。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します。
+\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>証明は文献を参照。</p>
+</div></details>
+</blockquote>
+<h2 id="section2">セクション2</h2>
+<h4 id="propositon凸集合の分離定理-2">Propositon（凸集合の分離定理 2）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%88%86%e9%9b%a2%e5%ae%9a%e7%90%86-2" aria-label="Heading self-link"></a></h4>
+<blockquote>
+<p>\(X, Y \in \mathbb{R}^n\) を凸集合と、さらに \( X \cap Y = \empty\) を満たすとします。
+このとき、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します:
+\[ \begin{gather*}  \langle a, x \rangle \geq b \quad (\forall x \in X), \\   \langle a, y \rangle \leq b \quad (\forall y \in Y).  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p>「凸集合の分離定理 1」と同様に</p>
+</div></details>
+</blockquote>
+<h4 id="補足説明">補足説明<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e8%aa%ac%e6%98%8e" aria-label="Heading self-link"></a></h4>
+<p>凸集合の分離定理は有限次元実ベクトル空間 \(\mathbb{R}^{N}\) の場合にだけ成立するのではなく、Banach 空間の場合であっても成立することが知られており、
+関数解析学における Hahn-Banach の分離定理がそれに該当します。</p>
+<p><strong>Theorem（Hahn-Banach の分離定理）</strong></p>
+<blockquote>
+<p>\(V\) を、K (= ℝ または ℂ) に対する位相ベクトル空間とし、\(A\) および \(B\) を、\(V\) の空でない凸な部分集合とし、A ∩ B = ∅ とする。このとき、次が成立する:</p>
+<ul>
+<li>A が開ならば、ある連続線型作用素 λ: V → K および実数 t ∈ R が存在して、Re λ(a) &lt; t ≤ Re λ(b) がすべての a ∈ A, b ∈ B に対して成立する。</li>
+<li>\(V\) が局所凸、\(A\) がコンパクトで、\(B\) が閉ならば、ある連続線型作用素 \(\lambda: V \rightarrow K\) および実数 \(s, t \in \mathbb{R}\) が存在して、\(Re \lambda(a) &lt; t &lt; s &lt; Re \lambda(b)\) がすべての \(a ∈ A\), \(b ∈ B\) に対して成立する。</li>
+</ul>
+</blockquote>
+<p>定理の主張を見てみると、凸集合の分離定理と全く同じことを述べていることがわかります。
+とはいえ、この定理を有限次元の場合に具体的に示すことで、凸集合の持つ性質がより理解しやすくなったのではないかと思います。</p>
+<hr>
+<h2 id="凸関数の定義">凸関数の定義<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e5%ae%9a%e7%be%a9" aria-label="Heading self-link"></a></h2>
+<p>関数のグラフ上の2点を結ぶ線分が必ずグラフの<strong>上に位置する</strong>性質を持つ関数を凸関数といいます。</p>
+<h3 id="definition-凸関数">Definition (凸関数)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e9%96%a2%e6%95%b0" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>(1) 集合 \(C \subset \mathbb{R}^n\) を凸集合とし、関数 \(f: C \to \mathbb{R}\) を \(C\) 上の関数とします。
+任意の \(x, y \in C\)、\(0 \leq \lambda \leq 1\) に対して以下の不等式が成り立つとき、\(f\) を凸関数と定義します。<br>
+\[ \begin{gather*}  &gt; f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y) &gt;  \end{gather*} \]</p>
+<p>(2) 関数 \(f: \mathbb{R}^n \to \mathbb{R} \cup \{ +\infty \}\) を \(\mathbb{R}^n\) 上の関数とします。
+任意の \(x, y \in \mathbb{R}^n, 0 \leq \lambda \leq 1\) に対して以下の不等式が成り立つとき、\(f\) を凸関数と定義します。
+\[ \begin{gather*}  &gt; f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y) &gt;  \end{gather*} \]
+\(f\) が実数値を取る領域を \(\text{dom} (f) := \{x \,\, | \,\, f(x) &lt; +\infty\}\) と定義します。不等式が成り立つことから、\(\text{dom} (f)\) は凸集合になることがわかります。</p>
+</blockquote>
+<h3 id="凸関数の例">凸関数の例<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e4%be%8b" aria-label="Heading self-link"></a></h3>
+<ul>
+<li>\(f(x) = |x|^2 = x _ 1^2 + x _ 2^2 + \cdots + x _ n^2\)：凸（ヘッセ行列は単位行列 × 2）</li>
+<li>\(f(x) = \log(\sum _ {i=1}^n e^{x _ i})\)：凸（機械学習でよく登場）</li>
+<li>\(f(x) = -\log \det X\)（対象正定値行列 \(X\) 上の関数）：凸</li>
+</ul>
+<h3 id="幾何的な意味">幾何的な意味<a class="td-heading-self-link" href="#%e5%b9%be%e4%bd%95%e7%9a%84%e3%81%aa%e6%84%8f%e5%91%b3" aria-label="Heading self-link"></a></h3>
+<ul>
+<li>グラフ上の2点を結ぶ線分が、関数のグラフの<strong>上に位置する</strong>という意味です（スカラー値の関数で）。</li>
+<li>実質的には1変数の場合と全く同じ構造ですが、点 \(x, y\) は \(\mathbb{R}^n\) のベクトルになります。</li>
+</ul>
+<h3 id="凸関数の連続性">凸関数の連続性<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h3>
+<p>関数のグラフ上の2点を結ぶ線分が必ずグラフの<strong>上に位置する</strong>性質から、凸関数 \(f\) の値が大きく変動し発散することはないように思えます。
+実際、\(x\)の周りで関数 \(f\) の値が定義されているならば凸関数 \(f\) は \(x\) で連続であることが示せます。</p>
+<h3 id="propositon凸関数の連続性">Propositon（凸関数の連続性）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>\(f\) を凸関数とします。\(\text{dom} (f)\) が \(x\) の内点を含むなら、\(f\) は \(x\) で連続です。</p>
+<details><summary>(Proof)</summary><div>
+<p>証明は文献を参照。</p>
+</div></details>
+</blockquote>
+<h3 id="凸関数の性質">凸関数の性質<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e6%80%a7%e8%b3%aa" aria-label="Heading self-link"></a></h3>
+<p>凸関数であることは、ある超平面で分離できることと同値です（要イメージ図）。</p>
+<h3 id="propositon-凸関数と同値な条件">Propositon (凸関数と同値な条件)<a class="td-heading-self-link" href="#propositon-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e5%90%8c%e5%80%a4%e3%81%aa%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>\(f\) を凸関数とします。以下は同値です。</p>
+<ul>
+<li>\(f\) が凸関数。</li>
+<li>任意の \( x \in \text{dom}(f) \) に対して、ある \( v _ {x} \in \mathbb{R}^n \) が存在して次が成り立つ:<br>
+任意の \( y \in \mathbb{R}^n \) に対して、\(f(y) - f(x) \geq v _ {x}^{T} \cdot (y - x)\) が成り立つ。</li>
+</ul>
+</blockquote>
+<p>関数が一変数の場合を考えると、凸関数であることとある点を基点としたときに線分の傾きが増加していくことと同値です（要イメージ図）。</p>
+<h3 id="propositon-一変数凸関数と同値な条件">Propositon (一変数凸関数と同値な条件)<a class="td-heading-self-link" href="#propositon-%e4%b8%80%e5%a4%89%e6%95%b0%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e5%90%8c%e5%80%a4%e3%81%aa%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>\(f\) を凸関数とします。以下は同値です。<br>
+(1) \(f\) が凸関数。<br>
+(2) 任意の \( x \in \text{dom}(f) \) に対して、\( \phi _ {x} (y) := \frac{f(y) - f(x)}{y - x} \,\, (y \neq x)\) が広義単調増加。</p>
+<details><summary>(Proof)</summary><div>
+<p>はじめに (1) \(\Rightarrow\) (2) を示します。<br>
+\( x \in \text{dom}(f) \) を固定し、\(y _ {1} &lt; x &lt; y _ {2}\) を任意にとります。
+このとき、\( \phi _ {x} (y _ {1}) \leq \phi _ {x} (y _ {2})\) が成立することを示しましょう。</p>
+<p>最後に (3) \(\Rightarrow\) (1) を示します。<br>
+\(x, y \in \text{dom} (f)\) かつ \(x &lt; y\) となる \(x, y\) を考えます。さらに、\(0 \leq \lambda \leq 1\) をとり、\(z := (1 - \lambda) x + \lambda y\) とおきます。このとき \(x &lt; y &lt; z\) となるため、
+\(\phi _ {x}(z) &lt; \phi _ {x}(y)\)
+\[ \begin{gather*}  \frac{f(z) - f(x)}{z - x} \leq \frac{f(y) - f(x)}{y - x}  \end{gather*} \]
+\(z - x = \lambda (y - x)\) であることに注意すれば、上記の不等式は \( f(z) - f(x) \leq \lambda (f(y) - f(x)) \) と同値であり、
+\[ \begin{gather*}  f(z) \leq (1 - \lambda) f(x) + \lambda f(y)  \end{gather*} \]
+が成り立つことがわかります。よって示せました。</p>
+</div></details>
+</blockquote>
+<h3 id="propositon-凸関数ならば停留点ならば最適解">Propositon (凸関数ならば停留点ならば最適解)<a class="td-heading-self-link" href="#propositon-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%aa%e3%82%89%e3%81%b0%e5%81%9c%e7%95%99%e7%82%b9%e3%81%aa%e3%82%89%e3%81%b0%e6%9c%80%e9%81%a9%e8%a7%a3" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<details><summary>(Proof)</summary><div>
+<p>証明は文献を参照。</p>
+</div></details>
+</blockquote>
+<p><br><br></p>
+<h2 id="参考文献">参考文献<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="Heading self-link"></a></h2>
+<ul>
+<li><a id="kanamori"></a>金森敬文（2015）『統計的学習理論』共立出版（機械学習プロフェッショナルシリーズ）</li>
+</ul>
 
+	<ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
+  <li>
+    <a href="/my-hugo-site/blog/2025/07/13/convex-set/" aria-label="前へ - 凸集合の性質" class="btn btn-primary"><span class="me-1">←</span>前へ</a>
+  </li>
+  <li>
+    <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" aria-label="次へ - 双対問題" class="btn btn-primary">次へ<span class="ms-1">→</span></a>
+  </li>
+</ul>
 
+	</div>
 
-
-<p class="pt-0 mt-0">不等式制約付き最適化問題 Definition（不等式制約付き最適化問題）
-(1) 以下の問題を不等式制約付き最適化問題 \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) と定義します。 \[ \begin{align} \text{infimum} \quad &amp; f(x) \nonumber \\ \text{subject to} \quad &amp; g _ {i}(x) \leq 0 \quad …</p>
-          <p class="pt-0"><a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/" aria-label="続きを読む - 不等式制約付き最適化問題">続きを読む</a></p>
-        </div>
-      </li>
-      <li class="td-blog-posts-list__item">
-        <div class="td-blog-posts-list__body">
-          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/07/13/convex-set/">凸集合の性質</a></h5>
-          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/07/13 in 記事</small></p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
-
-  </header>
-          
-
-
-
-
-<p class="pt-0 mt-0">概要 この記事で伝えたいこと この記事で伝えたいこと ← ★重要★ 記事の対象者 記事の対象者 凸集合で使う定義をまとめて確認したい人 凸集合の分離定理について知りたい人 開く 閉じる
-凸集合の定義 Definition (凸集合) ベクトル空間 \(V\) の部分集合 \(C\) を考えます。 任意の \(x, y \in C\) と任意の \(0 \leq \lambda \leq 1\) に対して、 \[ \begin{gather*} \lambda x + (1 - \lambda) …</p>
-          <p class="pt-0"><a href="/my-hugo-site/blog/2025/07/13/convex-set/" aria-label="続きを読む - 凸集合の性質">続きを読む</a></p>
-        </div>
-      </li>
-      <li class="td-blog-posts-list__item">
-        <div class="td-blog-posts-list__body">
-          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/07/13/convex-function/">凸関数の性質</a></h5>
-          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/07/13 in 記事</small></p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
-
-  </header>
-          
-
-
-
-
-<p class="pt-0 mt-0">凸集合の定義 Definition (凸集合) ベクトル空間 \(V\) の部分集合 \(C\) を考えます。 任意の \(x, y \in C\) と任意の \(0 \leq \lambda \leq 1\) に対して、 \[ \begin{gather*} \lambda x + (1 - \lambda) y \in C \end{gather*} \] が成り立つとき、\(C\) を凸集合と定義します。
-Propositon（凸集合の共通部分は凸集合） 凸集合の集合族 \((C _ …</p>
-          <p class="pt-0"><a href="/my-hugo-site/blog/2025/07/13/convex-function/" aria-label="続きを読む - 凸関数の性質">続きを読む</a></p>
-        </div>
-      </li>
-      <li class="td-blog-posts-list__item">
-        <div class="td-blog-posts-list__body">
-          <h5 class="mt-0 mb-1"><a href="/my-hugo-site/blog/2025/07/13/dual-problem/">双対問題</a></h5>
-          <p class="mb-2 mb-md-3"><small class="text-body-secondary">2025/07/13 in 記事</small></p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
-
-  </header>
-          
-
-
-
-
-<p class="pt-0 mt-0">概要 この記事で伝えたいこと 今まで双対問題について勉強してきたのですが、そのたびに忘れてしまったので、メモとして記載しております。
-双対問題がどのように導出されているのか、何が本質的に重要なのか、どのような条件の下で成り立つのかといった点は、一箇所に整理されている資料は意外と少ないように思います。 そこでこの記事では、これらのポイントについて概略的に整理し、理解の助けとなるようにまとめてみたいと思います。
-この記事の対象者 双対問題の定義をしっかり 双対問題の重要性をしっかり理解したい方 強双 …</p>
-          <p class="pt-0"><a href="/my-hugo-site/blog/2025/07/13/dual-problem/" aria-label="続きを読む - 双対問題">続きを読む</a></p>
-        </div>
-      </li>
-      </ul>
-    
-</div>
-<div class="td-blog-posts__pagination">
-  </div>
 
           </main>
         </div>
@@ -303,7 +450,17 @@ Propositon（凸集合の共通部分は凸集合） 凸集合の集合族 \((C 
 </footer>
 
     </div>
-    <script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+      integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+        integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg=="
+        crossorigin="anonymous">
+</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+       integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" crossorigin="anonymous"
+       onload='renderMathInElement(document.body, null);'>
+</script>
+<script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
 <script defer src="/my-hugo-site/js/click-to-copy.min.73478a7d4807698aed7e355eb23f9890ca18fea3158604c8471746d046702bad.js" integrity="sha256-c0eKfUgHaYrtfjVesj&#43;YkMoY/qMVhgTIRxdG0EZwK60=" crossorigin="anonymous"></script>
 <script src='/my-hugo-site/js/tabpane-persist.js'></script>
 

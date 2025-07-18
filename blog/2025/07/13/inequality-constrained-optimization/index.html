@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="alternate" type="application/rss&#43;xml" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/index.xml">
 <meta name="robots" content="index, follow">
 
 
@@ -18,19 +17,27 @@
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/my-hugo-site/favicons/android-192x192.png" sizes="192x192">
 
-<title>最適化 | 頭のなかの技術帖</title>
-<meta name="description" content="">
-<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/">
+<title>不等式制約付き最適化問題 | 頭のなかの技術帖</title>
+<meta name="description" content="不等式制約付き最適化問題">
+<meta property="og:url" content="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/">
   <meta property="og:site_name" content="頭のなかの技術帖">
-  <meta property="og:title" content="最適化">
+  <meta property="og:title" content="不等式制約付き最適化問題">
+  <meta property="og:description" content="不等式制約付き最適化問題">
   <meta property="og:locale" content="ja">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-13T00:00:00+00:00">
 
-  <meta itemprop="name" content="最適化">
+  <meta itemprop="name" content="不等式制約付き最適化問題">
+  <meta itemprop="description" content="不等式制約付き最適化問題">
   <meta itemprop="datePublished" content="2025-07-13T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="353">
+  <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="最適化">
+  <meta name="twitter:title" content="不等式制約付き最適化問題">
+  <meta name="twitter:description" content="不等式制約付き最適化問題">
 <link rel="preload" href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" as="style" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <link href="/my-hugo-site/scss/main.min.5e43f8574351718e9b44966c9f3a571202ed048c082f457fb574c10b1a1bc56c.css" rel="stylesheet" integrity="sha256-XkP4V0NRcY6bRJZsnzpXEgLtBIwIL0V/tXTBCxobxWw=" crossorigin="anonymous">
 <script
@@ -39,7 +46,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-term">
+  <body class="td-page td-blog">
     <header>
       <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
 <div class="container-fluid flex-column flex-md-row">
@@ -47,7 +54,7 @@
   <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/my-hugo-site/blog/"><span>記事</span></a>
+        <a class="nav-link active" href="/my-hugo-site/blog/"><span>記事</span></a>
       </li>
       <li class="td-light-dark-menu nav-item dropdown">
         <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -111,30 +118,79 @@
 </div>
 </nav>
     </header>
-    <div class="container-fluid td-default td-outer">
-      <main role="main" class="td-main">
-        
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            <div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <div class="td-search">
+  <div class="td-search__icon"></div>
+  <input type="search" class="td-search__input form-control td-search-input" placeholder="サイトを検索..." aria-label="サイトを検索..." autocomplete="off">
+</div>
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="td-sidebar-nav collapse" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pe-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-my-hugo-siteblog-li">
+  <a href="/my-hugo-site/blog/" title="記事一覧" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-my-hugo-siteblog"><span class="">記事</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713dual-problem-li">
+  <a href="/my-hugo-site/blog/2025/07/13/dual-problem/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713dual-problem"><span class="">双対問題</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713convex-function-li">
+  <a href="/my-hugo-site/blog/2025/07/13/convex-function/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-function"><span class="">凸関数の性質</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-my-hugo-siteblog20250713convex-set-li">
+  <a href="/my-hugo-site/blog/2025/07/13/convex-set/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713convex-set"><span class="">凸集合の性質</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-my-hugo-siteblog20250713inequality-constrained-optimization-li">
+  <a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-my-hugo-siteblog20250713inequality-constrained-optimization"><span class="td-sidebar-nav-active-item">不等式制約付き最適化問題</span></a>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            <div class="td-page-meta ms-2 pb-1 pt-2 mb-0">
+
+</div>
+
+            <div class="td-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#不等式制約付き最適化問題">不等式制約付き最適化問題</a>
+      <ul>
+        <li><a href="#不等式制約付き最適化問題についての補足">不等式制約付き最適化問題についての補足</a></li>
+        <li><a href="#definitionラグランジュ緩和関数">Definition（ラグランジュ緩和関数）</a></li>
+        <li><a href="#definition-kkt-条件">Definition (KKT 条件)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    
+            <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      <h5 class="taxonomy-title">Categories</h5>
+      <ul class="taxonomy-terms">
+        <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span><span class="taxonomy-count">4</span></a></li>
+        </ul>
+    </div>
+  
+	
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5 pe-md-4" role="main">
+            
 <div class="td-content">
-  <main class="taxonomy-taxonomy-page">
-    <h1>Category: <span>最適化</span></h1>
-    <div>
-      
-    </div>
-    <div>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/dual-problem/">双対問題</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    双対問題</li>
-  </ol>
-</nav><p>双対問題</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
+	<h1>不等式制約付き最適化問題</h1>
+	<div class="lead">不等式制約付き最適化問題</div>
+	<div class="td-byline mb-4">
+		By <b>Yuki Wada</b> |
+		<time datetime="2025-07-13" class="text-body-secondary">2025/07/13</time>
+	</div>
+	<header class="article-meta">
+		<div class="taxonomy taxonomy-terms-article taxo-categories">
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
     <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
@@ -142,80 +198,82 @@
 </div>
 
   </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/convex-function/">凸関数の性質</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    凸関数の性質</li>
-  </ol>
-</nav><p>凸関数の性質</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	<h2 id="不等式制約付き最適化問題">不等式制約付き最適化問題<a class="td-heading-self-link" href="#%e4%b8%8d%e7%ad%89%e5%bc%8f%e5%88%b6%e7%b4%84%e4%bb%98%e3%81%8d%e6%9c%80%e9%81%a9%e5%8c%96%e5%95%8f%e9%a1%8c" aria-label="Heading self-link"></a></h2>
+<p><strong>Definition（不等式制約付き最適化問題）</strong></p>
+<blockquote>
+<p>(1) 以下の問題を不等式制約付き最適化問題 \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) と定義します。
+\[ \begin{align}   \text{infimum} \quad &amp; f(x) \nonumber \\   \text{subject to} \quad   &amp; g _ {i}(x) \leq 0 \quad (\forall \, i) \nonumber \\   &amp; h _ {j}(x) = 0 \quad (\forall \, j) \nonumber \\   \end{align} \]</p>
+<p>(2) 制約条件
+\[ \begin{gather*}  g _ {i}(x) \leq 0 \quad (\forall \, i), \quad  h _ {j}(x) = 0 \quad (\forall \, j)  \end{gather*} \]
+を満たす \(x\) を \(\mathcal{P}\) の実行可能解（feasible point）と定義する。</p>
+<p>(3) \(\mathcal{P}\) の実行可能解の集合を \(F\) として、
+\[ \begin{gather*}  p^{\ast} := \inf _ {x \in F} f(x) \end{gather*} \]
+を \(\mathcal{P}\) の最適値と表記し、
+\[ \begin{gather*} p^{\ast} = f(x _ {0}) \end{gather*} \]
+を満たす \(x _ {0}\) を \(\mathcal{P}\) の最適解（optimal point）と定義する。</p>
+</blockquote>
+<h3 id="不等式制約付き最適化問題についての補足">不等式制約付き最適化問題についての補足<a class="td-heading-self-link" href="#%e4%b8%8d%e7%ad%89%e5%bc%8f%e5%88%b6%e7%b4%84%e4%bb%98%e3%81%8d%e6%9c%80%e9%81%a9%e5%8c%96%e5%95%8f%e9%a1%8c%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e3%81%ae%e8%a3%9c%e8%b6%b3" aria-label="Heading self-link"></a></h3>
+<p>上記の最適化問題で考えられるケースには以下の 4 通りがあります。</p>
+<ol>
+<li>実行可能解が存在しない（この場合を便宜的に \( \inf _ {x \in F} f(x) = +\infty\) とみなす）。</li>
+<li>実行可能解が存在するが、下限値が存在しない（つまり、実行可能解の集合を \(F\) として、\( \inf _ {x \in F} f(x) = -\infty\)）。</li>
+<li>実行可能解が存在し、下限値が存在するが、最適解が存在しない。</li>
+<li>実行可能解が存在し、下限値が存在し、最適解が存在する。</li>
+</ol>
+<p><strong>Definition (凸関数)</strong></p>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) を考えます。</p>
+<ol>
+<li>\(f, g _ {i}, h _ {j}\) がいずれも凸関数であるとき、この最適化問題は凸であると定義します。</li>
+<li>\(f, g _ {i}, h _ {j}\) がいずれも \(C^{1}\) 級関数であるとき、この最適化問題は滑らかであると定義します。</li>
+</ol>
+</blockquote>
+<h3 id="definitionラグランジュ緩和関数">Definition（ラグランジュ緩和関数）<a class="td-heading-self-link" href="#definition%e3%83%a9%e3%82%b0%e3%83%a9%e3%83%b3%e3%82%b8%e3%83%a5%e7%b7%a9%e5%92%8c%e9%96%a2%e6%95%b0" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>不等式制約付き最適化問題 \(\left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) を考えます。
+このとき、ラグランジュ緩和関数 \(L(x, \lambda, \nu)\) を以下の式で定義します。
+\[ \begin{gather*}  &gt; L(x, \lambda, \nu) := f(x) + \sum _ {i=1}^{m} \lambda _ i g _ i(x) + \sum _ {j=1}^{p} \nu _ j h _ j(x) &gt;  \end{gather*} \]</p>
+</blockquote>
+<h3 id="definition-kkt-条件">Definition (KKT 条件)<a class="td-heading-self-link" href="#definition-kkt-%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
+<blockquote>
+<p>滑らかな不等式制約付き最適化問題 \(\left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) を考えます。
+\((x^<em>, \mu^</em>, \lambda^*)\) が以下の条件を満たすとします。</p>
+<ol>
+<li>
+<p>停留点条件:
+\[ \begin{gather*}  &gt;    \nabla _ x L(x, \lambda, \nu) = \nabla f(x) + \sum _ {i=1}^{m} \lambda _ i \nabla g _ i(x) + \sum _ {j=1}^{p} \nu _ j \nabla h _ j(x) = 0 &gt;     \end{gather*} \]</p>
+</li>
+<li>
+<p>主問題の実行可能性:
+\[ \begin{gather*}  &gt;    g _ i(x) \leq 0 \quad (\forall \, i), \quad h _ j(x) = 0 \quad (\forall \, j) &gt;     \end{gather*} \]</p>
+</li>
+<li>
+<p>双対実行可能性:</p>
+<p>\[ \begin{gather*}  &gt;    \lambda _ i \geq 0 \quad (\forall \, i) &gt;     \end{gather*} \]</p>
+</li>
+<li>
+<p>相補性条件:</p>
+<p>\[ \begin{gather*}  &gt;    \lambda _ i g _ i(x) = 0 \quad (\forall \, i) &gt;     \end{gather*} \]</p>
+</li>
+</ol>
+<p>このとき、この問題は \((x^<em>, \lambda^</em>, \nu^*)\) において KKT 条件を満たすと定義します。</p>
+</blockquote>
 
-  </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/convex-set/">凸集合の性質</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    凸集合の性質</li>
-  </ol>
-</nav><p>凸集合の性質</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	<ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
+  <li>
+    <a class="btn btn-primary disabled"><span class="me-1">←</span>前へ</a>
+  </li>
+  <li>
+    <a href="/my-hugo-site/blog/2025/07/13/convex-set/" aria-label="次へ - 凸集合の性質" class="btn btn-primary">次へ<span class="ms-1">→</span></a>
+  </li>
+</ul>
 
-  </header>
-        </article>
-      
-        
-        <article class="card article-teaser article-type-blog">
-          <h3><a href="/my-hugo-site/blog/2025/07/13/inequality-constrained-optimization/">不等式制約付き最適化問題</a></h3>
-          <nav class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/my-hugo-site/blog/">記事</a></li>
-  <li class="breadcrumb-item">
-    不等式制約付き最適化問題</li>
-  </ol>
-</nav><p>不等式制約付き最適化問題</p>
-          <header class="article-meta">
-            <div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    <li><a class="taxonomy-term" href="https://Yuki-Wada.github.io/my-hugo-site/categories/%E6%9C%80%E9%81%A9%E5%8C%96/" data-taxonomy-term="%E6%9C%80%E9%81%A9%E5%8C%96"><span class="taxonomy-label">最適化</span></a></li>
-    </ul>
-</div>
+	</div>
 
-  </header>
-        </article>
-      
-    </div>
-    <a href="https://Yuki-Wada.github.io/my-hugo-site/categories/" class="all-taxonomy-terms">[i18n] ui all Categories</a>
-  </main>
-</div>
 
-      </main>
+          </main>
+        </div>
+      </div>
       <footer class="td-footer row d-print-none">
   <div class="container-fluid">
     <div class="row mx-md-2">
@@ -254,7 +312,17 @@
 </footer>
 
     </div>
-    <script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+      integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+        integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg=="
+        crossorigin="anonymous">
+</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+       integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" crossorigin="anonymous"
+       onload='renderMathInElement(document.body, null);'>
+</script>
+<script src="/my-hugo-site/js/main.min.ce6dd3c5e34b78d128d108d8122b5a0c98e2340eb35089f71401ad289d6b4341.js" integrity="sha256-zm3TxeNLeNEo0QjYEitaDJjiNA6zUIn3FAGtKJ1rQ0E=" crossorigin="anonymous"></script>
 <script defer src="/my-hugo-site/js/click-to-copy.min.73478a7d4807698aed7e355eb23f9890ca18fea3158604c8471746d046702bad.js" integrity="sha256-c0eKfUgHaYrtfjVesj&#43;YkMoY/qMVhgTIRxdG0EZwK60=" crossorigin="anonymous"></script>
 <script src='/my-hugo-site/js/tabpane-persist.js'></script>
 
