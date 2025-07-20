@@ -33,7 +33,7 @@
   <meta itemprop="description" content="凸関数の性質">
   <meta itemprop="datePublished" content="2025-07-15T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-15T00:00:00+00:00">
-  <meta itemprop="wordCount" content="615">
+  <meta itemprop="wordCount" content="1333">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="凸関数の性質">
@@ -167,15 +167,16 @@
     </li>
     <li><a href="#凸関数の定義">凸関数の定義</a>
       <ul>
-        <li><a href="#凸関数の例">凸関数の例</a></li>
+        <li></li>
       </ul>
     </li>
+    <li><a href="#凸関数の連続性">凸関数の連続性</a></li>
     <li><a href="#凸関数の性質">凸関数の性質</a>
       <ul>
-        <li><a href="#propositon-一変数凸関数と同値な条件">Propositon (一変数凸関数と同値な条件)</a></li>
-        <li><a href="#propositon-凸関数ならば停留点ならば最適解">Propositon (凸関数ならば停留点ならば最適解)</a></li>
+        <li><a href="#propositon-一変数凸関数であることと傾きの単調増加が同値であること">Propositon (一変数凸関数であることと傾きの単調増加が同値であること)</a></li>
       </ul>
     </li>
+    <li><a href="#jensen-の不等式">Jensen の不等式</a></li>
     <li><a href="#結論">結論</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
@@ -240,7 +241,12 @@
 <p><br><br></p>
 <h2 id="凸関数の定義">凸関数の定義<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e5%ae%9a%e7%be%a9" aria-label="Heading self-link"></a></h2>
 <hr>
-<p>関数のグラフ上の2点を結ぶ線分が必ずグラフの<strong>上に位置する</strong>性質を持つ関数を凸関数といいます。</p>
+<p>「凸関数」という概念は、単に数学的に美しいだけでなく、最適化問題の性質を決定づける核心的な構造を持っています。関数が凸であることは、最適解の存在や一意性、アルゴリズムによる求解の可能性を大きく左右します。</p>
+<p>実際、関数が凸であれば、任意の局所最小点が同時に大域最小点であるという強力な性質が得られます。これは、複雑な非線形問題を扱う現代の最適化理論において、計算可能性や収束保証の観点から極めて大きな意味をもちます。</p>
+<p>さらに興味深いのは、凸性には幾何的・代数的・解析的な複数の側面があることです。図形的には「グラフ上の2点を結ぶ線分が常にグラフの上側にある」といった視覚的な直感で捉えられ、解析的には「接平面がグラフの下に位置する」ことや「傾きが単調に増加する」ことなどと結びつきます。</p>
+<p>このように、凸関数という構造は、単なる定義にとどまらず、解析性・計算性・幾何性が高度に調和した概念です。そのため、最適化の理論と応用のいずれにおいても、避けては通れない中心的な役割を果たします。</p>
+<p>それでは次に、こうした豊かな性質を持つ「凸関数」の定義を、厳密に確認していきましょう。</p>
+<br>
 <p><strong>Definition (凸関数)</strong></p>
 <blockquote>
 <p>(1) 集合 \(C \subset \mathbb{R}^n\) を凸集合とし、関数 \(f: C \to \mathbb{R}\) を \(C\) 上の関数とします。
@@ -252,20 +258,17 @@
 \(f\) が実数値を取る領域を \(\text{dom} (f) := \{x \,\, | \,\, f(x) &lt; +\infty\}\) と定義します。不等式が成り立つことから、\(\text{dom} (f)\) は凸集合になることがわかります。</p>
 </blockquote>
 <br>
-<h3 id="凸関数の例">凸関数の例<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e4%be%8b" aria-label="Heading self-link"></a></h3>
-<ul>
-<li>\(f(x) = |x|^2 = x _ 1^2 + x _ 2^2 + \cdots + x _ n^2\)：凸（ヘッセ行列は単位行列 × 2）</li>
-<li>\(f(x) = \log(\sum _ {i=1}^n e^{x _ i})\)：凸（機械学習でよく登場）</li>
-<li>\(f(x) = -\log \det X\)（対象正定値行列 \(X\) 上の関数）：凸</li>
-</ul>
+<h4 id="補足-凸関数の加重平均による不等式-a-idweighted-averagea">補足: 凸関数の加重平均による不等式 <a id="weighted-average"></a><a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e5%8a%a0%e9%87%8d%e5%b9%b3%e5%9d%87%e3%81%ab%e3%82%88%e3%82%8b%e4%b8%8d%e7%ad%89%e5%bc%8f-a-idweighted-averagea" aria-label="Heading self-link"></a></h4>
+<p>凸関数の定義から、3 つ以上の元の加重平均の場合に拡張した以下の性質が成り立ちます。</p>
+<blockquote>
+<p>\(x _ {1}, \dots, x _ {t}\) を \(\text{dom} (f)\) の元とし、
+\(a _ {1}, \dots, a _ {t}\) を \(a _ {1} + \dots + a _ {t} = 1\) を満たす非負実数とすると、
+\[ \begin{gather*}  f(\sum _ {i = 1}^{t} a _ {i} x _ {i}) \leq \sum _ {i = 1}^{t} a _ {i} f(x _ {i})  \end{gather*} \]
+が成り立ちます。</p>
+<p>証明は数学的帰納法を使えば可能です。</p>
+</blockquote>
 <br>
-<h4 id="幾何的な意味">幾何的な意味<a class="td-heading-self-link" href="#%e5%b9%be%e4%bd%95%e7%9a%84%e3%81%aa%e6%84%8f%e5%91%b3" aria-label="Heading self-link"></a></h4>
-<ul>
-<li>グラフ上の2点を結ぶ線分が、関数のグラフの<strong>上に位置する</strong>という意味です（スカラー値の関数で）。</li>
-<li>実質的には1変数の場合と全く同じ構造ですが、点 \(x, y\) は \(\mathbb{R}^n\) のベクトルになります。</li>
-</ul>
-<br>
-<h4 id="凸関数の連続性">凸関数の連続性<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h4>
+<h2 id="凸関数の連続性">凸関数の連続性<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h2>
 <p>凸関数の定義からは、グラフ上の2点を結ぶ線分が関数値の上側に位置するという幾何的な性質が導かれます。
 このイメージから、「凸関数ならば不連続な跳びが起きるようなことはなく、当然連続であってほしい」と直感的には思えます。</p>
 <p>実際、凸関数はある点の周囲で関数が定義されていれば、その点で連続になるという性質を持ちます。
@@ -275,70 +278,160 @@
 <br>
 <p><strong>Propositon（凸関数の連続性）</strong></p>
 <blockquote>
-<p>\(f\) を凸関数とします。\(\text{dom} (f)\) が \(x\) の内点を含むなら、\(f\) は \(x\) で連続です。</p>
-<details><summary>(Proof)</summary><div>
+<p>\(f\) を凸関数とします。\(x\) が \(\text{dom} (f)\) の内点を含むなら、\(f\) は \(x\) で連続です。</p>
 <p>証明は<a href="/my-hugo-site/blog/2025/07/15/convex-function/#kanamori">統計的学習理論</a>の定理 B.7 を参照してください。</p>
-</div></details>
 </blockquote>
 <br>
 <h2 id="凸関数の性質">凸関数の性質<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e6%80%a7%e8%b3%aa" aria-label="Heading self-link"></a></h2>
-<p>凸関数であることは、ある超平面で分離できることと同値です（要イメージ図）。</p>
-<p><strong>Propositon（凸関数と同値な条件）</strong></p>
+<p>凸関数の定義は、関数値に関する不等式という代数的な表現で与えられますが、幾何的な構造にも大きく関わっています。</p>
+<p>とくに、凸関数の重要な特徴のひとつは、「グラフの任意の点において、その点で接する接平面が関数のグラフの下側に位置する」という性質です。言い換えれば、接平面が常に関数を下から支えているという構造です。</p>
+<p>この性質は、解析的には関数の接平面が接点において関数値を過小評価するという不等式として表現されます。この視点を通じて、凸性は微分可能性や勾配・双対性といった他の解析的概念と自然に結びつきます。</p>
+<p>さらに重要なのは、こうした接平面による特徴づけは、凸関数の定義と同値であるという点です。すなわち、「接平面が常に関数のグラフの下にある」ことと、「関数が凸である」ことは互いに言い換え可能なのです。</p>
+<p>以下では、これを命題として厳密に述べ、その証明も確認していきます。</p>
+<br>
+<p><strong>Propositon（凸関数であることと接平面がグラフの下に位置することが同値であること）</strong> <a id="convec-function-hyperplane"></a></p>
 <blockquote>
-<p>\(f\) を凸関数とします。以下は同値です。</p>
+<p>\(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ + \infty\}\) とします。
+さらに \(\text{dom} (f)\) が開集合であるとします。</p>
+<p>このとき、以下の条件 (a)、(b) は同値です:</p>
 <p>(1) \(f\) が凸関数。</p>
-<p>(2) 任意の \( x \in \text{dom}(f) \) に対して、ある \( a _ {x} \in \mathbb{R}^n \) が存在して次が成り立つ:<br>
-任意の \(y \in \mathbb{R}^n \) に対して、\(f(y) - f(x) \geq \langle a _ {x}, y - x \rangle\) が成り立つ。</p>
+<p>(2) 任意の \(x \in \text{dom} (f)\) に対して、ある \( a _ {x} \in \mathbb{R}^n \) が存在して
+「任意の \(y \in \mathbb{R}^n \) に対して、\(f(y) - f(x) \geq \langle a _ {x}, y - x \rangle\)」が成り立つ。</p>
 <details><summary>(Proof)</summary><div>
-<p>(1) =&gt; (2)</p>
+<p>(1) \(\Rightarrow\) (2)</p>
 <p>\(C := \{ (x, w) \in \mathbb{R}^{n} \times \mathbb{R} \; | \; w &gt; f(x) \}\) を考えます。
 このとき、\((x, f(x)) \notin C\) であり、\(f\) が凸関数であることから \(C\) は凸集合になります。</p>
-<p>\[ \begin{gather*}  a _ {1}y + a _ {2} w \geq b \end{gather*} \]
-\[ \begin{gather*}  a _ {1}x + a _ {2} f(x) \leq b \end{gather*} \]
-\(a _ {2} \geq 0\)</p>
-<p>\[ \begin{gather*}  a _ {2} w - f(x) \geq -a _ {1}y - x \end{gather*} \]</p>
-<p>証明は<a href="/my-hugo-site/blog/2025/07/15/convex-function/#kanamori">統計的学習理論</a>の定理 B.8 を参照してください。</p>
-<p>(2) =&gt; (1)<br>
-\(x, y \in \mathbb{R}^{n}\) と \( 0 \leq \lambda \leq 1\) を任意でとります。
-\(z := (1 - \lambda) x + \lambda y\) とおく。</p>
+<p><a href="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/14/convex-set/#separating-hyperplane-theorem">凸集合の分離定理</a>から以下を満たす \((a _ {1}, a _ {2}) \neq (0, 0)\) が存在します:</p>
+<p>\[ \begin{gather*}  \langle a _ {1}, y \rangle + a _ {2} \cdot w \geq b \end{gather*} \]
+\[ \begin{gather*}  \langle a _ {1}, x \rangle + a _ {2} \cdot f(x) \leq b \end{gather*} \]</p>
+<p>\(w \rightarrow + \infty\) とできることから、不等式を満たすためには \(a _ {2} \geq 0\) でなければなりません。
+また、\(a _ {2} = 0\) と仮定すると、\(\langle a _ {1}, y - x \rangle \geq 0\) となるが、
+\(x\) が \(\text{dom}(f)\) の内点であることから、\(y\) に \(x\) の近傍の点を代入できるため、\(a _ {1} = 0\) でなければなりません。
+しかし、これは \((a _ {1}, a _ {2}) \neq (0, 0)\) に矛盾します。よって、\(a _ {2} &gt; 0\) が示せました。</p>
+<p>上式から下式を引いて、両辺を \(a _ {2}\) で割れば、</p>
+<p>\[ \begin{gather*}  w - f(x) \geq \left \langle - \frac{a _ {2}}{a _ {1}}, y - x \right \rangle  \end{gather*} \]</p>
+<p>となるため、\(w \rightarrow f(y)\) として、(2) が成り立つことが示せました。</p>
+<p>(2) \(\Rightarrow\) (1)</p>
+<p>\(x, y \in \mathbb{R}^{n}\) と \( 0 \leq \lambda \leq 1\) を、
+\(x _ {0} := (1 - \lambda) x + \lambda y\) を満たすように任意でとります。</p>
 <p>(2) より以下を満たす \(a _ {z}\) が存在します:</p>
-<p>\[ \begin{gather*}  f(x) - f(z) \geq \langle a _ {z}, x - z \rangle, \\   f(y) - f(z) \geq \langle a _ {z}, y - z \rangle.  \end{gather*} \]</p>
+<p>\[ \begin{gather*}  f(x) - f(x _ {0}) \geq \langle a _ {z}, x - x _ {0} \rangle, \\   f(y) - f(x _ {0}) \geq \langle a _ {x _ {0}}, y - x _ {0} \rangle.  \end{gather*} \]</p>
 <p>第一式に \(1 - \lambda\) をかけた式を、 第二式に \(\lambda\) をかけた式を足すと、</p>
-<p>\[ \begin{gather*}  (1 - \lambda) (f(x) - f(z)) + \lambda (f(y) - f(z))   \geq (1 - \lambda) \langle a _ {z}, x - z \rangle + \lambda \langle a _ {z}, y - z \rangle \end{gather*} \]</p>
+<p>\[ \begin{gather*}  (1 - \lambda) (f(x) - f(x _ {0})) + \lambda (f(y) - f(x _ {0}))   \geq (1 - \lambda) \langle a _ {x _ {0}}, x - x _ {0} \rangle + \lambda \langle a _ {z}, y - x _ {0} \rangle \end{gather*} \]</p>
 <p>となりますので、式を整理して、</p>
-<p>\[ \begin{gather*}  (1 - \lambda) f(x) + \lambda f(y) - f(z)   \geq \langle a _ {z}, (1 - \lambda) x + \lambda y - z \rangle = 0 \end{gather*} \]</p>
+<p>\[ \begin{gather*}  (1 - \lambda) f(x) + \lambda f(y) - f(x _ {0})   \geq \langle a _ {x _ {0}}, (1 - \lambda) x + \lambda y - x _ {0} \rangle = 0 \end{gather*} \]</p>
 <p>となることから、(1) が示せました。</p>
 </div></details>
 </blockquote>
+<br>
 <p>関数が一変数の場合を考えると、凸関数であることとある点を基点としたときに線分の傾きが増加していくことと同値です（要イメージ図）。</p>
-<h3 id="propositon-一変数凸関数と同値な条件">Propositon (一変数凸関数と同値な条件)<a class="td-heading-self-link" href="#propositon-%e4%b8%80%e5%a4%89%e6%95%b0%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e5%90%8c%e5%80%a4%e3%81%aa%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
+<h3 id="propositon-一変数凸関数であることと傾きの単調増加が同値であること">Propositon (一変数凸関数であることと傾きの単調増加が同値であること)<a class="td-heading-self-link" href="#propositon-%e4%b8%80%e5%a4%89%e6%95%b0%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a7%e3%81%82%e3%82%8b%e3%81%93%e3%81%a8%e3%81%a8%e5%82%be%e3%81%8d%e3%81%ae%e5%8d%98%e8%aa%bf%e5%a2%97%e5%8a%a0%e3%81%8c%e5%90%8c%e5%80%a4%e3%81%a7%e3%81%82%e3%82%8b%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h3>
 <blockquote>
-<p>\(f\) を凸関数とします。以下は同値です。</p>
+<p>\(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ + \infty\}\) とし、以下は同値です。
+さらに \(\text{dom} (f)\) が開集合であるとします。</p>
+<p>傾きを求める関数 \(\phi _ {x} (y) := \frac{f(y) - f(x)}{y - x} \; (y \neq x)\) を定義します。
+このとき、以下の条件 (a)、(b) は同値です:</p>
 <p>(1) \(f\) が凸関数。</p>
-<p>(2) 任意の \( x \in \text{dom}(f) \) に対して、\( \phi _ {x} (y) := \frac{f(y) - f(x)}{y - x} \,\, (y \neq x)\) が広義単調増加。</p>
+<p>(2) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(x &lt; y\) で広義単調増加。</p>
+<p>(3) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(y &lt; x\) で広義単調増加。</p>
+<p>(4) 任意の \( x \in \text{dom}(f) \) に対して、\(y _ {1} &lt; x &lt; y _ {2}\) ならば、\(\phi _ {x} (y _ {1}) \leq \phi _ {x} (y _ {2})\) が成り立つ。</p>
 <details><summary>(Proof)</summary><div>
-<p>はじめに (1) \(\Rightarrow\) (2) を示します。<br>
-\( x \in \text{dom}(f) \) を固定し、\(y _ {1} &lt; x &lt; y _ {2}\) を任意にとります。
-このとき、\( \phi _ {x} (y _ {1}) \leq \phi _ {x} (y _ {2})\) が成立することを示しましょう。</p>
-<p>最後に (3) \(\Rightarrow\) (1) を示します。<br>
-\(x, y \in \text{dom} (f)\) かつ \(x &lt; y\) となる \(x, y\) を考えます。さらに、\(0 \leq \lambda \leq 1\) をとり、\(z := (1 - \lambda) x + \lambda y\) とおきます。このとき \(x &lt; y &lt; z\) となるため、
-\(\phi _ {x}(z) &lt; \phi _ {x}(y)\)
-\[ \begin{gather*}  \frac{f(z) - f(x)}{z - x} \leq \frac{f(y) - f(x)}{y - x}  \end{gather*} \]
-\(z - x = \lambda (y - x)\) であることに注意すれば、上記の不等式は \( f(z) - f(x) \leq \lambda (f(y) - f(x)) \) と同値であり、
-\[ \begin{gather*}  f(z) \leq (1 - \lambda) f(x) + \lambda f(y)  \end{gather*} \]
-が成り立つことがわかります。よって示せました。</p>
+<p>(1) \(\Leftrightarrow\) (2)</p>
+<p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
+このとき、\( \phi _ {x} (z) \leq \phi _ {x} (y)\) が成立することを示しましょう。</p>
+<p>\(z - x = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
+よって、</p>
+<p>\[ \begin{align*}   &amp; f(z) \leq (1 - \lambda) f(x) + \lambda f(y) \\   \Leftrightarrow &amp; f(z) - f(x) \leq \lambda (f(y) - f(x)) \\   \Leftrightarrow &amp; \frac{f(z) - f(x)}{z - x} \leq \frac{f(y) - f(x)}{y - x}   \end{align*}\]</p>
+<p>となるので示せました。</p>
+<p>(1) \(\Leftrightarrow\) (3)</p>
+<p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
+このとき、\( \phi _ {y} (x) \leq \phi _ {y} (z)\) が成立することを示しましょう。</p>
+<p>\(y - z = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
+よって、</p>
+<p>\[ \begin{align*}   &amp; f(z) \leq (1 - \lambda) f(y) + \lambda f(x) \\   \Leftrightarrow &amp; \lambda (f(y) - f(x)) \leq f(y) - f(z) \\   \Leftrightarrow &amp; \frac{f(y) - f(x)}{y - x} \leq \frac{f(y) - f(z)}{y - z} \\   \Leftrightarrow &amp; \frac{f(x) - f(y)}{x - y} \leq \frac{f(z) - f(y)}{z - y}    \end{align*}\]</p>
+<p>となるので示せました。</p>
+<p>(1) \(\Leftrightarrow\) (4)</p>
+<p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
+このとき、\( \phi _ {z} (x) \leq \phi _ {z} (y)\) が成立することを示しましょう。</p>
+<p>\(z - x = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
+このとき、\(y - z = (y - x) - (z - x) = (1 - \lambda) (y - x)\) となります。
+よって、</p>
+<p>\[ \begin{align*}   &amp; f(z) \leq (1 - \lambda) f(x) + \lambda f(y) \\   \Leftrightarrow &amp; (1 - \lambda) (f(z) - f(x)) \leq \lambda (f(y) - f(z)) \\   \Leftrightarrow &amp; \frac {(f(z) - f(x))} {\lambda} \leq \frac{f(y) - f(z)} {1 - \lambda} \\   \Leftrightarrow &amp; \frac{f(z) - f(x)}{z - x} \leq \frac{f(y) - f(z)}{y - z} \\   \Leftrightarrow &amp; \frac{f(x) - f(z)}{x - z} \leq \frac{f(y) - f(z)}{y - z}    \end{align*}\]</p>
+<p>となるので示せました。</p>
 </div></details>
 </blockquote>
-<h3 id="propositon-凸関数ならば停留点ならば最適解">Propositon (凸関数ならば停留点ならば最適解)<a class="td-heading-self-link" href="#propositon-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%aa%e3%82%89%e3%81%b0%e5%81%9c%e7%95%99%e7%82%b9%e3%81%aa%e3%82%89%e3%81%b0%e6%9c%80%e9%81%a9%e8%a7%a3" aria-label="Heading self-link"></a></h3>
+<br>
+<p>最適化問題において、ある点が「最適解」であるかを判定するために、勾配がゼロになる（停留点である）という必要条件を用います。ですが一般にはこの条件だけでは不十分であり、停留点が極小点とは限らないというのが非線形最適化の難しさでもあります。</p>
+<p>ところが、関数が凸である場合には事情が大きく変わります。</p>
+<p>凸関数に対しては、停留点であるという条件が、そのまま大域的最小解であることを保証してくれるのです。
+これは理論だけでなく求解の観点からも強力な性質であり、凸最適化問題が「解きやすい」とされる理由のひとつです。</p>
+<p>以下では、この事実を命題として形式的に確認します。</p>
+<br>
+<p><strong>Propositon（凸関数ならば停留点ならば最適解）</strong></p>
 <blockquote>
+<p>\(f\) を \(C^{1}\) 級の凸関数とします。
+このとき、\(f\) の停留点は大域的最小点になります。</p>
 <details><summary>(Proof)</summary><div>
-<p>証明は文献を参照。</p>
+<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#convec-function-hyperplane">凸関数の性質</a>から
+任意の \(x, y \in \text{dom}(f)\) に対して</p>
+<p>\[ \begin{gather*}  f(y) \geq f(x) + \langle \nabla f(x), y - x \rangle  \end{gather*} \]</p>
+<p>が成り立ちます。</p>
+<p>ここで \(x = x^{\ast}\) を代入すると、任意の \(y \in \mathbb{R}^n \) に対して</p>
+<p>\[ \begin{gather*}  f(y) \geq f(x^<em>) + \langle \nabla f(x^</em>), y - x^* \rangle  \end{gather*} \]</p>
+<p>が成り立ちます。</p>
+<p>仮定より \(\nabla f(x^{\ast}) = 0\) なので、</p>
+<p>\[ \begin{gather*}  \langle \nabla f(x^<em>), y - x^</em> \rangle = \langle 0, y - x^* \rangle = 0  \end{gather*} \]
+したがって、</p>
+<p>\[ \begin{gather*}  f(y) \geq f(x^<em>)  \end{gather</em>} \]</p>
+<p>が任意の \(y\) に対して成り立ちます。つまり、\(x^{\ast}\) は \(f\) の大域的最小点です。</p>
+</div></details>
+</blockquote>
+<p><br><br></p>
+<h2 id="jensen-の不等式">Jensen の不等式<a class="td-heading-self-link" href="#jensen-%e3%81%ae%e4%b8%8d%e7%ad%89%e5%bc%8f" aria-label="Heading self-link"></a></h2>
+<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#weighted-average">凸関数の加重平均による不等式</a>で見てきたように、凸関数は「入力値を加重平均」した \(f(\sum _ {i = 1}^{t} a _ {i} x _ {i})\) よりも「出力値を加重平均」した値 \(\sum _ {i = 1}^{t} a _ {i} f(x _ {i})\) のほうが大きくなるという直感的な性質を持ちます。これは最適化理論だけでなく、確率論においても重要な意味をもちます。</p>
+<p>確率論の文脈では、「入力値」が確率変数であり、「平均」が期待値に対応します。このとき、加重平均の場合と同様の問題を考察すると、次のような問いが自然に現れます:</p>
+<blockquote>
+<p>ある関数 \(f\) に対して、\(f(\mathbb{E}(X))\) と \(\mathbb{E}(f(X))\) はどちらが大きいか？</p>
+</blockquote>
+<p>このような疑問に答えるのが、Jensen の不等式です。
+このケースは、有限個の元を加重平均したケースを無限個の元に拡張した場合とみなすことが可能です。</p>
+<p>Jensen の不等式は、凸関数という解析的性質と、期待値という確率的概念とを橋渡しする根本的なツールです。単なる数学的テクニックにとどまらず、</p>
+<ul>
+<li>期待値を含む不等式の評価</li>
+<li>リスクの下限評価（例: エントロピー、分散、KL ダイバージェンスなど）</li>
+<li>マルチンゲール理論や確率的収束の解析</li>
+</ul>
+<p>といった多くの理論と応用で登場します。</p>
+<p>特に機械学習やベイズ推論では、Jensen の不等式を応用した上界・下界評価（例：ELBOなど）が理論の骨格を成しています。よって、「凸性から何が導かれるのか」を理解する上で、Jensen の不等式は最も象徴的な命題のひとつといえるでしょう。</p>
+<p>以下では、期待値と凸性の関係を厳密に記述する命題として、Jensen の不等式を紹介します。</p>
+<br>
+<p><strong>Propositon（Jensen の不等式）</strong></p>
+<blockquote>
+<p>\(f\) を凸関数とし、\(X\) を確率ベクトルとする。
+さらに、\(\text{dom} (f)\) が開集合であり、</p>
+<ul>
+<li>\(f\) が一変数関数</li>
+<li>\(C^{1}\) 級</li>
+</ul>
+<p>のいずれかの条件を満たし、\(\mathbb{E} (X | \mathcal{F})\) の値がほとんど \(\text{dom} (f)\) に含まれているとする。</p>
+<p>このとき、</p>
+<p>\[ \begin{gather*}  \mathbb{E} (f(X) | \mathcal{F}) \geq f ( \mathbb{E} (X | \mathcal{F}) )  \end{gather*} \]</p>
+<details><summary>(Proof)</summary><div>
+<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#convec-function-hyperplane">凸関数の性質</a>から \(a \in \text{dom} (f)\) に対して、以下の不等式が成り立ちます:</p>
+<p>\[ \begin{gather*}  f(t) - f(x) \geq \langle a(x), t - x \rangle  \end{gather*} \]</p>
+<p>\(f\) の条件から、\(f\) は Borel 可測関数であり、また \(a\) を Borel 可測関数にとることができます（証明は煩雑なだけなので省略します）。</p>
+<p>\(\mathbb{E} (X | \mathcal{F})\) の値がほとんど \(\text{dom} (f)\) に含まれているため、
+\(t = X, \; v = \mathbb{E} (X | \mathcal{F})\) を代入して、\(\mathbb{E} ( \cdot | \mathcal{F} )\) を施すことで、</p>
+<p>\[ \begin{align*}   \mathbb{E} (f(X) | \mathcal{F}) - f( \mathbb{E} (X | \mathcal{F}) )   \geq &amp; \mathbb{E} \left( \langle a( \mathbb{E} (X | \mathcal{F}) ), X - \mathbb{E} (X | \mathcal{F}) \rangle \right) \\   = &amp; \langle a( \mathbb{E} (X | \mathcal{F}) ), \mathbb{E} \left( X - \mathbb{E} (X | \mathcal{F}) | \mathcal{F} \right) \rangle \\   = &amp; \langle a( \mathbb{E} (X | \mathcal{F}) ), \mathbb{E} (X | \mathcal{F}) - \mathbb{E} (X | \mathcal{F}) \rangle \\   = &amp; 0   \end{align*} \]</p>
+<p>となるため、示せました。</p>
 </div></details>
 </blockquote>
 <p><br><br></p>
 <h2 id="結論">結論<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96" aria-label="Heading self-link"></a></h2>
-<p>凸関数は、関数の形状的・解析的な性質に基づいて最適化問題の解の存在や一意性を保証する強力な道具です。定義から導かれる連続性や接平面による特徴づけ、そして一変数関数における傾きの単調性といった複数の同値な条件は、より高次元かつ複雑な最適化問題にも適用可能な深い構造を示しています。</p>
-<p>本記事の内容を通じて、凸関数が数理最適化の基礎を支える「中核概念」であることが理解できるはずです。</p>
+<p>凸関数は、最適化理論全体を支える概念といえます。その定義に内在する不等式は、幾何的な直感、解析的な性質、そして計算可能性という多方面の視点をつなぎ合わせています。</p>
+<p>記事を通して見てきたように、凸性がもたらす性質――連続性、接平面による特徴づけ、傾きの単調性、大域最適性の保証――は、すべて最適化の「解きやすさ」と「解の安定性」に直結しています。さらに、Jensen の不等式に見られるように、凸関数は確率論や情報理論とも深く結びつき、多くの応用的場面に顔を出します。</p>
+<p>このように、凸関数という概念を深く理解することは、最適化だけでなく、機械学習、経済学、統計学など、さまざまな分野での問題設定と解析を支える共通言語を手に入れることでもあります。</p>
+<p>本記事が、皆さんの中で「凸性」というキーワードが、単なる記号や定義から、問題解決のための強力な道具として位置づけられる一助となれば幸いです。</p>
 <p><br><br></p>
 <h2 id="参考文献">参考文献<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="Heading self-link"></a></h2>
 <ul>

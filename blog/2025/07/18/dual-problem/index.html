@@ -33,7 +33,7 @@
   <meta itemprop="description" content="双対問題">
   <meta itemprop="datePublished" content="2025-07-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1442">
+  <meta itemprop="wordCount" content="1541">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="双対問題">
@@ -174,6 +174,8 @@
     <li><a href="#強双対定理の成立条件">強双対定理の成立条件</a>
       <ul>
         <li></li>
+        <li><a href="#補足相対的内点について">補足：相対的内点について</a></li>
+        <li><a href="#緩和されたスレーター条件">緩和されたスレーター条件</a></li>
       </ul>
     </li>
     <li><a href="#結論">結論</a></li>
@@ -210,15 +212,23 @@
 
   </header>
 	<script>
-var elems = document.getElementsByTagName('details');
 function details_open(bool){
-for(elem of elems){
-elem.open = bool;
-}
+  const elems = document.getElementsByTagName('details');
+  const button = document.getElementById('detail-open-button');
+  const detailsOpenNext = button.innerText === "証明を開く";
+  if (detailsOpenNext){
+    button.innerText = "証明を閉じる";
+  }
+  else {
+    button.innerText = "証明を開く";
+  }
+
+  for(elem of elems){
+    elem.open = detailsOpenNext;
+  }
 }
 </script>
-<p><button type="button" onclick="details_open(true)">開く</button>
-<button type="button" onclick="details_open(false)">閉じる</button></p>
+<p><button type="button" id="detail-open-button" onclick="details_open(true)">証明を開く</button></p>
 <h2 id="概要">概要<a class="td-heading-self-link" href="#%e6%a6%82%e8%a6%81" aria-label="Heading self-link"></a></h2>
 <hr>
 <p>最適化問題を扱っていると、「主問題に対して双対問題を立てる」、「双対ギャップを評価する」、「KKT条件を使って解の最適性を確認する」といった内容がよく出てきます。
@@ -229,8 +239,8 @@ elem.open = bool;
 <br>
 <h4 id="この記事で伝えたいこと">この記事で伝えたいこと<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%a7%e4%bc%9d%e3%81%88%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h4>
 <p>最適化問題における「双対性」は理論的にも応用的にも重要な概念ですが、双対問題の定義、弱双対性・強双対性、そしてそれらが成立する条件（スレーター条件など）を一貫して整理した資料は意外と少なく、学習のたびに混乱しがちです。</p>
-<p>本記事では、双対問題の定式化の背景や意味、理論的性質、そして強双対性を保証する条件について丁寧に整理し、<strong>一つの流れで全体像を捉えること</strong>を目的としています。
-特に、<strong>凸最適化問題に遭遇したときにどのように双対問題を定式化し、どの条件を確認すればよいか</strong>を判断するための、実践的な「チートシート」として活用できる内容を目指しています。</p>
+<p>本記事では、双対問題の定式化の背景や意味、理論的性質、そして強双対性を保証する条件について丁寧に整理し、一つの流れで全体像を捉えることを目的としています。
+特に、凸最適化問題に遭遇したときにどのように双対問題を定式化し、どの条件を確認すればよいかを判断するための、実践的な「チートシート」として活用できる内容を目指しています。</p>
 <br>
 <h4 id="この記事の対象者">この記事の対象者<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%ae%e5%af%be%e8%b1%a1%e8%80%85" aria-label="Heading self-link"></a></h4>
 <ul>
@@ -252,14 +262,16 @@ elem.open = bool;
 <h4 id="なぜ双対問題を考えるのか">なぜ「双対問題」を考えるのか<a class="td-heading-self-link" href="#%e3%81%aa%e3%81%9c%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%82%92%e8%80%83%e3%81%88%e3%82%8b%e3%81%ae%e3%81%8b" aria-label="Heading self-link"></a></h4>
 <p>制約付き最適化問題において、制約を満たしつつ目的関数を最小化する解を直接求めるのは、解析的にも計算的にも困難なことがあります。
 そこで登場するのが<strong>ラグランジュ関数</strong>による「緩和」の考え方です。</p>
-<p>制約条件をそのまま扱うのではなく、目的関数に<strong>制約を重み付きで加算</strong>したラグランジュ関数を構成することで、制約付き問題をある意味で<strong>制約なしの問題に変換</strong>することができます。</p>
+<p>制約条件をそのまま扱うのではなく、目的関数に制約を重み付きで加算したラグランジュ関数を構成することで、制約付き問題を制約なしの問題に変換することができます。</p>
+<br>
 <p><strong>Definition（ラグランジュ緩和関数）</strong></p>
 <blockquote>
 <p>不等式制約付き最適化問題 \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) に対して、
 ラグランジュ緩和関数を以下のように定義します:
 \[ \begin{gather*}  L(x, \lambda, \nu) = f(x) + \sum _ {i=1}^{m} \lambda _ i g _ i(x) + \sum _ {j=1}^{p} \nu _ j h _ j(x)  \end{gather*} \]</p>
 </blockquote>
-<p>このとき、「ある重み（ラグランジュ乗数）を与えたときに、目的関数の最小値はどれくらい低くなるか？」という問いが自然に現れます。これが<strong>双対関数</strong>であり、その最大化問題として定式化されるのが<strong>双対問題</strong>です。</p>
+<br>
+<p>このとき、「ある制約に対する重み（ラグランジュ乗数）を与えたときに、目的関数の最小値がどれくらい小さくなるか？」という問いが自然に現れます。これが<strong>双対関数</strong>であり、その最大化問題として定式化されるのが<strong>双対問題</strong>です。</p>
 <p>双対問題は以下のような点で重要な役割を果たします：</p>
 <ul>
 <li>主問題の解析や計算をより容易にする手段になる（凸性）</li>
@@ -274,20 +286,22 @@ elem.open = bool;
 <blockquote>
 <p>(1) 不等式制約付き最適化問題 \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) を考えます。
 ラグランジュ緩和関数 \(L(x, \lambda, \nu)\) に対して、
-\[ \begin{gather*}  g(\lambda, \nu) := \inf _ {x} L(x, \lambda, \nu)  \end{gather*} \]
+\[ \begin{gather*}  g(\lambda, \nu) := \inf _ {x \in \text{dom} (\mathcal{P})} L(x, \lambda, \nu)  \end{gather*} \]
 とおきます。
 このとき、以下の最適化問題を元の問題の双対問題と定義します:
 \[ \begin{align*}   \text{supremum} \quad &amp; g(\lambda, \nu) \\   \text{subject to} \quad   &amp; \lambda \succeq 0   \end{align*} \]
 また、元の問題を主問題といいます。<br>
 (2) 主問題の最適値を \(p^{\ast}\)、双対問題の最適値は \(d^{\ast}\) と表記します。また、双対ギャップを \(p^{\ast} - d^{\ast}\) と定義します。</p>
 </blockquote>
+<br>
 <p>双対問題が重要視される理由の一つは、それが常に凸最適化問題になる点にあります。
 たとえ主問題が凸でなかったとしても、双対問題は凸性を持つため、適用できるアルゴリズムが豊富であり、また理論的な収束保証もよく研究されています。</p>
 <p>双対問題の凸性を示す命題を以下に述べます。</p>
 <br>
 <p><strong>Propositon（双対問題の凸性）</strong></p>
 <blockquote>
-<p>\(g(\lambda, \nu)\) は凸関数（つまり \(-g\) は凸関数）です。</p>
+<p>\(g(\lambda, \nu)\) は凸関数（つまり \(-g\) は凸関数）です。
+　　　　</p>
 <details><summary>(Proof)</summary><div>
 <p>\(\lambda^{1}, \; \lambda^{2}, \; \nu^{1}, \; \nu^{2}\) と \(0 \leq s \leq 1\) を任意にとり、
 \(\lambda := (1 - s) \lambda^{1} + \lambda^{2}, \; \nu := (1 - s) \nu^{1} + s \nu^{2}\) とおきます。</p>
@@ -299,13 +313,14 @@ elem.open = bool;
 </blockquote>
 <p><br><br></p>
 <h2 id="弱双対定理と強双対定理">弱双対定理と強双対定理<a class="td-heading-self-link" href="#%e5%bc%b1%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86%e3%81%a8%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h2>
-<p>定義された双対関数</p>
+<p>双対関数</p>
 <p>\[ \begin{gather*}  g(\lambda, \mu) = \inf _ x L(x, \lambda, \mu)  \end{gather*} \]</p>
 <p>は、主問題の実行可能解の集合 \(F\) の元 \(x\) に対して、主問題の目的関数の下界を与える性質があります。
 つまり、任意の \(x \in F\) と \( \lambda \geq 0, \mu\) に対して
 \[ \begin{gather*}  g(\lambda, \mu) \leq f(x)  \end{gather*} \]
 が成り立ちます。これは、主問題の最適値を下から近似・評価できることを示しており、双対問題を考える意義の一つになります。</p>
 <p>このことを命題の形で以下に述べましょう。</p>
+<br>
 <p><strong>Propositon (弱双対定理)</strong></p>
 <blockquote>
 <p>不等式制約付き最適化問題 \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) を考えます。
@@ -349,34 +364,38 @@ elem.open = bool;
 </ul>
 </blockquote>
 <br>
-<p>スレーター条件は、不等式制約に対して厳密な不等号が成立する実行可能解が内点として存在することを要求するものであり、凸最適化における強双対性の鍵となる条件です。
-スレーター条件が満たされる場合には、強双対性が必ず成立することが知られています。すなわち、主問題と双対問題の最適値が一致し、双対ギャップがゼロになります。
-この事実を証明する鍵は凸集合の分離定理にあるというところも興味深いところになります。</p>
-<p>以下に、この事実を命題としてまとめておきます。</p>
+<p>スレーター条件は、不等式制約に対して厳密な不等号が成立する実行可能解が内点として存在することを要求するものであり、凸最適化における強双対性のキーとなる条件です。
+スレーター条件が満たされる場合には、強双対性が必ず成立することが知られています。すなわち、主問題と双対問題の最適値が一致し、双対ギャップがゼロになります。</p>
+<p>もう一つの重要な事実は、スレーター条件が満たされるならば双対問題に最適解が存在する、ということです。つまり、双対問題の最適値を実現する解が存在します。
+主問題には最適解が存在することは一般的に保証できないので、数値的に最適解を探索することで最適化問題を解くアルゴリズムに対しては、
+双対問題の方が主問題よりも解きやすい問題であることがいえます。</p>
+<p>以下に、この事実を命題としてまとめておきます。
+この命題を証明する重要な道具は凸集合の分離定理です。</p>
 <br>
-<p><strong>Propositon（スレーター条件が満たされるならば強双対定理が成り立つ）</strong> <a id="slater-condition-proposition"></a></p>
+<p><strong>Propositon（スレーター条件が満たされるならば強双対性が成り立つ）</strong> <a id="slater-condition-proposition"></a></p>
 <blockquote>
-<p>不等式制約付きの<strong>凸最適化問題</strong> \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) がスレーター条件を満たすならば、強双対性が成り立ちます。</p>
+<p>不等式制約付きの<strong>凸最適化問題</strong> \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) がスレーター条件を満たすならば、強双対性が成り立ちます。
+また、双対問題の最適解も存在します。</p>
 <details><summary>(Proof)</summary><div>
 <p>(1) <a href="/my-hugo-site/blog/2025/07/18/dual-problem/#boyd">文献</a>の手法に沿って証明を進めます。</p>
 <p>最初に行列 \(A\) の階数が行数と一致するケースを考えます。
 次の集合を考えます。</p>
-<p>\[ \begin{gather*}  \mathcal{A} = \{ (u, v, t) \; | \;   \exist x \in D, \quad   \quad g _ {i}(x) ≤ u _ {i} \; ( \forall i), \quad   h _ {j}(x) = v _ {j} \; (\forall j), \quad   f(x) \leq t   \}, \\   \mathcal{B} = \{ (0, 0, s) ∈ \mathbb{R}^{m} \times \mathbb{R}^{p} \times \mathbb{R} \; | \; s &lt; p^{\ast} \}.  \end{gather*} \]</p>
+<p>\[ \begin{gather*}  \mathcal{A} = \{ (u, v, t) \; | \;   \exist x \in \text{dom} (\mathcal{P}), \quad   \quad g _ {i}(x) ≤ u _ {i} \; ( \forall i), \quad   h _ {j}(x) = v _ {j} \; (\forall j), \quad   f(x) \leq t   \}, \\   \mathcal{B} = \{ (0, 0, s) ∈ \mathbb{R}^{m} \times \mathbb{R}^{p} \times \mathbb{R} \; | \; s &lt; p^{\ast} \}.  \end{gather*} \]</p>
 <p>まず、\(\mathcal{P}\) が凸最適化問題であるため \(\mathcal{A}\) は凸集合です。
 次に \(p^{\ast}\) は \(\mathcal{P}\) の最適値であるため、\(\mathcal{A} \cap \mathcal{B} = \empty\) であることがわかります。
-よって、<a href="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/14/convex-set/#separating-hyperplane-theorem-1">凸集合の分離定理</a>から、
+よって、<a href="https://Yuki-Wada.github.io/my-hugo-site/blog/2025/07/14/convex-set/#separating-hyperplane-theorem">凸集合の分離定理</a>から、
 以下の条件を満たす \(\lambda, \nu, \mu \in \mathbb{R}^{n}\) が存在します:</p>
 <p>\[ \begin{gather*}  \langle \lambda, u \rangle + \langle \nu, v \rangle + \mu \cdot t \geq \alpha \;    \left( (u, v, t)\in \mathcal{A} \right), \\   \langle \lambda, u \rangle + \langle \nu, v \rangle + \mu \cdot t \leq \alpha \;   \left( (u, v, t)\in \mathcal{B} \right).  \end{gather*} \]</p>
 <p>\((u, v, t)\in \mathcal{B}\) なら \(u=0, \; v=0\) なので \(\mu \cdot t \leq \alpha\) となるので、
 \( \langle \lambda, u \rangle + \langle \nu, v \rangle \geq 0 \; \left( (u, v, t)\in \mathcal{A} \right) \)
 がいえる。\(\lambda &lt; 0\) と仮定すると、
-\[ \begin{gather*}  ( (u, v, t) \in \mathcal{A}) \land (u \leq u&rsquo;) \Rightarrow (u&rsquo;, v, t) \in \mathcal{A}  \end{gather*} \]
-となるため、\(\langle \lambda, u \rangle + \langle \nu, v \rangle \geq 0\) を満たさない \(\mathcal{A}\) の元が構成できてしまうため矛盾する。よって、\(\lambda \geq 0\) がいえる。</p>
+\(u \rightarrow + \infty\)
+とできるため、不等式を満たさない \(\mathcal{A}\) の元が存在してしまう矛盾する。よって、\(\lambda \geq 0\) がいえる。</p>
 <p>\(\mu &gt; 0\) を示しましょう。一旦 \(\mu = 0\) が正しいと仮定します。
 \[ \begin{gather*}  \sum _ {i} \lambda _ {i} g _ {i}(x) + \langle ν, Ax − b \rangle \geq 0.  \end{gather*} \]
 \(A \tilde{x} − b = 0\) なので、\( \sum _ {i} \lambda _ {i} g _ {i}(\tilde{x}) \geq 0\) とならなければなりません。
 一方で、\(g _ {i}(\tilde{x}) &lt; 0\) となることから \(\lambda _ {i} \geq 0\) と合わせて、\(\lambda _ {i} g _ {i}(\tilde{x}) \leq 0\) も成り立つ必要があります。
-よって、各不等号は等号で成立する必要があり、\(g _ {i}(\tilde{x}) \neq 0\) より \(\lambda _ {i} = 0\) が示せます。</p>
+よって、各不等号は等号で成立する必要があり、\(g _ {i}(\tilde{x}) \neq 0\) と合わせて \(\lambda _ {i} = 0\) が示せます。</p>
 <p>\(\lambda _ {i} = 0\) から \(\langle ν, A x − b \rangle \geq 0\) とならなければなりません。
 一方で \(\langle ν, A \tilde{x} − b \rangle = 0\) であるから、\(\langle ν, A (x - \tilde{x}) \rangle = \langle A^{T} ν, (x - \tilde{x}) \rangle \geq 0\) が成り立つ必要があります。
 だが、</p>
@@ -385,6 +404,14 @@ elem.open = bool;
 <li>行列 \(A^{T}\) の階数が列数と一致するため \(A^{T}\) が単射であること</li>
 </ul>
 <p>から、この不等式は成立しえず矛盾が生じます。よって、\(\mu &gt; 0\) となることがいえました。</p>
+<p>\(\mu &gt; 0\) なので、\((u, v, t)\in \mathcal{B}\) であることから \(u = v = 0, \; t \rightarrow p^{\ast}\) と合わせて、
+\(\alpha \geq \mu p^{\ast}\) がいえます。</p>
+<p>次に、\(\mu &gt; 0\) なので、任意の \(x \in \mathcal{P}\) に対して \((u, v, t)\in \mathcal{A}\) であることから \(u \rightarrow g(x), \; v \rightarrow h(x), \; t \rightarrow f(x)\) と合わせて、</p>
+<p>\[ \begin{align*}   L \left(x, \frac{\lambda} {\mu}, \frac{\nu} {\mu} \right)   = &amp; \left \langle \frac{\lambda} {\mu}, g(x) \right \rangle + \left \langle \frac{\nu} {\mu}, h(x) \right \rangle + f(x)   \geq \frac{\alpha} {\mu}   = p^{\ast}.   \end{align*} \]</p>
+<p>がいえるので、左辺に \(\inf _ {x \in \text{dom} (\mathcal{P}) }\) を施して、
+\(g \left(\frac{\lambda} {\mu}, \frac{\nu} {\mu} \right) \geq p^{\ast}\) が示せました。
+よって、弱双対定理と合わせて、\(p^{\ast} = d^{\ast}\) がわかります。</p>
+<p>また、\(g \left(\frac{\lambda} {\mu}, \frac{\nu} {\mu} \right) = p^{\ast}\) がいえるので、\(\left( \frac{\lambda} {\mu}, \frac{\nu} {\mu} \right)\) が双対問題の最適解になることもいえました。</p>
 <p>(2) 行列 \(A\) の階数が行数と一致しないケースを考えます。<br>
 実行可能解 \(\tilde{x}\) が存在することから、一次従属になる行を取り除いても制約条件としては変わらないことがわかります。
 よって、一次従属になる行を取り除いた行列 \(A\) を代わりに用いることで (1) に帰着可能です。</p>
@@ -392,7 +419,7 @@ elem.open = bool;
 </div></details>
 </blockquote>
 <br>
-<h4 id="補足相対的内点について">補足：相対的内点について<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e7%9b%b8%e5%af%be%e7%9a%84%e5%86%85%e7%82%b9%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" aria-label="Heading self-link"></a></h4>
+<h3 id="補足相対的内点について">補足：相対的内点について<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e7%9b%b8%e5%af%be%e7%9a%84%e5%86%85%e7%82%b9%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" aria-label="Heading self-link"></a></h3>
 <p>スレーター条件を定義する際、厳密な不等式が成立する点 \(x _ {0}\) が定義域 \(\text{dom} (\mathcal{P})\) の内点であることをこの記事では要求しています。
 ただし、\(\text{dom} (\mathcal{P})\) が低次元の部分集合（例えばある超平面上）に含まれている場合など、通常の意味での内点がそもそも存在しないことがあります。このような場合に対して、\(\text{dom} (\mathcal{P})\) を含む最小のアフィン部分空間における内点、すなわち「相対的内点（relative interior）」という概念が必要になります。一般的なテキストでは、\(x _ {0}\) を \(\text{dom} (\mathcal{P})\) の「内点」ではなく、「相対的内点」であると定義することがほとんどでしょう。</p>
 <p>本記事では、本筋の理解を妨げないように相対的内点という定義を持ち出してはいません。その理由は以下の通りです:</p>
@@ -402,12 +429,12 @@ elem.open = bool;
 </ul>
 <p>したがって、この記事で述べたスレーター条件における「内点」という表現は、「相対的内点」と読み替えても問題なく通用することを留意しておいてください。</p>
 <br>
-<h4 id="緩和されたスレーター条件">緩和されたスレーター条件<a class="td-heading-self-link" href="#%e7%b7%a9%e5%92%8c%e3%81%95%e3%82%8c%e3%81%9f%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h4>
-<p>先ほど紹介したスレーター条件は、強双対性を保証する十分条件として非常に有用ですが、実用上はやや強すぎる仮定であることもしばしばあります。
+<h3 id="緩和されたスレーター条件">緩和されたスレーター条件<a class="td-heading-self-link" href="#%e7%b7%a9%e5%92%8c%e3%81%95%e3%82%8c%e3%81%9f%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
+<p>先ほど紹介したスレーター条件は、強双対性を保証する十分条件として非常に有用ですが、実用上はやや強すぎる仮定となることもままあります。
 特に注意すべきなのは、全ての不等式制約に対して「厳密な不等号（\(&lt;\)）」が成立する必要がある点です。多くの最適化問題ではこの条件でも十分であるケースが多いですが、線形計画法のような重要な応用問題に対して満たされないケースがあります。</p>
 <p>線形計画問題においては、制約関数はすべてアフィン関数であり、かつ実行可能解が境界上（\(g _ {i}(x) = 0\)）に存在するケースも多いです。このような場合には、スレーター条件の「全ての不等式制約に対して厳密な不等号が成立する」という仮定が満たされない可能性があります。にもかかわらず、線形計画問題では通常、強双対性が成立します。</p>
-<p>こうした現象を説明し、より広範な問題に対応できるようにするために、スレーター条件を拡張した「緩和されたスレーター条件（relaxed Slater condition）」を導入します。</p>
-<p>この緩和条件では、アフィン関数で表現された不等式制約に対しては不等号（\(\leq\)）が成り立つだけで十分であるとし、アフィンではない不等式制約に対してのみ厳密な不等号（\(&lt;\)）が成り立つことを要求します。このことにより、線形計画問題を含むより広いクラスの問題に対しても、強双対性の成立を保証することが可能です。</p>
+<p>こうした現象を説明し、より広範な問題に対応できるようにするために、緩和されたスレーター条件を導入します。</p>
+<p>緩和された条件では、アフィン関数で表現された不等式制約に対しては不等号（\(\leq\)）が成り立つだけで十分であるとし、アフィンではない不等式制約に対してのみ厳密な不等号（\(&lt;\)）が成り立つことを要求します。このことにより、線形計画問題を含むより広いクラスの問題に対しても、強双対性の成立を保証することが可能です。</p>
 <p>以下に、緩和されたスレーター条件の定義を述べます。</p>
 <br>
 <p><strong>Definition (緩和されたスレーター条件)</strong></p>
@@ -431,9 +458,10 @@ elem.open = bool;
 <p>この証明の基本的なアイデアは、緩和されたスレーター条件を満たす最適化問題を、適切な変形によって元のスレーター条件を満たす形に書き換えるというものです。すなわち、非アフィンな不等式制約だけに注目し、アフィンな制約をそのまま残す形で主問題を分離・再構成することで、以前に示したスレーター条件の下での強双対定理に帰着させます。</p>
 <p>それでは、具体的に命題の主張と証明を述べます。</p>
 <br>
-<p><strong>Propositon（スレーター条件を緩和しても強双対定理が成り立つ）</strong></p>
+<p><strong>Propositon（スレーター条件を緩和しても強双対性が成り立つ）</strong></p>
 <blockquote>
-<p>不等式制約付き<strong>凸最適化問題</strong> \(\mathcal{P} \left( f, \{g _ {i}\} \cup \{g&rsquo; _ {i&rsquo;}\}, \{h _ {j}\} \right)\) が緩和されたスレーター条件を満たすならば、強双対性が成り立ちます。</p>
+<p>不等式制約付き<strong>凸最適化問題</strong> \(\mathcal{P} \left( f, \{g _ {i}\} \cup \{g&rsquo; _ {i&rsquo;}\}, \{h _ {j}\} \right)\) が緩和されたスレーター条件を満たすならば、強双対性が成り立ちます。
+また、双対問題の最適解も存在します。</p>
 <details><summary>(Proof)</summary><div>
 <p>以下を満たす \(\{1, \dots, i&rsquo; \}\) の部分集合 \(I _ {\max}^{&rsquo;}\) が存在することを示せば、\(\mathcal{P}\) について強双対定理が成り立つことが示せます。</p>
 <ul>
