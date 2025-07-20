@@ -156,7 +156,7 @@ function details_open(bool){
 > </div></details>
 
 
-**Propositon（凸集合の分離定理）** <a id="separating-hyperplane-theorem-1"></a>
+**Propositon（凸集合の分離定理）** <a id="separating-hyperplane-theorem"></a>
 > \\(X\, Y \subseteq \mathbb{R}^n\\) を凸集合とし、さらに \\( X \cap Y = \empty\\) を満たすとします。
 > 
 > このとき、以下の条件を満たす \\(a\, b \in \mathbb{R}^n\\) が存在します:
