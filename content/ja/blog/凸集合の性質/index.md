@@ -15,21 +15,24 @@ weight: 999
 
 
 <script>
-var elems = document.getElementsByTagName('details');
-var elems2 = document.getElementById('accordion');
 function details_open(bool){
+  const elems = document.getElementsByTagName('details');
+  const button = document.getElementById('detail-open-button');
+  const detailsOpenNext = button.innerText === "証明を開く";
+  if (detailsOpenNext){
+    button.innerText = "証明を閉じる";
+  }
+  else {
+    button.innerText = "証明を開く";
+  }
+
   for(elem of elems){
-    elem.open = bool;
+    elem.open = detailsOpenNext;
   }
 }
 </script>
 
-
-
-<button type="button" id="accordion" onclick="details_open(true)">
-  証明を開く
-</button>
-<button type="button" onclick="details_open(false)">証明を閉じる</button>
+<button type="button" id="detail-open-button" onclick="details_open(true)">証明を開く</button>
 
 
 
@@ -60,33 +63,50 @@ function details_open(bool){
 
 ## 凸集合の定義
 
-#### Definition (凸集合)
+**Definition（凸集合）**
 > ベクトル空間 \\(V\\) の部分集合 \\(C\\) を考えます。
 > 任意の \\(x\, y \in C\\) と任意の \\(0 \leq \lambda \leq 1\\) に対して、
 > \\[ \\begin{gather*}  \\lambda x + (1 - \\lambda) y \\in C  \\end{gather*} \\]
 > が成り立つとき、\\(C\\) を凸集合と定義します。
 
 
-#### Propositon（凸集合の共通部分は凸集合）
+<br>
+
+
+**Propositon（凸集合の共通部分は凸集合）**
 > 凸集合の集合族 \\((C _ {\lambda}) _ {\lambda \in \Lambda}\\) の共通部分 \\(\cap C _ {\lambda}\\) も凸集合です。
 > 
 > 証明は省略します。
 
-#### Definition (凸包)
+
+<br>
+
+
+**Definition（凸包）**
 > 集合 \\(A\\) を含む最小の凸集合を \\(A\\) の凸包と定義し、\\(\text{conv}A\\) と表記します。
+
+
+<br>
 
 
 凸包の定義を見る限り、具体的にどのような元が凸包に含まれるかが明記されていません。
 ですが、集合 \\(A\\) の凸包が \\(A\\) を含む最小の凸集合であるという性質から、有限個の点 \\(x _ 1\, \ldots\, x _ k \in A\\) の凸結合（convex combination）全体の集合が凸包と一致することがわかります。
 
 
-#### Proposition (凸包の具体的な表現)
+<br>
+
+
+**Proposition（凸包の具体的な表現）**
 > 集合 \\(A\\) の凸包 \\(\text{conv}(A)\\) は次のように書き下すことができます:
 > \\[ \\begin{gather*}  \\mathrm{conv}(A) = \\left\\\{ \\sum _ {i=1}^k \\lambda _ i x _ i \\\;\\middle|\\\; k \\in \\mathbb{N}\,\\\; x _ i \\in A\,\\\; \\lambda _ i \\geq 0\,\\\; \\sum _ {i=1}^k \\lambda _ i = 1 \\right\\\}  \\end{gather*} \\]
 > 
 > 証明は省略します。
 
-**Propositon（凸集合の閉包は凸集合）**  
+
+<br>
+
+
+**Propositon（凸集合の閉包は凸集合）** <a id="closure-of-convex-set-is-convex"></a>
 > 凸集合の閉包は凸集合です。
 > <details><summary>(Proof)</summary><div>
 > 
@@ -105,29 +125,58 @@ function details_open(bool){
 一方で、閉集合の凸包は閉集合とは限りません（最初私は閉集合の凸包は閉集合となると思い込んでいましたが反例がありました）。
 
 
-**Propositon（閉集合の凸包は閉集合とは限らない）**  
+<br>
+
+
+**Propositon（閉集合の凸包は閉集合とは限らない）** <a id="convex-full-of-closed-set-is-not-closed-in-general"></a>
 > 閉集合の凸包が閉集合とならない反例が存在します。
 > 
 > <details><summary>(Proof)</summary><div>
 > 
 > \\[ \\begin{gather*}  A \:= \\\{ (x\, y) | xy \\geq 1\, x > 0\, y > 0 \\\} \\cup {(0\, 0)}  \\end{gather*} \\]
 > とおく。このとき、以下が成り立ちます。
-> - \\(A\\) が閉集合です。（理由: \\((x\, y) \to xy\\) が連続なので \\(\\{ (x\, y) | xy < 1\, x > 0\, y > 0 \\}\\) が開集合となるため。）
-> - \\( \text{conv}(A) = \\{ (x\, y) | x > 0\, y > 0 \\} \cup {(0\, 0)}\\)。（理由: \\(x > 0\, y > 0\, xy < 1\\) を満たす \\(x\, y\\) に対して \\(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} > 1\\) とおくと \\((\lambda x)\cdot(\lambda y) = 1\\) となるため。）
-> - \\( \text{conv}(A)\\) が閉集合ではありません。 
+> - \\(A\\) は閉集合です。（理由: \\((x\, y) \to xy\\) が連続なので \\(\\{ (x\, y) | xy < 1\, x > 0\, y > 0 \\}\\) が開集合となるため。）
+> - \\( \text{conv}(A) = \\{ (x\, y) | x > 0\, y > 0 \\} \cup {(0\, 0)}\\) です。（理由: \\(x > 0\, y > 0\, xy < 1\\) を満たす \\(x\, y\\) に対して \\(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} > 1\\) とおくと \\((\lambda x)\cdot(\lambda y) = 1\\) となるため。）
+> - \\( \text{conv}(A)\\) は閉集合ではありません。 
 >
 > よって、反例が存在することを示せました。
 > 
 > </div></details>
 
 
+<br>
+
+
 閉集合の凸包が閉集合になるとは限らないため、閉集合を考える場合においては単なる凸包では捉えたい対象を十分にとらえきれない可能性があります。
 幸いにも、凸集合の共通部分が凸集合となるのと同じく、閉集合の共通部分も閉集合となることから、\\(A\\) を含む最小の閉凸集合が存在することがわかります。
 
 
-#### Definition (閉凸包)
+**Definition（閉凸包）**
 > 集合 \\(A\\) を含む最小の閉凸集合を \\(A\\) の閉凸包と定義します。
 
+
+<br>
+
+
+**Propositon（閉凸包の具体的な表現）**  
+> \\(A\\) の閉凸包は \\(\text{cl} (\text{conv} (A))\\) と一致します。
+> 
+> また、\\(\text{cl} (\text{conv} (A)) \supseteq \text{conv} (\text{cl} (A))\\) です。
+> 
+> <details><summary>(Proof)</summary><div>
+> 
+> \\(A\\) の閉凸包を \\(B\\) とおきます。
+> [凸集合の閉包は凸集合](#convex-full-of-closed-set-is-convex)なので、\\(\text{cl} (\text{conv} (A))\\) は閉集合かつ凸集合です。
+> よって、\\(B\\) の閉凸集合の最小性から \\(\text{cl} (\text{conv} (A)) \supseteq B\\) が成り立ちます。
+> 
+> \\(\text{conv} (A)\\) の凸集合の最小性より \\(\text{conv} (A) \subseteq B\\) であり、
+> \\(\text{cl} (\text{conv} (A))\\) の閉集合の最小性より \\(\text{cl} (\text{conv} (A)) \subseteq B\\) がいえます。
+> よって、\\(\text{cl} (\text{conv} (A)) = B\\) が示せました。
+> 
+> 同様の方法で、\\(\text{cl} (\text{conv} (A)) \supseteq \text{conv} (\text{cl} (A))\\) がいえます。
+> ですが、[閉集合の凸包は閉集合とは限らない](convex-full-of-closed-set-is-not-closed-in-general)ため、等号が一般的に成立するとは言えません。
+> 
+> </div></details>
 
 
 <br><br>
@@ -136,14 +185,20 @@ function details_open(bool){
 
 ## 凸集合の分離定理
 
+ここまで、凸集合を取り巻く基本概念――凸包や閉凸包、そしてそれらが持つ閉性・凸性の保存則――を整理してきました。
+
+次に取り上げる分離定理は、この問いへの核心的な回答を与えるものです。直感的には「互いに交わらない二つの凸集合は、一枚の超平面によって左右に分けられる」という主張ですが、実際には集合の閉性やコンパクト性といった性質が、分離がどの程度厳密に行えるかを左右します。また、一点と凸集合の分離（分離補題）を足がかりに、二つの凸集合の分離へと議論を発展させる流れは、有限次元空間における幾何学的議論の典型例でもあります。
+
+以下では、まず一点と凸集合の分離補題を示し、そこから二つの凸集合の分離定理へとステップを進めます。「なぜ超平面が存在するのか」「境界に点がある場合となければどう違うのか」といったポイントを確認しながら、証明を丁寧に追っていきましょう。
+
 **Propositon（凸集合と一点の分離）** <a id="separating-hyperplane-lemma"></a>
 > \\(C \subseteq \mathbb{R}^n\\) を凸集合とします。
 > 
 > \\(\inf _ {c \in C} d(c\, x _ {0})\\) > 0 ならば、以下の条件を満たす \\(a\, b \in \mathbb{R}^n\\) が存在します:
-> \\[ \\begin{gather*}  \\langle a\, c\\rangle \\geq b \\quad (\\forall c \\in C)\, \\\\   \\langle a\, x _ {0}\\rangle < b.  \\end{gather*} \\]
+> \\[ \\begin{gather*}  a \\neq 0\, \\\\   \\langle a\, c\\rangle \\geq b \\quad (\\forall c \\in C)\, \\\\   \\langle a\, x _ {0}\\rangle < b.  \\end{gather*} \\]
 > 
 > \\(\inf _ {c \in C} d(c\, x _ {0})\\) = 0 ならば、以下の条件を満たす \\(a\, b \in \mathbb{R}^n\\) が存在します:
-> \\[ \\begin{gather*}  \\langle a\, c\\rangle \\geq b \\quad (\\forall c \\in C)\, \\\\   \\langle a\, x _ {0}\\rangle \\leq b.  \\end{gather*} \\]
+> \\[ \\begin{gather*}  a \\neq 0\, \\\\   \\langle a\, c\\rangle \\geq b \\quad (\\forall c \\in C)\, \\\\   \\langle a\, x _ {0}\\rangle \\leq b.  \\end{gather*} \\]
 > 
 > <details><summary>(Proof)</summary><div>
 > 
@@ -166,7 +221,6 @@ function details_open(bool){
 > 以下の条件を満たす \\(a\, b \in \mathbb{R}^n\\) が存在します
 > （2 つ目の不等式が真の不等号に変わっていることに注意してください）:
 > \\[ \\begin{gather*}  \\langle a\, x \\rangle \\geq b \\quad (\\forall x \\in X)\, \\\\   \\langle a\, y \\rangle < b \\quad (\\forall y \\in Y).  \\end{gather*} \\]
-> 
 > 
 > <details><summary>(Proof)</summary><div>
 > 
@@ -221,7 +275,7 @@ function details_open(bool){
 > - \\(V\\) が局所凸、\\(A\\) がコンパクトで、\\(B\\) が閉ならば、ある連続線型作用素 \\(\lambda\: V \rightarrow K\\) および実数 \\(s\, t \in \mathbb{R}\\) が存在して、
 > \\(\text{Re} \lambda(a) < t < s < \text{Re} \lambda(b) \quad ( \forall a \in A\, \\; \forall b \in B )\\) に対して成立する。
 
-Hahn-Banach の分離定理の主張と[凸集合の分離定理](#separating-hyperplane-theorem-1) の主張は少し異なりますが。
+Hahn-Banach の分離定理の主張は[凸集合の分離定理](#separating-hyperplane-theorem) の主張と少し異なりますが。
 Hahn-Banach の分離定理から凸集合の分離定理を導出することも可能です。
 
 とはいえ Hahn-Banach の分離定理は Minkowski 汎関数を上手く取ってきて Hahn-Banach の拡張定理を使うことによって示すことができますが、
@@ -234,7 +288,7 @@ Hahn-Banach の分離定理から凸集合の分離定理を導出すること�
 
 
 
-## 結論 (conclusion or point)
+## 結論
 
 本記事では、凸集合の基本的な性質を確認したうえで、有限次元空間における凸集合の分離定理を具体的に証明しました。
 
