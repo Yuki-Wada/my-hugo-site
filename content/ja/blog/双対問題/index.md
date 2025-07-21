@@ -243,9 +243,17 @@ function details_open(bool){
 > 
 > <details><summary>(Proof)</summary><div>
 > 
-> (1) [文献](#boyd)の手法に沿って証明を進めます。
+> [Convex optimization](#boyd)の 5.2.3 の手法に沿って証明を進めます。
 > 
-> 最初に行列 \\(A\\) の階数が行数と一致するケースを考えます。
+> まず、\\(h _ {j}\\) がアフィンなので、\\(\\{ h _ {j} \\}\\) の等式制約条件は、ある行列 \\(A\\) と \\(b\\) が存在して、
+> 
+> \\[ \\begin{gather*} Ax - b = 0 \\end{gather*} \\]
+> 
+> と書くことができます。
+> 実行可能解 \\(\tilde{x}\\) が存在することから、\\(A\\) から一次従属になる行を取り除いても制約条件としては変わらないため、
+> \\(A\\) の代わりに \\(A\\) から一次従属になる行を取り除いた行列を代わりに用いることができます。
+> よって、行列 \\(A\\) の階数は行数と一致するとしても構いません。
+> 
 > 次の集合を考えます。
 > 
 > \\[ \\begin{gather*}  \\mathcal{A} = \\\{ (u\, v\, t) \\\; | \\\;   \\exist x \\in \\text{dom} (\\mathcal{P})\, \\quad   \\quad g _ {i}(x) ≤ u _ {i} \\\; ( \\forall i)\, \\quad   h _ {j}(x) = v _ {j} \\\; (\\forall j)\, \\quad   f(x) \\leq t   \\\}\, \\\\   \\mathcal{B} = \\\{ (0\, 0\, s) ∈ \\mathbb{R}^{m} \\times \\mathbb{R}^{p} \\times \\mathbb{R} \\\; | \\\; s < p^{\\ast} \\\}.  \\end{gather*} \\]
