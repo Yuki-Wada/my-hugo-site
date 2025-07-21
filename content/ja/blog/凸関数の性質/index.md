@@ -368,7 +368,7 @@ function details_open(bool){
 <br>
 
 
-**Propositon（凸関数ならば停留点ならば最適解）**
+**Propositon（凸関数ならば停留点ならば最適解）** <a id="stationary-point-is-optimal"></a>
 > 
 > \\(f\\) を \\(C^{1}\\) 級の凸関数とします。
 > このとき、\\(f\\) の停留点は大域的最小点になります。
