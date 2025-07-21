@@ -33,7 +33,7 @@
   <meta itemprop="description" content="双対問題">
   <meta itemprop="datePublished" content="2025-07-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1541">
+  <meta itemprop="wordCount" content="1574">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="双対問題">
@@ -377,9 +377,14 @@ function details_open(bool){
 <p>不等式制約付きの<strong>凸最適化問題</strong> \(\mathcal{P} \left( f, \{g _ {i}\}, \{h _ {j}\} \right)\) がスレーター条件を満たすならば、強双対性が成り立ちます。
 また、双対問題の最適解も存在します。</p>
 <details><summary>(Proof)</summary><div>
-<p>(1) <a href="/my-hugo-site/blog/2025/07/18/dual-problem/#boyd">文献</a>の手法に沿って証明を進めます。</p>
-<p>最初に行列 \(A\) の階数が行数と一致するケースを考えます。
-次の集合を考えます。</p>
+<p><a href="/my-hugo-site/blog/2025/07/18/dual-problem/#boyd">Convex optimization</a>の 5.2.3 の手法に沿って証明を進めます。</p>
+<p>まず、\(h _ {j}\) がアフィンなので、\(\{ h _ {j} \}\) の等式制約条件は、ある行列 \(A\) と \(b\) が存在して、</p>
+<p>\[ \begin{gather*} Ax - b = 0 \end{gather*} \]</p>
+<p>と書くことができます。
+実行可能解 \(\tilde{x}\) が存在することから、\(A\) から一次従属になる行を取り除いても制約条件としては変わらないため、
+\(A\) の代わりに \(A\) から一次従属になる行を取り除いた行列を代わりに用いることができます。
+よって、行列 \(A\) の階数は行数と一致するとしても構いません。</p>
+<p>次の集合を考えます。</p>
 <p>\[ \begin{gather*}  \mathcal{A} = \{ (u, v, t) \; | \;   \exist x \in \text{dom} (\mathcal{P}), \quad   \quad g _ {i}(x) ≤ u _ {i} \; ( \forall i), \quad   h _ {j}(x) = v _ {j} \; (\forall j), \quad   f(x) \leq t   \}, \\   \mathcal{B} = \{ (0, 0, s) ∈ \mathbb{R}^{m} \times \mathbb{R}^{p} \times \mathbb{R} \; | \; s &lt; p^{\ast} \}.  \end{gather*} \]</p>
 <p>まず、\(\mathcal{P}\) が凸最適化問題であるため \(\mathcal{A}\) は凸集合です。
 次に \(p^{\ast}\) は \(\mathcal{P}\) の最適値であるため、\(\mathcal{A} \cap \mathcal{B} = \empty\) であることがわかります。
