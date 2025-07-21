@@ -33,7 +33,7 @@
   <meta itemprop="description" content="凸集合の性質">
   <meta itemprop="datePublished" content="2025-07-14T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-14T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1086">
+  <meta itemprop="wordCount" content="1155">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="凸集合の性質">
@@ -165,17 +165,13 @@
         <li></li>
       </ul>
     </li>
-    <li><a href="#凸集合の定義">凸集合の定義</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
+    <li><a href="#凸集合の定義">凸集合の定義</a></li>
     <li><a href="#凸集合の分離定理">凸集合の分離定理</a>
       <ul>
         <li></li>
       </ul>
     </li>
-    <li><a href="#結論-conclusion-or-point">結論 (conclusion or point)</a></li>
+    <li><a href="#結論">結論</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
 </nav>
@@ -209,18 +205,23 @@
 
   </header>
 	<script>
-var elems = document.getElementsByTagName('details');
-var elems2 = document.getElementById('accordion');
 function details_open(bool){
+  const elems = document.getElementsByTagName('details');
+  const button = document.getElementById('detail-open-button');
+  const detailsOpenNext = button.innerText === "証明を開く";
+  if (detailsOpenNext){
+    button.innerText = "証明を閉じる";
+  }
+  else {
+    button.innerText = "証明を開く";
+  }
+
   for(elem of elems){
-    elem.open = bool;
+    elem.open = detailsOpenNext;
   }
 }
 </script>
-<button type="button" id="accordion" onclick="details_open(true)">
-  証明を開く
-</button>
-<button type="button" onclick="details_open(false)">証明を閉じる</button>
+<p><button type="button" id="detail-open-button" onclick="details_open(true)">証明を開く</button></p>
 <h2 id="概要">概要<a class="td-heading-self-link" href="#%e6%a6%82%e8%a6%81" aria-label="Heading self-link"></a></h2>
 <h4 id="この記事で伝えたいこと">この記事で伝えたいこと<a class="td-heading-self-link" href="#%e3%81%93%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%a7%e4%bc%9d%e3%81%88%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h4>
 <p>本記事では、凸集合に関する基本的な概念と性質を確認したうえで、有限次元実ベクトル空間における凸集合の分離定理を丁寧に解説・証明します。</p>
@@ -239,31 +240,36 @@ function details_open(bool){
 </ul>
 <p><br><br></p>
 <h2 id="凸集合の定義">凸集合の定義<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%ae%9a%e7%be%a9" aria-label="Heading self-link"></a></h2>
-<h4 id="definition-凸集合">Definition (凸集合)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<p><strong>Definition（凸集合）</strong></p>
 <blockquote>
 <p>ベクトル空間 \(V\) の部分集合 \(C\) を考えます。
 任意の \(x, y \in C\) と任意の \(0 \leq \lambda \leq 1\) に対して、
 \[ \begin{gather*}  \lambda x + (1 - \lambda) y \in C  \end{gather*} \]
 が成り立つとき、\(C\) を凸集合と定義します。</p>
 </blockquote>
-<h4 id="propositon凸集合の共通部分は凸集合">Propositon（凸集合の共通部分は凸集合）<a class="td-heading-self-link" href="#propositon%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%85%b1%e9%80%9a%e9%83%a8%e5%88%86%e3%81%af%e5%87%b8%e9%9b%86%e5%90%88" aria-label="Heading self-link"></a></h4>
+<br>
+<p><strong>Propositon（凸集合の共通部分は凸集合）</strong></p>
 <blockquote>
 <p>凸集合の集合族 \((C _ {\lambda}) _ {\lambda \in \Lambda}\) の共通部分 \(\cap C _ {\lambda}\) も凸集合です。</p>
 <p>証明は省略します。</p>
 </blockquote>
-<h4 id="definition-凸包">Definition (凸包)<a class="td-heading-self-link" href="#definition-%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<br>
+<p><strong>Definition（凸包）</strong></p>
 <blockquote>
 <p>集合 \(A\) を含む最小の凸集合を \(A\) の凸包と定義し、\(\text{conv}A\) と表記します。</p>
 </blockquote>
+<br>
 <p>凸包の定義を見る限り、具体的にどのような元が凸包に含まれるかが明記されていません。
 ですが、集合 \(A\) の凸包が \(A\) を含む最小の凸集合であるという性質から、有限個の点 \(x _ 1, \ldots, x _ k \in A\) の凸結合（convex combination）全体の集合が凸包と一致することがわかります。</p>
-<h4 id="proposition-凸包の具体的な表現">Proposition (凸包の具体的な表現)<a class="td-heading-self-link" href="#proposition-%e5%87%b8%e5%8c%85%e3%81%ae%e5%85%b7%e4%bd%93%e7%9a%84%e3%81%aa%e8%a1%a8%e7%8f%be" aria-label="Heading self-link"></a></h4>
+<br>
+<p><strong>Proposition（凸包の具体的な表現）</strong></p>
 <blockquote>
 <p>集合 \(A\) の凸包 \(\text{conv}(A)\) は次のように書き下すことができます:
 \[ \begin{gather*}  \mathrm{conv}(A) = \left\{ \sum _ {i=1}^k \lambda _ i x _ i \;\middle|\; k \in \mathbb{N},\; x _ i \in A,\; \lambda _ i \geq 0,\; \sum _ {i=1}^k \lambda _ i = 1 \right\}  \end{gather*} \]</p>
 <p>証明は省略します。</p>
 </blockquote>
-<p><strong>Propositon（凸集合の閉包は凸集合）</strong></p>
+<br>
+<p><strong>Propositon（凸集合の閉包は凸集合）</strong> <a id="closure-of-convex-set-is-convex"></a></p>
 <blockquote>
 <p>凸集合の閉包は凸集合です。</p>
 <details><summary>(Proof)</summary><div>
@@ -277,35 +283,56 @@ function details_open(bool){
 </div></details>
 </blockquote>
 <p>一方で、閉集合の凸包は閉集合とは限りません（最初私は閉集合の凸包は閉集合となると思い込んでいましたが反例がありました）。</p>
-<p><strong>Propositon（閉集合の凸包は閉集合とは限らない）</strong></p>
+<br>
+<p><strong>Propositon（閉集合の凸包は閉集合とは限らない）</strong> <a id="convex-full-of-closed-set-is-not-closed-in-general"></a></p>
 <blockquote>
 <p>閉集合の凸包が閉集合とならない反例が存在します。</p>
 <details><summary>(Proof)</summary><div>
 <p>\[ \begin{gather*}  A := \{ (x, y) | xy \geq 1, x &gt; 0, y &gt; 0 \} \cup {(0, 0)}  \end{gather*} \]
 とおく。このとき、以下が成り立ちます。</p>
 <ul>
-<li>\(A\) が閉集合です。（理由: \((x, y) \to xy\) が連続なので \(\{ (x, y) | xy &lt; 1, x &gt; 0, y &gt; 0 \}\) が開集合となるため。）</li>
-<li>\( \text{conv}(A) = \{ (x, y) | x &gt; 0, y &gt; 0 \} \cup {(0, 0)}\)。（理由: \(x &gt; 0, y &gt; 0, xy &lt; 1\) を満たす \(x, y\) に対して \(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} &gt; 1\) とおくと \((\lambda x)\cdot(\lambda y) = 1\) となるため。）</li>
-<li>\( \text{conv}(A)\) が閉集合ではありません。</li>
+<li>\(A\) は閉集合です。（理由: \((x, y) \to xy\) が連続なので \(\{ (x, y) | xy &lt; 1, x &gt; 0, y &gt; 0 \}\) が開集合となるため。）</li>
+<li>\( \text{conv}(A) = \{ (x, y) | x &gt; 0, y &gt; 0 \} \cup {(0, 0)}\) です。（理由: \(x &gt; 0, y &gt; 0, xy &lt; 1\) を満たす \(x, y\) に対して \(\lambda = (x _ {0}y _ {0})^{-\frac{1}{2}} &gt; 1\) とおくと \((\lambda x)\cdot(\lambda y) = 1\) となるため。）</li>
+<li>\( \text{conv}(A)\) は閉集合ではありません。</li>
 </ul>
 <p>よって、反例が存在することを示せました。</p>
 </div></details>
 </blockquote>
+<br>
 <p>閉集合の凸包が閉集合になるとは限らないため、閉集合を考える場合においては単なる凸包では捉えたい対象を十分にとらえきれない可能性があります。
 幸いにも、凸集合の共通部分が凸集合となるのと同じく、閉集合の共通部分も閉集合となることから、\(A\) を含む最小の閉凸集合が存在することがわかります。</p>
-<h4 id="definition-閉凸包">Definition (閉凸包)<a class="td-heading-self-link" href="#definition-%e9%96%89%e5%87%b8%e5%8c%85" aria-label="Heading self-link"></a></h4>
+<p><strong>Definition（閉凸包）</strong></p>
 <blockquote>
 <p>集合 \(A\) を含む最小の閉凸集合を \(A\) の閉凸包と定義します。</p>
 </blockquote>
+<br>
+<p><strong>Propositon（閉凸包の具体的な表現）</strong></p>
+<blockquote>
+<p>\(A\) の閉凸包は \(\text{cl} (\text{conv} (A))\) と一致します。</p>
+<p>また、\(\text{cl} (\text{conv} (A)) \supseteq \text{conv} (\text{cl} (A))\) です。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(A\) の閉凸包を \(B\) とおきます。
+<a href="/my-hugo-site/blog/2025/07/14/convex-set/#convex-full-of-closed-set-is-convex">凸集合の閉包は凸集合</a>なので、\(\text{cl} (\text{conv} (A))\) は閉集合かつ凸集合です。
+よって、\(B\) の閉凸集合の最小性から \(\text{cl} (\text{conv} (A)) \supseteq B\) が成り立ちます。</p>
+<p>\(\text{conv} (A)\) の凸集合の最小性より \(\text{conv} (A) \subseteq B\) であり、
+\(\text{cl} (\text{conv} (A))\) の閉集合の最小性より \(\text{cl} (\text{conv} (A)) \subseteq B\) がいえます。
+よって、\(\text{cl} (\text{conv} (A)) = B\) が示せました。</p>
+<p>同様の方法で、\(\text{cl} (\text{conv} (A)) \supseteq \text{conv} (\text{cl} (A))\) がいえます。
+ですが、<a href="convex-full-of-closed-set-is-not-closed-in-general">閉集合の凸包は閉集合とは限らない</a>ため、等号が一般的に成立するとは言えません。</p>
+</div></details>
+</blockquote>
 <p><br><br></p>
 <h2 id="凸集合の分離定理">凸集合の分離定理<a class="td-heading-self-link" href="#%e5%87%b8%e9%9b%86%e5%90%88%e3%81%ae%e5%88%86%e9%9b%a2%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h2>
+<p>ここまで、凸集合を取り巻く基本概念――凸包や閉凸包、そしてそれらが持つ閉性・凸性の保存則――を整理してきました。</p>
+<p>次に取り上げる分離定理は、この問いへの核心的な回答を与えるものです。直感的には「互いに交わらない二つの凸集合は、一枚の超平面によって左右に分けられる」という主張ですが、実際には集合の閉性やコンパクト性といった性質が、分離がどの程度厳密に行えるかを左右します。また、一点と凸集合の分離（分離補題）を足がかりに、二つの凸集合の分離へと議論を発展させる流れは、有限次元空間における幾何学的議論の典型例でもあります。</p>
+<p>以下では、まず一点と凸集合の分離補題を示し、そこから二つの凸集合の分離定理へとステップを進めます。「なぜ超平面が存在するのか」「境界に点がある場合となければどう違うのか」といったポイントを確認しながら、証明を丁寧に追っていきましょう。</p>
 <p><strong>Propositon（凸集合と一点の分離）</strong> <a id="separating-hyperplane-lemma"></a></p>
 <blockquote>
 <p>\(C \subseteq \mathbb{R}^n\) を凸集合とします。</p>
 <p>\(\inf _ {c \in C} d(c, x _ {0})\) &gt; 0 ならば、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します:
-\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b.  \end{gather*} \]</p>
+\[ \begin{gather*}  a \neq 0, \\   \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle &lt; b.  \end{gather*} \]</p>
 <p>\(\inf _ {c \in C} d(c, x _ {0})\) = 0 ならば、以下の条件を満たす \(a, b \in \mathbb{R}^n\) が存在します:
-\[ \begin{gather*}  \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle \leq b.  \end{gather*} \]</p>
+\[ \begin{gather*}  a \neq 0, \\   \langle a, c\rangle \geq b \quad (\forall c \in C), \\   \langle a, x _ {0}\rangle \leq b.  \end{gather*} \]</p>
 <details><summary>(Proof)</summary><div>
 <p>\(\inf _ {c \in C} d(c, x _ {0})\) &gt; 0 のときは \(x _ {0} \notin Cl(C)\) となりますので、
 証明は<a href="/my-hugo-site/blog/2025/07/14/convex-set/#kanamori">統計的学習理論</a>の補題 B.2 を参照してください。</p>
@@ -361,13 +388,13 @@ function details_open(bool){
 \(\text{Re} \lambda(a) &lt; t &lt; s &lt; \text{Re} \lambda(b) \quad ( \forall a \in A, \; \forall b \in B )\) に対して成立する。</li>
 </ul>
 </blockquote>
-<p>Hahn-Banach の分離定理の主張と<a href="/my-hugo-site/blog/2025/07/14/convex-set/#separating-hyperplane-theorem-1">凸集合の分離定理</a> の主張は少し異なりますが。
+<p>Hahn-Banach の分離定理の主張は<a href="/my-hugo-site/blog/2025/07/14/convex-set/#separating-hyperplane-theorem">凸集合の分離定理</a> の主張と少し異なりますが。
 Hahn-Banach の分離定理から凸集合の分離定理を導出することも可能です。</p>
 <p>とはいえ Hahn-Banach の分離定理は Minkowski 汎関数を上手く取ってきて Hahn-Banach の拡張定理を使うことによって示すことができますが、
 凸集合の性質を full に使っているとは言えません。
 凸集合の分離定理を有限次元の場合に具体的に証明することによって、凸集合の性質や凸集合の分離定理の持つ意味がより理解しやすくなったのではないかと思います。</p>
 <p><br><br></p>
-<h2 id="結論-conclusion-or-point">結論 (conclusion or point)<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96-conclusion-or-point" aria-label="Heading self-link"></a></h2>
+<h2 id="結論">結論<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96" aria-label="Heading self-link"></a></h2>
 <p>本記事では、凸集合の基本的な性質を確認したうえで、有限次元空間における凸集合の分離定理を具体的に証明しました。</p>
 <p>抽象的な主張だけでは見えにくい「分離の構成」や「幾何的な意味合い」を丁寧に追うことで、定理の内容を直感的に把握できたのではないかと思います。特に、閉集合・凸包・閉凸包といった概念の違いが、定理の成立条件にどのように影響するかを具体例を通じて確認することで、「分離可能性」を支える数学的構造に対する理解が深まったのではないでしょうか。</p>
 <p>このような具体的理解は、今後 Hahn-Banach のような一般的な分離定理に進む際の直観的土台となり、また、最適化・機械学習・経済理論など、実問題への応用においても有益です。</p>

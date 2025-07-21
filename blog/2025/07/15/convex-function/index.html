@@ -33,7 +33,7 @@
   <meta itemprop="description" content="凸関数の性質">
   <meta itemprop="datePublished" content="2025-07-15T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-15T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1333">
+  <meta itemprop="wordCount" content="1710">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="凸関数の性質">
@@ -170,13 +170,20 @@
         <li></li>
       </ul>
     </li>
-    <li><a href="#凸関数の連続性">凸関数の連続性</a></li>
     <li><a href="#凸関数の性質">凸関数の性質</a>
       <ul>
-        <li><a href="#propositon-一変数凸関数であることと傾きの単調増加が同値であること">Propositon (一変数凸関数であることと傾きの単調増加が同値であること)</a></li>
+        <li><a href="#凸関数の連続性">凸関数の連続性</a></li>
+        <li><a href="#凸関数と接超平面がグラフの位置関係">凸関数と接超平面がグラフの位置関係</a></li>
+        <li><a href="#一変数凸関数と直線の傾きの関係">一変数凸関数と直線の傾きの関係</a></li>
+        <li><a href="#極小値と最大値の一致">極小値と最大値の一致</a></li>
       </ul>
     </li>
-    <li><a href="#jensen-の不等式">Jensen の不等式</a></li>
+    <li><a href="#jensen-の不等式">Jensen の不等式</a>
+      <ul>
+        <li><a href="#jensen-の不等式の意義">Jensen の不等式の意義</a></li>
+        <li><a href="#条件付き期待値に対する-jensen-の不等式の意義">条件付き期待値に対する Jensen の不等式の意義</a></li>
+      </ul>
+    </li>
     <li><a href="#結論">結論</a></li>
     <li><a href="#参考文献">参考文献</a></li>
   </ul>
@@ -210,7 +217,25 @@
 </div>
 
   </header>
-	<h2 id="導入">導入<a class="td-heading-self-link" href="#%e5%b0%8e%e5%85%a5" aria-label="Heading self-link"></a></h2>
+	<script>
+function details_open(bool){
+  const elems = document.getElementsByTagName('details');
+  const button = document.getElementById('detail-open-button');
+  const detailsOpenNext = button.innerText === "証明を開く";
+  if (detailsOpenNext){
+    button.innerText = "証明を閉じる";
+  }
+  else {
+    button.innerText = "証明を開く";
+  }
+
+  for(elem of elems){
+    elem.open = detailsOpenNext;
+  }
+}
+</script>
+<p><button type="button" id="detail-open-button" onclick="details_open(true)">証明を開く</button></p>
+<h2 id="導入">導入<a class="td-heading-self-link" href="#%e5%b0%8e%e5%85%a5" aria-label="Heading self-link"></a></h2>
 <hr>
 <p>数理最適化の問題を解くとき、「この関数が凸かどうか」は非常に重要な判断基準になります。なぜなら、関数が凸であれば、任意の局所最小解が大域最小解と一致するという性質があるからです。</p>
 <p>このような性質により、凸関数は最適化理論の中で特別な位置を占めています。機械学習における損失関数の設計、経済学の効用最大化問題、エンジニアリング分野でのコスト最小化など、さまざまな応用において問題の解析可能性やアルゴリズムの収束保証が凸性に依存しています。</p>
@@ -249,26 +274,32 @@
 <br>
 <p><strong>Definition (凸関数)</strong></p>
 <blockquote>
-<p>(1) 集合 \(C \subset \mathbb{R}^n\) を凸集合とし、関数 \(f: C \to \mathbb{R}\) を \(C\) 上の関数とします。
-任意の \(x, y \in C\)、\(0 \leq \lambda \leq 1\) に対して以下の不等式が成り立つとき、\(f\) を凸関数と定義します。<br>
-\[ \begin{gather*}  f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)  \end{gather*} \]</p>
-<p>(2) 関数 \(f: \mathbb{R}^n \to \mathbb{R} \cup \{ +\infty \}\) を \(\mathbb{R}^n\) 上の関数とします。
+<p>関数 \(f: \mathbb{R}^n \to \mathbb{R} \cup \{ +\infty \}\) を \(\mathbb{R}^n\) 上の関数とします。
 任意の \(x, y \in \mathbb{R}^n, 0 \leq \lambda \leq 1\) に対して以下の不等式が成り立つとき、\(f\) を凸関数と定義します。
 \[ \begin{gather*}  f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)  \end{gather*} \]
-\(f\) が実数値を取る領域を \(\text{dom} (f) := \{x \,\, | \,\, f(x) &lt; +\infty\}\) と定義します。不等式が成り立つことから、\(\text{dom} (f)\) は凸集合になることがわかります。</p>
+\(f\) が実数値を取る領域を \(\text{dom} (f) := \{x \,\, | \,\, f(x) &lt; +\infty\}\) と定義します。
+不等式が成り立つことから、\(\text{dom} (f)\) は凸集合になることがわかります。</p>
 </blockquote>
+<br>
+<h4 id="補足-通常の凸関数の定義との整合性">補足: 通常の凸関数の定義との整合性<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3-%e9%80%9a%e5%b8%b8%e3%81%ae%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e5%ae%9a%e7%be%a9%e3%81%a8%e3%81%ae%e6%95%b4%e5%90%88%e6%80%a7" aria-label="Heading self-link"></a></h4>
+<p>凸集合 \(C \subset \mathbb{R}^n\) 上で定義される（\(+ \infty\) の値をとらない通常の）凸関数 \(\tilde{f}: C \to \mathbb{R}\) に対して、
+上記の定義と適合させるために \(\mathbb{R}^n\) 上の関数に拡張するには、</p>
+<p>\[ \begin{gather*}  f(x) := \begin{cases} \tilde{f} (x) \; (x \in C) \\ + \infty \; (x \notin C) \end{cases}  \end{gather*} \]</p>
+<p>と \(C\) 以外の元で \(+ \infty\) の値を取るように修正すればよいです。</p>
 <br>
 <h4 id="補足-凸関数の加重平均による不等式-a-idweighted-averagea">補足: 凸関数の加重平均による不等式 <a id="weighted-average"></a><a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e5%8a%a0%e9%87%8d%e5%b9%b3%e5%9d%87%e3%81%ab%e3%82%88%e3%82%8b%e4%b8%8d%e7%ad%89%e5%bc%8f-a-idweighted-averagea" aria-label="Heading self-link"></a></h4>
 <p>凸関数の定義から、3 つ以上の元の加重平均の場合に拡張した以下の性質が成り立ちます。</p>
 <blockquote>
-<p>\(x _ {1}, \dots, x _ {t}\) を \(\text{dom} (f)\) の元とし、
+<p>\(x _ {1}, \dots, x _ {t} \in \text{dom} (f)\) とし、
 \(a _ {1}, \dots, a _ {t}\) を \(a _ {1} + \dots + a _ {t} = 1\) を満たす非負実数とすると、
 \[ \begin{gather*}  f(\sum _ {i = 1}^{t} a _ {i} x _ {i}) \leq \sum _ {i = 1}^{t} a _ {i} f(x _ {i})  \end{gather*} \]
 が成り立ちます。</p>
 <p>証明は数学的帰納法を使えば可能です。</p>
 </blockquote>
 <br>
-<h2 id="凸関数の連続性">凸関数の連続性<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h2>
+<h2 id="凸関数の性質">凸関数の性質<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e6%80%a7%e8%b3%aa" aria-label="Heading self-link"></a></h2>
+<hr>
+<h3 id="凸関数の連続性">凸関数の連続性<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e9%80%a3%e7%b6%9a%e6%80%a7" aria-label="Heading self-link"></a></h3>
 <p>凸関数の定義からは、グラフ上の2点を結ぶ線分が関数値の上側に位置するという幾何的な性質が導かれます。
 このイメージから、「凸関数ならば不連続な跳びが起きるようなことはなく、当然連続であってほしい」と直感的には思えます。</p>
 <p>実際、凸関数はある点の周囲で関数が定義されていれば、その点で連続になるという性質を持ちます。
@@ -278,18 +309,44 @@
 <br>
 <p><strong>Propositon（凸関数の連続性）</strong></p>
 <blockquote>
-<p>\(f\) を凸関数とします。\(x\) が \(\text{dom} (f)\) の内点を含むなら、\(f\) は \(x\) で連続です。</p>
-<p>証明は<a href="/my-hugo-site/blog/2025/07/15/convex-function/#kanamori">統計的学習理論</a>の定理 B.7 を参照してください。</p>
+<p>\(f\) を \(\mathbb{R}^{n}\) 上の凸関数とします。\(x\) が \(\text{dom} (f)\) の内点なら、\(f\) は \(x\) で連続です。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(x\) が \(\text{dom} (f)\) の内点なので、\(n + 1\) 個の点 \(x _ {0}, x _ {1}, \dots, x _ {n} \in \text{dom}(f)\) が存在して、\(x\) が \(\text{conv} (\{ x _ {i} \})\) の内点となるようにとれます。
+よって、ある \(r &gt; 0\) が存在して、\(x\) を中心とした半径 \(r\) の開球 \(B(x, r)\) が \(\text{conv} (\{ x _ {i} \})\) に含まれるようにできます。</p>
+<p>次に、</p>
+<p>\[ \begin{gather*}  \mu := \max (\{ f(x _ {i}) \}) \end{gather*} \]</p>
+<p>とおくと、\(f\) が凸関数であるため、\(w \in \text{conv} (\{ x _ {i} \})\) なら、\(f(w) \leq \mu\) となります。
+とくに \(w \in B(x, r)\) であっても \(f(w) \leq \mu\) がいえます。</p>
+<p>ここから連続性を示します。\(f\) を \(f - f(x)\) で置き換えることで、\(f(x) = 0\) としても一般性を失いません。</p>
+<p>任意の \(\varepsilon &gt; 0\) をとります。
+\(z \in B(x, \varepsilon r)\) ならば \(|f(z)| &lt; \varepsilon \mu\) を示せば \(x\) における連続性がわかります。</p>
+<p>まず \(f(z) &lt; \varepsilon \mu\) を示しましょう。
+\(z := (1 - \varepsilon) x + \varepsilon w\) を満たすように \(w\) をとりましょう。
+このとき、\( w = x + \frac{1}{\varepsilon} (z - x)\) なので \(w \in B(x, r)\) となるから、
+\(f(z) \leq (1 - \varepsilon) f(x) + \varepsilon f(w) \leq \varepsilon \mu\) がいえます。
+よって、示せました。</p>
+<p>次に \(- f(z) &lt; \varepsilon \mu\) を示しましょう。
+\(x := \frac{1}{1 + \varepsilon} z + \frac{\varepsilon}{1 + \varepsilon} w&rsquo;\) を満たすように \(w&rsquo;\) をとる。
+このとき、\( w&rsquo; = x - \frac{1}{\varepsilon} (z - x)\) なので \(w \in B(x, r)\) となるから、
+\(f(x) \leq \frac{1}{1 + \varepsilon} f(z) + \frac{\varepsilon}{1 + \varepsilon} f(w&rsquo;)\) がいえます。
+よって、</p>
+<p>\[ \begin{gather*} -f(z) \leq \varepsilon f(w) \leq \varepsilon \mu \end{gather*} \]</p>
+<p>が示せました。</p>
+<p>以上より、\(f\) が \(x\) で連続であることが示せました。</p>
+</div></details>
 </blockquote>
 <br>
-<h2 id="凸関数の性質">凸関数の性質<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%ae%e6%80%a7%e8%b3%aa" aria-label="Heading self-link"></a></h2>
+<h3 id="凸関数と接超平面がグラフの位置関係">凸関数と接超平面がグラフの位置関係<a class="td-heading-self-link" href="#%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e6%8e%a5%e8%b6%85%e5%b9%b3%e9%9d%a2%e3%81%8c%e3%82%b0%e3%83%a9%e3%83%95%e3%81%ae%e4%bd%8d%e7%bd%ae%e9%96%a2%e4%bf%82" aria-label="Heading self-link"></a></h3>
 <p>凸関数の定義は、関数値に関する不等式という代数的な表現で与えられますが、幾何的な構造にも大きく関わっています。</p>
-<p>とくに、凸関数の重要な特徴のひとつは、「グラフの任意の点において、その点で接する接平面が関数のグラフの下側に位置する」という性質です。言い換えれば、接平面が常に関数を下から支えているという構造です。</p>
-<p>この性質は、解析的には関数の接平面が接点において関数値を過小評価するという不等式として表現されます。この視点を通じて、凸性は微分可能性や勾配・双対性といった他の解析的概念と自然に結びつきます。</p>
-<p>さらに重要なのは、こうした接平面による特徴づけは、凸関数の定義と同値であるという点です。すなわち、「接平面が常に関数のグラフの下にある」ことと、「関数が凸である」ことは互いに言い換え可能なのです。</p>
+<p>とくに、凸関数の重要な特徴のひとつは、「グラフの任意の点において、その点で接する接平面が関数のグラフの下側に位置する」という性質です。
+言い換えれば、接平面が常に関数を下から支えているという構造です。</p>
+<p>この性質は、解析的には関数の接平面が接点において関数値を過小評価するという不等式として表現されます。
+この視点を通じて、凸性は微分可能性や勾配・双対性といった他の解析的概念と自然に結びつきます。</p>
+<p>さらに重要なのは、こうした接平面による特徴づけは、凸関数の定義と同値であるという点です。
+すなわち、「接超平面が常に関数のグラフの下にある」ことと、「関数が凸である」ことは互いに言い換え可能なのです。</p>
 <p>以下では、これを命題として厳密に述べ、その証明も確認していきます。</p>
 <br>
-<p><strong>Propositon（凸関数であることと接平面がグラフの下に位置することが同値であること）</strong> <a id="convec-function-hyperplane"></a></p>
+<p><strong>Propositon（「凸関数であること」と「接超平面がグラフの下に位置すること」は同値）</strong> <a id="convec-function-hyperplane"></a></p>
 <blockquote>
 <p>\(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ + \infty\}\) とします。
 さらに \(\text{dom} (f)\) が開集合であるとします。</p>
@@ -324,33 +381,38 @@
 </div></details>
 </blockquote>
 <br>
-<p>関数が一変数の場合を考えると、凸関数であることとある点を基点としたときに線分の傾きが増加していくことと同値です（要イメージ図）。</p>
-<h3 id="propositon-一変数凸関数であることと傾きの単調増加が同値であること">Propositon (一変数凸関数であることと傾きの単調増加が同値であること)<a class="td-heading-self-link" href="#propositon-%e4%b8%80%e5%a4%89%e6%95%b0%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a7%e3%81%82%e3%82%8b%e3%81%93%e3%81%a8%e3%81%a8%e5%82%be%e3%81%8d%e3%81%ae%e5%8d%98%e8%aa%bf%e5%a2%97%e5%8a%a0%e3%81%8c%e5%90%8c%e5%80%a4%e3%81%a7%e3%81%82%e3%82%8b%e3%81%93%e3%81%a8" aria-label="Heading self-link"></a></h3>
+<h3 id="一変数凸関数と直線の傾きの関係">一変数凸関数と直線の傾きの関係<a class="td-heading-self-link" href="#%e4%b8%80%e5%a4%89%e6%95%b0%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e7%9b%b4%e7%b7%9a%e3%81%ae%e5%82%be%e3%81%8d%e3%81%ae%e9%96%a2%e4%bf%82" aria-label="Heading self-link"></a></h3>
+<p>「凸関数であること」と「接超平面がグラフの下に位置すること」が同値であることがわかりました。
+特に一変数関数に対する接超平面は接線であり、とくに接線の傾きという一次元のパラメータで表現することが可能です。
+一般的に、直線の傾きが単調に増加するという直感的な性質と、数学的な凸性とが同値であることが知られています。
+この関係を明確にするために、以下の命題を紹介します。</p>
+<br>
+<p><strong>Propositon（「一変数凸関数であること」と「傾きの単調増加」は同値）</strong></p>
 <blockquote>
 <p>\(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ + \infty\}\) とし、以下は同値です。
 さらに \(\text{dom} (f)\) が開集合であるとします。</p>
 <p>傾きを求める関数 \(\phi _ {x} (y) := \frac{f(y) - f(x)}{y - x} \; (y \neq x)\) を定義します。
 このとき、以下の条件 (a)、(b) は同値です:</p>
 <p>(1) \(f\) が凸関数。</p>
-<p>(2) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(x &lt; y\) で広義単調増加。</p>
-<p>(3) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(y &lt; x\) で広義単調増加。</p>
-<p>(4) 任意の \( x \in \text{dom}(f) \) に対して、\(y _ {1} &lt; x &lt; y _ {2}\) ならば、\(\phi _ {x} (y _ {1}) \leq \phi _ {x} (y _ {2})\) が成り立つ。</p>
+<p>(2-a) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(x &lt; y\) で広義単調増加。</p>
+<p>(2-b) 任意の \( x \in \text{dom}(f) \) に対して、\(\phi _ {x} (y)\) が \(y &lt; x\) で広義単調増加。</p>
+<p>(2-c) 任意の \( x \in \text{dom}(f) \) に対して、\(y _ {1} &lt; x &lt; y _ {2}\) ならば、\(\phi _ {x} (y _ {1}) \leq \phi _ {x} (y _ {2})\) が成り立つ。</p>
 <details><summary>(Proof)</summary><div>
-<p>(1) \(\Leftrightarrow\) (2)</p>
+<p>(1) \(\Leftrightarrow\) (2-a)</p>
 <p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
 このとき、\( \phi _ {x} (z) \leq \phi _ {x} (y)\) が成立することを示しましょう。</p>
 <p>\(z - x = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
 よって、</p>
 <p>\[ \begin{align*}   &amp; f(z) \leq (1 - \lambda) f(x) + \lambda f(y) \\   \Leftrightarrow &amp; f(z) - f(x) \leq \lambda (f(y) - f(x)) \\   \Leftrightarrow &amp; \frac{f(z) - f(x)}{z - x} \leq \frac{f(y) - f(x)}{y - x}   \end{align*}\]</p>
 <p>となるので示せました。</p>
-<p>(1) \(\Leftrightarrow\) (3)</p>
+<p>(1) \(\Leftrightarrow\) (2-b)</p>
 <p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
 このとき、\( \phi _ {y} (x) \leq \phi _ {y} (z)\) が成立することを示しましょう。</p>
 <p>\(y - z = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
 よって、</p>
 <p>\[ \begin{align*}   &amp; f(z) \leq (1 - \lambda) f(y) + \lambda f(x) \\   \Leftrightarrow &amp; \lambda (f(y) - f(x)) \leq f(y) - f(z) \\   \Leftrightarrow &amp; \frac{f(y) - f(x)}{y - x} \leq \frac{f(y) - f(z)}{y - z} \\   \Leftrightarrow &amp; \frac{f(x) - f(y)}{x - y} \leq \frac{f(z) - f(y)}{z - y}    \end{align*}\]</p>
 <p>となるので示せました。</p>
-<p>(1) \(\Leftrightarrow\) (4)</p>
+<p>(1) \(\Leftrightarrow\) (2-c)</p>
 <p>\( x \in \text{dom}(f) \) を固定し、\(x &lt; z &lt; y\) を任意にとります。
 このとき、\( \phi _ {z} (x) \leq \phi _ {z} (y)\) が成立することを示しましょう。</p>
 <p>\(z - x = \lambda (y - x)\) となる \(0 &lt; \lambda &lt; 1\) をとります。
@@ -361,6 +423,7 @@
 </div></details>
 </blockquote>
 <br>
+<h3 id="極小値と最大値の一致">極小値と最大値の一致<a class="td-heading-self-link" href="#%e6%a5%b5%e5%b0%8f%e5%80%a4%e3%81%a8%e6%9c%80%e5%a4%a7%e5%80%a4%e3%81%ae%e4%b8%80%e8%87%b4" aria-label="Heading self-link"></a></h3>
 <p>最適化問題において、ある点が「最適解」であるかを判定するために、勾配がゼロになる（停留点である）という必要条件を用います。ですが一般にはこの条件だけでは不十分であり、停留点が極小点とは限らないというのが非線形最適化の難しさでもあります。</p>
 <p>ところが、関数が凸である場合には事情が大きく変わります。</p>
 <p>凸関数に対しては、停留点であるという条件が、そのまま大域的最小解であることを保証してくれるのです。
@@ -377,24 +440,26 @@
 <p>\[ \begin{gather*}  f(y) \geq f(x) + \langle \nabla f(x), y - x \rangle  \end{gather*} \]</p>
 <p>が成り立ちます。</p>
 <p>ここで \(x = x^{\ast}\) を代入すると、任意の \(y \in \mathbb{R}^n \) に対して</p>
-<p>\[ \begin{gather*}  f(y) \geq f(x^<em>) + \langle \nabla f(x^</em>), y - x^* \rangle  \end{gather*} \]</p>
+<p>\[ \begin{gather*}  f(y) \geq f(x^{\ast}) + \langle \nabla f(x^{\ast}), y - x^{\ast} \rangle  \end{gather*} \]</p>
 <p>が成り立ちます。</p>
 <p>仮定より \(\nabla f(x^{\ast}) = 0\) なので、</p>
-<p>\[ \begin{gather*}  \langle \nabla f(x^<em>), y - x^</em> \rangle = \langle 0, y - x^* \rangle = 0  \end{gather*} \]
+<p>\[ \begin{gather*}  \langle \nabla f(x^{\ast}), y - x^{\ast} \rangle = \langle 0, y - x^{\ast} \rangle = 0  \end{gather*} \]
 したがって、</p>
-<p>\[ \begin{gather*}  f(y) \geq f(x^<em>)  \end{gather</em>} \]</p>
+<p>\[ \begin{gather*}  f(y) \geq f(x^{\ast})  \end{gather*} \]</p>
 <p>が任意の \(y\) に対して成り立ちます。つまり、\(x^{\ast}\) は \(f\) の大域的最小点です。</p>
 </div></details>
 </blockquote>
 <p><br><br></p>
 <h2 id="jensen-の不等式">Jensen の不等式<a class="td-heading-self-link" href="#jensen-%e3%81%ae%e4%b8%8d%e7%ad%89%e5%bc%8f" aria-label="Heading self-link"></a></h2>
-<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#weighted-average">凸関数の加重平均による不等式</a>で見てきたように、凸関数は「入力値を加重平均」した \(f(\sum _ {i = 1}^{t} a _ {i} x _ {i})\) よりも「出力値を加重平均」した値 \(\sum _ {i = 1}^{t} a _ {i} f(x _ {i})\) のほうが大きくなるという直感的な性質を持ちます。これは最適化理論だけでなく、確率論においても重要な意味をもちます。</p>
-<p>確率論の文脈では、「入力値」が確率変数であり、「平均」が期待値に対応します。このとき、加重平均の場合と同様の問題を考察すると、次のような問いが自然に現れます:</p>
+<h3 id="jensen-の不等式の意義">Jensen の不等式の意義<a class="td-heading-self-link" href="#jensen-%e3%81%ae%e4%b8%8d%e7%ad%89%e5%bc%8f%e3%81%ae%e6%84%8f%e7%be%a9" aria-label="Heading self-link"></a></h3>
+<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#weighted-average">凸関数の加重平均による不等式</a>で見てきたように、凸関数は「入力値を加重平均」した \(f(\sum _ {i = 1}^{t} a _ {i} x _ {i})\) よりも「出力値を加重平均」した値 \(\sum _ {i = 1}^{t} a _ {i} f(x _ {i})\) のほうが大きくなるという直感的な性質を持ちます。
+これは最適化理論だけでなく、確率論においても重要な意味をもちます。</p>
+<p>確率論の文脈では、「入力値」が確率変数であり、「加重平均」が期待値に対応します。このとき、加重平均の場合と同様の問題を考察すると、次のような問いが自然に現れます:</p>
 <blockquote>
 <p>ある関数 \(f\) に対して、\(f(\mathbb{E}(X))\) と \(\mathbb{E}(f(X))\) はどちらが大きいか？</p>
 </blockquote>
-<p>このような疑問に答えるのが、Jensen の不等式です。
-このケースは、有限個の元を加重平均したケースを無限個の元に拡張した場合とみなすことが可能です。</p>
+<p>このような疑問に答えるのが、Jensen の不等式であり、
+有限個の元を加重平均したケースを無限個の元に拡張した場合とみなすことが可能です。</p>
 <p>Jensen の不等式は、凸関数という解析的性質と、期待値という確率的概念とを橋渡しする根本的なツールです。単なる数学的テクニックにとどまらず、</p>
 <ul>
 <li>期待値を含む不等式の評価</li>
@@ -407,25 +472,59 @@
 <br>
 <p><strong>Propositon（Jensen の不等式）</strong></p>
 <blockquote>
-<p>\(f\) を凸関数とし、\(X\) を確率ベクトルとする。
-さらに、\(\text{dom} (f)\) が開集合であり、</p>
+<p>\(f\) を凸関数とし、\(X\) を確率ベクトルとします。
+さらに、\(\mathbb{E} (X)\) が \(\text{dom} (f)\) の内部（= \(\text{dom} (f)\) の内点の集合）に含まれているとします。</p>
+<p>このとき、</p>
+<p>\[ \begin{gather*}  \mathbb{E} (f(X)) \geq f ( \mathbb{E} (X) )  \end{gather*} \]</p>
+<p>が成り立つ。</p>
+<details><summary>(Proof)</summary><div>
+<p>\(\mathbb{E}(X)\) が \(\text{dom} (f)\) の内点であるため、<a href="/my-hugo-site/blog/2025/07/15/convex-function/#convec-function-hyperplane">凸関数の性質</a>から 以下の不等式が成り立ちます:</p>
+<p>\[ \begin{gather*}  f(t) - f(\mathbb{E} (X)) \geq \langle a, t - \mathbb{E} (X) \rangle  \end{gather*} \]</p>
+<p>\(f\) の条件から、\(f\) は Borel 可測関数です（証明は煩雑なだけなので省略します）。</p>
+<p>\(t = X\) を代入して、\(\mathbb{E} ( \cdot )\) を施すことで、</p>
+<p>\[ \begin{align*}   \mathbb{E} (f(X)) - f( \mathbb{E} (X) )   \geq &amp; \mathbb{E} \left( \langle a, X - \mathbb{E} (X) \rangle \right) \\   = &amp; \langle a, \mathbb{E} \left( X - \mathbb{E} (X) \right) \rangle \\   = &amp; \langle a, \mathbb{E} (X) - \mathbb{E} (X) \rangle \\   = &amp; 0   \end{align*} \]</p>
+<p>となるため、示せました。</p>
+</div></details>
+</blockquote>
+<br>
+<h3 id="条件付き期待値に対する-jensen-の不等式の意義">条件付き期待値に対する Jensen の不等式の意義<a class="td-heading-self-link" href="#%e6%9d%a1%e4%bb%b6%e4%bb%98%e3%81%8d%e6%9c%9f%e5%be%85%e5%80%a4%e3%81%ab%e5%af%be%e3%81%99%e3%82%8b-jensen-%e3%81%ae%e4%b8%8d%e7%ad%89%e5%bc%8f%e3%81%ae%e6%84%8f%e7%be%a9" aria-label="Heading self-link"></a></h3>
+<p>Jensen の不等式は、関数と期待値の順序の交換における凸性の効果を明確に表す基本的な道具ですが、確率論や確率過程の応用では、より柔軟な形式が必要とされる場面が少なくありません。
+特に、情報が逐次的に更新される状況、たとえば時刻 \(t\) までの情報に基づいて将来を予測するような場合には、条件付き期待値が本質的な役割を果たします。</p>
+<p>このような枠組みは、マルチンゲール理論を含む確率過程論や、その適用先である金融工学においてヘッジ戦略の設計やオプション価格評価など、現代的な応用において重要な位置を占めています。
+したがって、Jensen の不等式の条件付き期待値版は、こうした状況でも凸性の性質を活用するための有力な手段となります。</p>
+<p>以下にその形式を示します。</p>
+<br>
+<p><strong>Propositon（条件付き期待値に対する Jensen の不等式）</strong></p>
+<blockquote>
+<p>\(f\) を凸関数とし、\(X\) を確率ベクトルとします。
+さらに、</p>
 <ul>
 <li>\(f\) が一変数関数</li>
-<li>\(C^{1}\) 級</li>
+<li>\(\text{dom} (f)\) の内部において \(C^{1}\) 級</li>
 </ul>
-<p>のいずれかの条件を満たし、\(\mathbb{E} (X | \mathcal{F})\) の値がほとんど \(\text{dom} (f)\) に含まれているとする。</p>
+<p>のいずれかの条件を満たし、\(\mathbb{E} (X | \mathcal{F})\) の値がほとんど \(\text{dom} (f)\) の内部に含まれているとします。</p>
 <p>このとき、</p>
 <p>\[ \begin{gather*}  \mathbb{E} (f(X) | \mathcal{F}) \geq f ( \mathbb{E} (X | \mathcal{F}) )  \end{gather*} \]</p>
 <details><summary>(Proof)</summary><div>
-<p><a href="/my-hugo-site/blog/2025/07/15/convex-function/#convec-function-hyperplane">凸関数の性質</a>から \(a \in \text{dom} (f)\) に対して、以下の不等式が成り立ちます:</p>
+<p>\(\text{dom} (f)\) の内点である \(x\) に対して、<a href="/my-hugo-site/blog/2025/07/15/convex-function/#convec-function-hyperplane">凸関数の性質</a>から以下の不等式が成り立ちます:</p>
 <p>\[ \begin{gather*}  f(t) - f(x) \geq \langle a(x), t - x \rangle  \end{gather*} \]</p>
-<p>\(f\) の条件から、\(f\) は Borel 可測関数であり、また \(a\) を Borel 可測関数にとることができます（証明は煩雑なだけなので省略します）。</p>
+<p>\(f\) が満たしている条件から、\(a\) を Borel 可測関数にとることができます。（証明は省略します。以下の補足を参照ください。）</p>
 <p>\(\mathbb{E} (X | \mathcal{F})\) の値がほとんど \(\text{dom} (f)\) に含まれているため、
 \(t = X, \; v = \mathbb{E} (X | \mathcal{F})\) を代入して、\(\mathbb{E} ( \cdot | \mathcal{F} )\) を施すことで、</p>
 <p>\[ \begin{align*}   \mathbb{E} (f(X) | \mathcal{F}) - f( \mathbb{E} (X | \mathcal{F}) )   \geq &amp; \mathbb{E} \left( \langle a( \mathbb{E} (X | \mathcal{F}) ), X - \mathbb{E} (X | \mathcal{F}) \rangle \right) \\   = &amp; \langle a( \mathbb{E} (X | \mathcal{F}) ), \mathbb{E} \left( X - \mathbb{E} (X | \mathcal{F}) | \mathcal{F} \right) \rangle \\   = &amp; \langle a( \mathbb{E} (X | \mathcal{F}) ), \mathbb{E} (X | \mathcal{F}) - \mathbb{E} (X | \mathcal{F}) \rangle \\   = &amp; 0   \end{align*} \]</p>
 <p>となるため、示せました。</p>
 </div></details>
 </blockquote>
+<br>
+<h4 id="補足-凸関数と接超平面の可測性">補足: 凸関数と接超平面の可測性<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3-%e5%87%b8%e9%96%a2%e6%95%b0%e3%81%a8%e6%8e%a5%e8%b6%85%e5%b9%b3%e9%9d%a2%e3%81%ae%e5%8f%af%e6%b8%ac%e6%80%a7" aria-label="Heading self-link"></a></h4>
+<p>本記事では、本筋の理解を妨げないように言及しませんでしたが、「Jensen の不等式」の証明において期待値を取るには厳密には以下の条件が必要です。</p>
+<ul>
+<li>\(f\) が Borel 可測関数</li>
+<li>\(a\) が Borel 可測関数</li>
+</ul>
+<p>実は上記の事実を証明することが可能ですが、その証明は長く煩雑です。
+また、実際の問題を考察する際、病的な例である可測でない凸関数に適用したいケースがあるとは思えません。
+よって、そのようなコーナーケースによって話の流れを阻害するのは逆効果だと考え、当記事では可測性について最小限の言及にとどめました。</p>
 <p><br><br></p>
 <h2 id="結論">結論<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96" aria-label="Heading self-link"></a></h2>
 <p>凸関数は、最適化理論全体を支える概念といえます。その定義に内在する不等式は、幾何的な直感、解析的な性質、そして計算可能性という多方面の視点をつなぎ合わせています。</p>
