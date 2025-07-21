@@ -33,7 +33,7 @@
   <meta itemprop="description" content="双対問題">
   <meta itemprop="datePublished" content="2025-07-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1574">
+  <meta itemprop="wordCount" content="1575">
   <meta itemprop="keywords" content="最適化">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="双対問題">
@@ -167,14 +167,14 @@
     </li>
     <li><a href="#双対問題">双対問題</a>
       <ul>
-        <li></li>
+        <li><a href="#なぜ双対問題を考えるのか">なぜ「双対問題」を考えるのか</a></li>
+        <li><a href="#双対問題の凸性">双対問題の凸性</a></li>
       </ul>
     </li>
     <li><a href="#弱双対定理と強双対定理">弱双対定理と強双対定理</a></li>
     <li><a href="#強双対定理の成立条件">強双対定理の成立条件</a>
       <ul>
-        <li></li>
-        <li><a href="#補足相対的内点について">補足：相対的内点について</a></li>
+        <li><a href="#スレーター条件">スレーター条件</a></li>
         <li><a href="#緩和されたスレーター条件">緩和されたスレーター条件</a></li>
       </ul>
     </li>
@@ -259,7 +259,7 @@ function details_open(bool){
 <p><br><br></p>
 <h2 id="双対問題">双対問題<a class="td-heading-self-link" href="#%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c" aria-label="Heading self-link"></a></h2>
 <hr>
-<h4 id="なぜ双対問題を考えるのか">なぜ「双対問題」を考えるのか<a class="td-heading-self-link" href="#%e3%81%aa%e3%81%9c%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%82%92%e8%80%83%e3%81%88%e3%82%8b%e3%81%ae%e3%81%8b" aria-label="Heading self-link"></a></h4>
+<h3 id="なぜ双対問題を考えるのか">なぜ「双対問題」を考えるのか<a class="td-heading-self-link" href="#%e3%81%aa%e3%81%9c%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%82%92%e8%80%83%e3%81%88%e3%82%8b%e3%81%ae%e3%81%8b" aria-label="Heading self-link"></a></h3>
 <p>制約付き最適化問題において、制約を満たしつつ目的関数を最小化する解を直接求めるのは、解析的にも計算的にも困難なことがあります。
 そこで登場するのが<strong>ラグランジュ関数</strong>による「緩和」の考え方です。</p>
 <p>制約条件をそのまま扱うのではなく、目的関数に制約を重み付きで加算したラグランジュ関数を構成することで、制約付き問題を制約なしの問題に変換することができます。</p>
@@ -294,13 +294,14 @@ function details_open(bool){
 (2) 主問題の最適値を \(p^{\ast}\)、双対問題の最適値は \(d^{\ast}\) と表記します。また、双対ギャップを \(p^{\ast} - d^{\ast}\) と定義します。</p>
 </blockquote>
 <br>
+<h3 id="双対問題の凸性">双対問題の凸性<a class="td-heading-self-link" href="#%e5%8f%8c%e5%af%be%e5%95%8f%e9%a1%8c%e3%81%ae%e5%87%b8%e6%80%a7" aria-label="Heading self-link"></a></h3>
 <p>双対問題が重要視される理由の一つは、それが常に凸最適化問題になる点にあります。
 たとえ主問題が凸でなかったとしても、双対問題は凸性を持つため、適用できるアルゴリズムが豊富であり、また理論的な収束保証もよく研究されています。</p>
 <p>双対問題の凸性を示す命題を以下に述べます。</p>
 <br>
 <p><strong>Propositon（双対問題の凸性）</strong></p>
 <blockquote>
-<p>\(g(\lambda, \nu)\) は凸関数（つまり \(-g\) は凸関数）です。
+<p>\(g(\lambda, \nu)\) は凹関数（つまり \(-g\) は凸関数）です。
 　　　　</p>
 <details><summary>(Proof)</summary><div>
 <p>\(\lambda^{1}, \; \lambda^{2}, \; \nu^{1}, \; \nu^{2}\) と \(0 \leq s \leq 1\) を任意にとり、
@@ -313,6 +314,7 @@ function details_open(bool){
 </blockquote>
 <p><br><br></p>
 <h2 id="弱双対定理と強双対定理">弱双対定理と強双対定理<a class="td-heading-self-link" href="#%e5%bc%b1%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86%e3%81%a8%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86" aria-label="Heading self-link"></a></h2>
+<hr>
 <p>双対関数</p>
 <p>\[ \begin{gather*}  g(\lambda, \mu) = \inf _ x L(x, \lambda, \mu)  \end{gather*} \]</p>
 <p>は、主問題の実行可能解の集合 \(F\) の元 \(x\) に対して、主問題の目的関数の下界を与える性質があります。
@@ -346,7 +348,8 @@ function details_open(bool){
 </blockquote>
 <p><br><br></p>
 <h2 id="強双対定理の成立条件">強双対定理の成立条件<a class="td-heading-self-link" href="#%e5%bc%b7%e5%8f%8c%e5%af%be%e5%ae%9a%e7%90%86%e3%81%ae%e6%88%90%e7%ab%8b%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h2>
-<h4 id="スレーター条件">スレーター条件<a class="td-heading-self-link" href="#%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h4>
+<hr>
+<h3 id="スレーター条件">スレーター条件<a class="td-heading-self-link" href="#%e3%82%b9%e3%83%ac%e3%83%bc%e3%82%bf%e3%83%bc%e6%9d%a1%e4%bb%b6" aria-label="Heading self-link"></a></h3>
 <p>強双対性が成り立つとき、双対問題の最適値から主問題の最適値を正確に読み取ることができ、理論的にも計算的にも非常に大きなメリットがあります。
 しかし、前述のとおり、強双対性は一般には自動的に成り立つものではなく、その成立には主問題に対する関するある種の「良い条件」が必要です。</p>
 <p>特に、問題が凸最適化問題である場合には、強双対性が成り立つことを保証する十分条件としてよく知られているのが「スレーター条件（Slater&rsquo;s condition）」です。</p>
@@ -424,7 +427,7 @@ function details_open(bool){
 </div></details>
 </blockquote>
 <br>
-<h3 id="補足相対的内点について">補足：相対的内点について<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e7%9b%b8%e5%af%be%e7%9a%84%e5%86%85%e7%82%b9%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" aria-label="Heading self-link"></a></h3>
+<h4 id="補足相対的内点について">補足：相対的内点について<a class="td-heading-self-link" href="#%e8%a3%9c%e8%b6%b3%e7%9b%b8%e5%af%be%e7%9a%84%e5%86%85%e7%82%b9%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" aria-label="Heading self-link"></a></h4>
 <p>スレーター条件を定義する際、厳密な不等式が成立する点 \(x _ {0}\) が定義域 \(\text{dom} (\mathcal{P})\) の内点であることをこの記事では要求しています。
 ただし、\(\text{dom} (\mathcal{P})\) が低次元の部分集合（例えばある超平面上）に含まれている場合など、通常の意味での内点がそもそも存在しないことがあります。このような場合に対して、\(\text{dom} (\mathcal{P})\) を含む最小のアフィン部分空間における内点、すなわち「相対的内点（relative interior）」という概念が必要になります。一般的なテキストでは、\(x _ {0}\) を \(\text{dom} (\mathcal{P})\) の「内点」ではなく、「相対的内点」であると定義することがほとんどでしょう。</p>
 <p>本記事では、本筋の理解を妨げないように相対的内点という定義を持ち出してはいません。その理由は以下の通りです:</p>
@@ -498,6 +501,7 @@ function details_open(bool){
 </blockquote>
 <p><br><br></p>
 <h2 id="結論">結論<a class="td-heading-self-link" href="#%e7%b5%90%e8%ab%96" aria-label="Heading self-link"></a></h2>
+<hr>
 <p>本記事では、不等式制約付き最適化問題に対して定義される双対問題の基本的な構造と、その理論的意義について整理してきました。
 特に重要なポイントは以下の通りです:</p>
 <ul>
@@ -512,6 +516,7 @@ function details_open(bool){
 凸最適化問題の理論的背景をしっかり押さえたうえで、必要なときに手元に置いて参照できるような「チートシート」として、ぜひ活用していただければと思います。</p>
 <p><br><br></p>
 <h2 id="参考文献">参考文献<a class="td-heading-self-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="Heading self-link"></a></h2>
+<hr>
 <ul>
 <li><a id="kanamaori"></a>金森敬文（2015）『統計的学習理論』共立出版（機械学習プロフェッショナルシリーズ）</li>
 <li><a id="boyd"></a>Boyd, S., &amp; Vandenberghe, L. (2004). <em>Convex optimization</em>. Cambridge University Press.</li>
